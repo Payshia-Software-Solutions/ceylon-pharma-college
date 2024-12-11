@@ -211,16 +211,28 @@ function NavBar() {
   return (
     <div>
       <header
-        className={`fixed top-0 left-0 w-full bg-black text-white z-50 transition-transform duration-300 ${
+        className={`fixed top-0 left-0 w-full bg-white  text-black z-50 transition-transform duration-300 ${
           isVisible ? "-translate-y-full" : "translate-y-0"
         }`}
       >
         {/* Top Bar */}
-        <div className="bg-[#D22B2B] text-sm py-2 px-4 flex justify-center items-center text-white">
-          <FaTruck className="w-5 h-5 mr-2" />
-          <p className="text-center whitespace-nowrap">
-            Enjoy Free Shipping from December 1st to 31st!
-          </p>
+        <div className="flex  justify-center">
+          <div className="bg-maincolor  w-full text-sm py-2 px-4 flex justify-center  text-white">
+            {/* Links section */}
+
+            
+            <div className="flex gap-6">
+              <Link href={"#"}>Athletics</Link>
+              <Link href={"#"}>Athletics</Link>
+              <Link href={"#"}>Athletics</Link>
+              <Link href={"#"}>Athletics</Link>
+              <Link href={"#"}>Athletics</Link>
+            </div>
+       
+         
+
+
+          </div>
         </div>
 
         {/* Main Navbar */}
@@ -228,9 +240,9 @@ function NavBar() {
           {/* Logo Row (Mobile-Responsive Centering) */}
           <div className="flex items-center justify-between md:hidden md:gap-4">
             {/* Logo */}
-            <div className="w-full md:w-auto hidden md:flex justify-center md:justify-start mb-4 md:mb-0">
-              <Link href="/" className="text-2xl font-bold text-orange-500">
-                <img src="/assets/gold-logo.webp" alt="" className="h-12" />
+            <div className="w-full md:w-auto relative  hidden md:flex justify-center md:justify-start mb-4 md:mb-0">
+              <Link href="/" className="text-2xl absolute font-bold text-orange-500">
+                <img src="/assets/images/logo.svg" alt="" className="h-12" />
               </Link>
             </div>
           </div>
@@ -239,7 +251,7 @@ function NavBar() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="w-full md:w-auto hidden md:flex justify-center md:justify-start mb-4 md:mb-0">
               <Link href="/" className="text-2xl font-bold text-orange-500">
-                <img src="/assets/gold-logo.webp" alt="" className="h-12" />
+                <img src="/assets/images/logo.png"  alt="" className="h-12" />
               </Link>
             </div>
             {/* Navigation */}
@@ -254,134 +266,12 @@ function NavBar() {
 
               <Link href="/shop" className="relative">
                 <button
-                  onMouseEnter={() => handleShopMouseEnter(true)}
+   
                   className="hover:text-gray-300"
                 >
                   Shop
                 </button>
-                {isTeaDropdownVisible && (
-                  <div
-                    onMouseLeave={() => setTeaDropdownVisible(false)}
-                    className="fixed w-screen left-0 bg-emerald-950 text-white shadow-md"
-                    style={{ top: "100%" }}
-                  >
-                    <div className="shadow-lg py-4 px-6 grid grid-cols-4 gap-6 max-w-7xl mx-auto">
-                      {/* Column 1 */}
-                      <div>
-                        <h3 className="font-bold mb-3 text-gray-400">
-                          SHOP TEA
-                        </h3>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link href="/shop" className="hover:text-gray-300">
-                              Shop All Teas
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="/products/christmas-tea-advent-calendar--24-individually-wrapped-tea-bags"
-                              className="hover:text-gray-300"
-                            >
-                              Advent Calender
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                      {/* Column 2 */}
-                      <div>
-                        <h3 className="font-bold mb-3 text-gray-400">
-                          SHOP BY TEA
-                        </h3>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/shop/filter?category=1"
-                              className="hover:text-gray-300"
-                            >
-                              Black Tea
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="/shop/filter?category=2"
-                              className="hover:text-gray-300"
-                            >
-                              Green Tea
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="/shop/filter?category=3"
-                              className="hover:text-gray-300"
-                            >
-                              Herbal Tea
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                      {/* Column 3 */}
-                      <div>
-                        <h3 className="font-bold mb-3 text-gray-400">
-                          TEA FORMAT
-                        </h3>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/shop/filter?teaFormat=3"
-                              className="hover:text-gray-300"
-                            >
-                              Loose Leaf
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="/shop/filter?teaFormat=1"
-                              className="hover:text-gray-300"
-                            >
-                              Tea Bags
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="/shop/filter?teaFormat=2"
-                              className="hover:text-gray-300"
-                            >
-                              Luxury Leaf Tea Bags
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="/shop/filter?teaFormat=4"
-                              className="hover:text-gray-300"
-                            >
-                              Canisters
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                      {/* Column 4 */}
-                      <div>
-                        <h3 className="font-bold mb-3 text-gray-400">
-                          TEA EDITS
-                        </h3>
-                        <ul className="space-y-2">
-                          {departmentsLoading && <p>Loading Departments...</p>}
-                          {departmentsError && <p>{departmentsError}</p>}
-                          {departments.map((department) => (
-                            <li key={department.id}>
-                              <Link
-                                href={`/shop/filter?department=${department.id}`}
-                                className="hover:text-gray-300"
-                              >
-                                {department.department_name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                )}
+             
               </Link>
 
               <div className="relative">
@@ -412,31 +302,7 @@ function NavBar() {
                         </ul>
                       </div>
 
-                      <div>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/tea-heritage"
-                              className="hover:text-gray-300"
-                            >
-                              Our Tea Heritage
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/kdu-group"
-                              className="hover:text-gray-300"
-                            >
-                              KDU Group
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
+                    
                     </div>
                   </div>
                 )}
@@ -449,94 +315,7 @@ function NavBar() {
                 >
                   Our Teas
                 </button>
-                {isOurTeasDropdownVisible && (
-                  <div
-                    onMouseLeave={() => setOurTeasDropdownVisible(false)}
-                    className="fixed w-screen left-0 bg-emerald-950 text-white shadow-md"
-                    style={{ top: "100%" }}
-                  >
-                    <div className="shadow-lg py-4 px-6 grid grid-cols-4 gap-6 max-w-7xl mx-auto">
-                      {/* Column 1 */}
-                      <div>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/our-teas/classic-teas"
-                              className="hover:text-gray-300"
-                            >
-                              Classic Teas
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/our-teas/flavoured-teas"
-                              className="hover:text-gray-300"
-                            >
-                              Flavoured Teas
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/our-teas/exceptional-teas"
-                              className="hover:text-gray-300"
-                            >
-                              Exceptional Teas
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/our-teas/exclusive-teas"
-                              className="hover:text-gray-300"
-                            >
-                              Exclusive Teas
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/our-teas/factory-teas"
-                              className="hover:text-gray-300"
-                            >
-                              Factory Teas
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/our-teas/organic-teas"
-                              className="hover:text-gray-300"
-                            >
-                              Organic Teas
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                )}
+               
               </div>
 
               <Link
@@ -549,8 +328,8 @@ function NavBar() {
             </nav>
 
             {/* Search and User Actions */}
-            <div className="flex justify-between items-center gap-4">
-              {/* Search Box */}
+            {/* <div className="flex justify-between items-center gap-4">
+    
               <div className="w-full md:w-auto  md:hidden justify-center md:justify-start mb-4 md:mb-0">
                 <Link href="/" className="text-2xl font-bold text-orange-500">
                   <img
@@ -570,15 +349,15 @@ function NavBar() {
                   onChange={handleInputChange}
                   onBlur={handleBlur}
                 />
-                {/* Display the filtered products */}
+            
                 {query && (
                   <div className="fixed md:absolute left-0 md:left-auto bg-white w-full md:w-[16vw] mt-11 md:mt-12 border border-gray-300 rounded-md shadow-md z-10">
                     {filteredProducts.length > 0 ? (
                       filteredProducts.slice(0, 5).map((product) => (
                         <Link
                           href={`/products/${product.slug}`}
-                          key={product.product_id} // Move the key to the Link component for optimization
-                          onClick={() => setQuery("")} // Clear search query on click
+                          key={product.product_id} 
+                          onClick={() => setQuery("")} 
                         >
                           <div className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
                             <Image
@@ -594,10 +373,10 @@ function NavBar() {
                               </p>
                               <p className="text-[10px] text-gray-500 flex gap-2 justify-start items-center md:justify-between">
                                 <Image
-                                  src={product.teaIcon} // Dynamic icon based on category
-                                  alt={`${product.teaType} icon`} // Dynamic alt text based on tea type
-                                  width={12} // Specify fixed width
-                                  height={4} // Adjusted height for proper scaling
+                                  src={product.teaIcon} 
+                                  alt={`${product.teaType} icon`} 
+                                  width={12} 
+                                  height={4} 
                                 />
                                 {formatPrice(product.selling_price)}
                               </p>
@@ -614,7 +393,7 @@ function NavBar() {
                 )}
               </div>
 
-              {/* Buttons */}
+     
               <div className="flex items-center gap-4">
                 <div className="flex gap-4">
                   <button
@@ -636,32 +415,22 @@ function NavBar() {
                   </button>
                 </div>
               </div>
+            </div>  */}
+
+            <div className="flex justify-between items-center">
+              <div className="text-white text-center flex justify-around gap-4">
+                <button className="bg-[#00b67d] text-xl py-2 px-4  rounded-full w- h-auto">
+                  Reqvest info
+                </button>
+                <button className="bg-[#00b67d] text-xl py-2 px-4 rounded-full h-auto">
+                  Apply
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </header>
-      {/* Product Dropdown */}
-      {isSearchDropdownVisible && products.length > 0 && (
-        <div className="absolute bg-white border border-gray-300 mt-2 w-full rounded-lg shadow-lg z-50">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="flex items-center gap-4 p-4 hover:bg-gray-100 cursor-pointer"
-            >
-              <img
-                src={product.image}
-                alt={product.product_name}
-                className="w-12 h-12 object-cover rounded-md"
-              />
-              <div>
-                <p className="text-sm font-medium">{product.name}</p>
-                <p className="text-sm text-gray-600">${product.price}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
+ 
       {/* No results */}
       {isSearchDropdownVisible && products.length === 0 && (
         <div className="absolute bg-white border border-gray-300 mt-2 w-full rounded-lg shadow-lg z-50 p-4 text-gray-500">
