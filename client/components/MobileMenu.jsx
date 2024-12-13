@@ -74,7 +74,7 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
         {/* Logo */}
         <div className="flex items-center justify-center py-6">
           <Image
-            src="/assets/gold-logo.webp"
+              src="/assets/images/logo.png"
             alt="Logo"
             width={250}
             height={250}
@@ -129,11 +129,6 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
                     Shop All Teas
                   </Link>
                 </li>
-
-              
-
-
-              
               </ul>
             )}
           </div>
@@ -174,24 +169,7 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
                     Tea Jar Story
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    href="/tea-heritage"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-sm font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-                  >
-                    Our Tea Heritage
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/kdu-group"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-sm font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-                  >
-                    KDU Group
-                  </Link>
-                </li>
+             
               </ul>
             )}
           </div>
@@ -232,54 +210,6 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
                   </Link>
                 </li>
 
-                <li>
-                  <Link
-                    href="/our-teas/flavoured-teas"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-sm font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-                  >
-                    Flavoured Teas
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/our-teas/exceptional-teas"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-sm font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-                  >
-                    Exceptional Teas
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    href="/our-teas/exclusive-teas"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-sm font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-                  >
-                    Exclusive Teas
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    href="/our-teas/factory-teas"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-sm font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-                  >
-                    Factory Teas
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    href="/our-teas/organic-teas"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-sm font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-                  >
-                    Organic Teas
-                  </Link>
-                </li>
               </ul>
             )}
           </div>
@@ -291,6 +221,17 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           >
             Contact Us
           </Link>
+
+          <div className="md:flex justify-between items-center mt-5">
+            <div className="text-white text-center flex justify-around gap-2">
+              <button className="bg-[#00b67d] text-lg py-2 px-4  rounded-full  h-auto">
+                Reqvest info
+              </button>
+              <button className="bg-[#00b67d] text-lg py-2 px-4 rounded-full h-auto">
+                Apply
+              </button>
+            </div>
+          </div>
         </nav>
 
         {/* Footer Actions */}

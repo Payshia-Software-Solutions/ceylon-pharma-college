@@ -34,11 +34,6 @@ function NavBar() {
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
 
-  const [selectedDepartmentIds, setSelectedDepartmentIds] = useState([]);
-  const [departmentsLoading, setDepartmentsLoading] = useState(true);
-  const [departmentsError, setDepartmentsError] = useState(null);
-  const [departments, setDepartments] = useState([]);
-
   const formatPrice = (amount) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -145,69 +140,13 @@ function NavBar() {
   const [products, setProducts] = useState([]);
   const [isSearchDropdownVisible, setIsSearchDropdownVisible] = useState(false);
   // Fetch products on component mount
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(`${config.API_BASE_URL}/products`);
-        const data = await response.json();
-        setProducts(data); // Assuming the endpoint returns an array of products
-        setFilteredProducts(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-  }, []);
 
   // console.log(products);
   const [query, setQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState(products);
 
-  // Update the query state as user types
-  // Update query and filter products
-  const handleInputChange = (e) => {
-    const searchQuery = e.target.value;
-    setQuery(searchQuery);
-
-    const filtered = products
-      .map((product) => {
-        const teaType = TeaTypes[product.category_id];
-        const teaIcon = TeaIcons[product.category_id];
-        if (!teaType || !teaIcon) return null; // Skip products without matching categories
-        return {
-          ...product,
-          teaType,
-          teaIcon, // Add teaType and teaIcon to product object
-        };
-      })
-      .filter(
-        (product) =>
-          product &&
-          product.product_name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-
-    setFilteredProducts(filtered);
-  };
-
-  // console.log(filteredProducts);
-
-  const handleBlur = () => {
-    // Optional: Hide search results or do other operations when input loses focus
-  };
-
   // Detect clicks outside of the search bar
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setQuery(""); // Clear the search query to hide the dropdown
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+
   return (
     <div>
       <header
@@ -220,7 +159,6 @@ function NavBar() {
           <div className="bg-maincolor  w-full text-sm py-2 px-4 flex justify-center  text-white">
             {/* Links section */}
 
-            
             <div className="flex gap-6">
               <Link href={"#"}>Athletics</Link>
               <Link href={"#"}>Athletics</Link>
@@ -228,10 +166,6 @@ function NavBar() {
               <Link href={"#"}>Athletics</Link>
               <Link href={"#"}>Athletics</Link>
             </div>
-       
-         
-
-
           </div>
         </div>
 
@@ -241,7 +175,10 @@ function NavBar() {
           <div className="flex items-center justify-between md:hidden md:gap-4">
             {/* Logo */}
             <div className="w-full md:w-auto relative  hidden md:flex justify-center md:justify-start mb-4 md:mb-0">
-              <Link href="/" className="text-2xl absolute font-bold text-orange-500">
+              <Link
+                href="/"
+                className="text-2xl absolute font-bold text-orange-500"
+              >
                 <img src="/assets/images/logo.svg" alt="" className="h-12" />
               </Link>
             </div>
@@ -251,7 +188,7 @@ function NavBar() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <div className="w-full md:w-auto hidden md:flex justify-center md:justify-start mb-4 md:mb-0">
               <Link href="/" className="text-2xl font-bold text-orange-500">
-                <img src="/assets/images/logo.png"  alt="" className="h-12" />
+                <img src="/assets/images/logo.png" alt="" className="h-12" />
               </Link>
             </div>
             {/* Navigation */}
@@ -265,13 +202,7 @@ function NavBar() {
               </Link>
 
               <Link href="/shop" className="relative">
-                <button
-   
-                  className="hover:text-gray-300"
-                >
-                  Shop
-                </button>
-             
+                <button className="hover:text-gray-300">Shop</button>
               </Link>
 
               <div className="relative">
@@ -301,8 +232,6 @@ function NavBar() {
                           </li>
                         </ul>
                       </div>
-
-                    
                     </div>
                   </div>
                 )}
@@ -315,7 +244,6 @@ function NavBar() {
                 >
                   Our Teas
                 </button>
-               
               </div>
 
               <Link
@@ -328,85 +256,19 @@ function NavBar() {
             </nav>
 
             {/* Search and User Actions */}
-            {/* <div className="flex justify-between items-center gap-4">
-    
+            <div className="flex justify-between items-center gap-4">
               <div className="w-full md:w-auto  md:hidden justify-center md:justify-start mb-4 md:mb-0">
                 <Link href="/" className="text-2xl font-bold text-orange-500">
                   <img
-                    src="/assets/gold-logo.webp"
+                    src="/assets/images/logo.png"
                     alt=""
                     className="h-8 mt-2"
                   />
                 </Link>
               </div>
 
-              <div ref={searchRef} className="flex-grow relative flex">
-                <input
-                  type="text"
-                  className="w-full bg-gray-700 text-sm text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  placeholder="Find products"
-                  value={query}
-                  onChange={handleInputChange}
-                  onBlur={handleBlur}
-                />
-            
-                {query && (
-                  <div className="fixed md:absolute left-0 md:left-auto bg-white w-full md:w-[16vw] mt-11 md:mt-12 border border-gray-300 rounded-md shadow-md z-10">
-                    {filteredProducts.length > 0 ? (
-                      filteredProducts.slice(0, 5).map((product) => (
-                        <Link
-                          href={`/products/${product.slug}`}
-                          key={product.product_id} 
-                          onClick={() => setQuery("")} 
-                        >
-                          <div className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                            <Image
-                              src={`${config.ADMIN_BASE_URL}/pos-system/assets/images/products/${product.product_id}/${product.image_path}`}
-                              alt={product.product_name}
-                              className="object-cover rounded mr-4"
-                              width={50}
-                              height={50}
-                            />
-                            <div>
-                              <p className="text-[12px] leading-1 font-medium text-black w-full">
-                                {product.product_name}
-                              </p>
-                              <p className="text-[10px] text-gray-500 flex gap-2 justify-start items-center md:justify-between">
-                                <Image
-                                  src={product.teaIcon} 
-                                  alt={`${product.teaType} icon`} 
-                                  width={12} 
-                                  height={4} 
-                                />
-                                {formatPrice(product.selling_price)}
-                              </p>
-                            </div>
-                          </div>
-                        </Link>
-                      ))
-                    ) : (
-                      <div className="px-4 py-2 text-gray-500">
-                        No results found
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-
-     
               <div className="flex items-center gap-4">
                 <div className="flex gap-4">
-                  <button
-                    onClick={() => setIsCartOpen(!isCartOpen)}
-                    className="hover:text-gray-300"
-                  >
-                    <IoCartOutline className="w-6 h-6" />
-                  </button>
-
-                  <button className="hover:text-gray-300 hidden md:flex">
-                    <IoPerson className="w-6 h-6" />
-                  </button>
-
                   <button
                     className="hover:text-gray-300 flex md:hidden"
                     onClick={toggleMobileMenu}
@@ -415,22 +277,24 @@ function NavBar() {
                   </button>
                 </div>
               </div>
-            </div>  */}
-
-            <div className="flex justify-between items-center">
-              <div className="text-white text-center flex justify-around gap-4">
-                <button className="bg-[#00b67d] text-xl py-2 px-4  rounded-full w- h-auto">
-                  Reqvest info
-                </button>
-                <button className="bg-[#00b67d] text-xl py-2 px-4 rounded-full h-auto">
-                  Apply
-                </button>
+            </div>
+            <div className="hidden md:flex">
+              <div className="md:flex justify-between items-center">
+                <div className="text-white text-center flex justify-around gap-4">
+                  <button className="bg-[#00b67d] text-xl py-2 px-4  rounded-full w- h-auto">
+                    Reqvest info
+                  </button>
+                  <button className="bg-[#00b67d] text-xl py-2 px-4 rounded-full h-auto">
+                    Apply
+                  </button>
+                </div>
               </div>
+              
             </div>
           </div>
         </div>
       </header>
- 
+
       {/* No results */}
       {isSearchDropdownVisible && products.length === 0 && (
         <div className="absolute bg-white border border-gray-300 mt-2 w-full rounded-lg shadow-lg z-50 p-4 text-gray-500">
