@@ -78,7 +78,7 @@ function ExploreProgram() {
 
       {/* Card Section */}
       <div className="mt-6">
-        <div className="card-container grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="card-container grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-4">
           {exploreData.map((explore, index) => (
             <div
               key={index}
