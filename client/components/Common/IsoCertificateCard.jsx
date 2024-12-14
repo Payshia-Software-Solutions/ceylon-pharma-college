@@ -3,7 +3,7 @@ import React from "react";
 function IsoCertificateCard({imgUrl}) {
   return (
     <div>
-      <div className="max-w-full sm:max-w-[30rem] my-5 mx-auto rounded-lg overflow-hidden bg-white shadow-md">
+      <div className="max-w-full sm:max-w-[37rem] my-5 mx-auto rounded-lg overflow-hidden bg-white shadow-md">
         {/* Image */}
         <img
           className="w-full h-[12rem] sm:h-[12rem] object-contain"
@@ -22,7 +22,7 @@ function IsoCertificateCard({imgUrl}) {
           </p>
 
           {/* Button */}
-          <div className="flex justify-center">
+          <div className="flex justify-end">
           <button className="bg-[#870024] text-white uppercase  text-sm px-4 py-2 rounded hover:bg-[#a0032e] transition">
             learn more
           </button></div>

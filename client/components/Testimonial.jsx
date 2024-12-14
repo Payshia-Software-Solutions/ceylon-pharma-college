@@ -5,8 +5,11 @@ function Testimonial() {
     <div>
       {/* Desktop View */}
       <div className="hidden lg:flex items-center justify-center bg-maincolor text-white h-screen">
+      
         {/* Content Wrapper */}
         <div className="relative h-[40rem] w-[60rem]">
+
+          <h3  className="text-6xl font-bold text-center">Testimonial</h3>
           {/* Left Quote Mark */}
           <div className="absolute top-16 left-8 text-white text-9xl font-bold">
             “
