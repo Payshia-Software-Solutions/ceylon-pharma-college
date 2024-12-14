@@ -2,14 +2,16 @@ import React from "react";
 
 function Testimonial() {
   return (
-    <div>
+    <div className="relative bg-cover bg-center bg-no-repeat h-screen" style={{ backgroundImage: `url('/assets/images/cover2.jpg')` }}>
+      {/* Overlay for better contrast */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
       {/* Desktop View */}
-      <div className="hidden lg:flex items-center justify-center bg-maincolor text-white h-screen">
-      
+      <div className="hidden lg:flex items-center justify-center text-white h-screen relative z-10">
         {/* Content Wrapper */}
         <div className="relative h-[40rem] w-[60rem]">
+          <h3 className="text-6xl font-bold text-center">Testimonial</h3>
 
-          <h3  className="text-6xl font-bold text-center">Testimonial</h3>
           {/* Left Quote Mark */}
           <div className="absolute top-16 left-8 text-white text-9xl font-bold">
             “
@@ -44,8 +46,8 @@ function Testimonial() {
       </div>
 
       {/* Mobile View */}
-      <div className="block lg:hidden">
-        <div className="bg-maincolor text-white p-6 rounded-lg shadow-lg max-w-sm mx-auto relative">
+      <div className="block lg:hidden relative mt-14  z-10">
+        <div className="bg-white text-black p-6 rounded-lg shadow-lg max-w-sm mx-auto relative">
           {/* Top Quote Icon */}
           <div className="absolute -top-1 left-6 text-yellow-400 text-5xl font-bold">
             &ldquo;
