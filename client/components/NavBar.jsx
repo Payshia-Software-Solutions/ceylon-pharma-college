@@ -282,7 +282,7 @@ function NavBar() {
               <div className="md:flex justify-between items-center">
                 <div className="text-white text-center flex justify-around gap-4">
                   <button className="bg-[#00b67d] text-xl py-2 px-4  rounded-full w- h-auto">
-                    Reqvest info
+                  Request info
                   </button>
                   <button className="bg-[#00b67d] text-xl py-2 px-4 rounded-full h-auto">
                     Apply

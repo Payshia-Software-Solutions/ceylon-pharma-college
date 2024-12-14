@@ -1,7 +1,7 @@
 import React from "react";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import IsoCertificate from "@/components/IsoCertificate";
+import Accredition  from "@/components/Accredition ";
 import TestMotion from "@/components/TestMotion";
 import ExploreProgram from "@/components/ExploreProgram";
 import Testimonial from "@/components/Testimonial";
@@ -14,7 +14,7 @@ function page() {
     <div>
       <Hero />
 
-      <IsoCertificate />
+      <Accredition  />
       <ExploreProgram />
       <Testimonial />
 

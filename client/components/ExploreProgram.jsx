@@ -2,32 +2,49 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, A11y } from "swiper/modules";
 import ExploreCard from "./Common/ExploreCard";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 const exploreData = [
   {
     title: "Undergraduate First Year",
-    description: "Explore our undergraduate major and minor programs for women.",
+    description:
+      "Explore our undergraduate major and minor programs for women.",
     buttontext: "LEARN MORE",
-    imgURL: "/assets/explore/black-tea.webp"
+    imgURL: "/assets/explore/black-tea.webp",
+    rating: "4.5", // Rating out of 5
   },
   {
     title: "Undergraduate First Year",
-    description: "Explore our undergraduate major and minor programs for women.",
+    description:
+      "Explore our undergraduate major and minor programs for women.",
     buttontext: "LEARN MORE",
-    imgURL: "/assets/explore/black-tea.webp"
+    imgURL: "/assets/explore/black-tea.webp",
   },
   {
     title: "Undergraduate First Year",
-    description: "Explore our undergraduate major and minor programs for women.",
+    description:
+      "Explore our undergraduate major and minor programs for women.",
     buttontext: "LEARN MORE",
-    imgURL: "/assets/explore/black-tea.webp"
+    imgURL: "/assets/explore/black-tea.webp",
   },
   {
     title: "Undergraduate First Year",
-    description: "Explore our undergraduate major and minor programs for women.",
+    description:
+      "Explore our undergraduate major and minor programs for women.",
     buttontext: "LEARN MORE",
-    imgURL: "/assets/explore/black-tea.webp"
+    imgURL: "/assets/explore/black-tea.webp",
+  },
+  {
+    title: "Undergraduate First Year",
+    description:
+      "Explore our undergraduate major and minor programs for women.",
+    buttontext: "LEARN MORE",
+    imgURL: "/assets/explore/black-tea.webp",
   },
 ];
 
@@ -35,34 +52,27 @@ function ExploreProgram() {
   const cardRefs = useRef([]);
 
   useEffect(() => {
-    // Register GSAP ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animate cards on scroll using GSAP
-    cardRefs.current.forEach((card, index) => {
-      if (card) {
-        gsap.fromTo(
-          cardRefs.current,
-          { opacity: 0, y: 20 }, // Initial state
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            stagger: 0.3, // Delay between each card animation
-            scrollTrigger: {
-              trigger: cardRefs.current[0]?.parentNode, // Trigger animation when the parent container comes into view
-              start: "top 80%", // Start animation when parent reaches 80% of the viewport
-              end: "bottom 20%", // End animation when parent leaves 20% of the viewport
-              toggleActions: "play none none reverse", // Play on scroll down, reverse on scroll up
-            },
-          }
-        );
+    gsap.fromTo(
+      cardRefs.current,
+      { opacity: 0, y: 20 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.3,
+        scrollTrigger: {
+          trigger: cardRefs.current[0]?.parentNode,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        },
       }
-    });
+    );
 
-    // Cleanup ScrollTrigger when component unmounts
     return () => {
-      gsap.killTweensOf(cardRefs.current); // Stop any ongoing tweens for cleanup
+      gsap.killTweensOf(cardRefs.current);
     };
   }, []);
 
@@ -76,24 +86,37 @@ function ExploreProgram() {
         <hr className="w-24 md:w-32 border-t-4 border-maincolor mx-auto mt-4 md:mt-6" />
       </div>
 
-      {/* Card Section */}
-      <div className="mt-6">
-        <div className="card-container grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-4">
+      {/* Swiper Section */}
+      <div className="mt-6 lg:px-24">
+        <Swiper
+          slidesPerView={1.2}
+          spaceBetween={5}
+          pagination={{ clickable: true }}
+          breakpoints={{
+            576: { slidesPerView: 2, spaceBetween: 10 }, // Reduced gap for smaller screens
+            768: { slidesPerView: 3, spaceBetween: 15 }, // Reduced gap for medium screens
+            1024: { slidesPerView: 4, spaceBetween: 20 }, // Reduced gap for large screens
+          }}
+          modules={[Pagination, A11y]}
+          className="mySwiper"
+        >
           {exploreData.map((explore, index) => (
-            <div
-              key={index}
-              ref={(el) => (cardRefs.current[index] = el)} // Store each card's reference
-              className="transform opacity-0 transition-all duration-500 ease-in-out"
-            >
-              <ExploreCard
-                title={explore.title}
-                description={explore.description}
-                buttontext={explore.buttontext}
-                imgURL={explore.imgURL}
-              />
-            </div>
+            <SwiperSlide key={index} className="p-2 mb-5">
+              <div
+                ref={(el) => (cardRefs.current[index] = el)}
+                className="transform opacity-0 transition-all duration-500 ease-in-out"
+              >
+                <ExploreCard
+                  title={explore.title}
+                  description={explore.description}
+                  buttontext={explore.buttontext}
+                  imgURL={explore.imgURL}
+                  rating={explore.rating}
+                />
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </div>
   );
