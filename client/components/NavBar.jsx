@@ -238,12 +238,19 @@ function NavBar() {
               </div>
 
               <div className="relative">
-                <button
+
+                <Link
+                 href ="/course"
+                 className="hover:text-gray-300"
+                 >
+                  Courses
+                </Link>
+                {/* <button
                   onMouseEnter={() => handleOurTeasMouseEnter(true)}
                   className="hover:text-gray-300"
                 >
                   Our Teas
-                </button>
+                </button> */}
               </div>
 
               <Link

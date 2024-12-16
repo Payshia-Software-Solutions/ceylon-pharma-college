@@ -9,6 +9,9 @@ import AllBelonge from "@/components/AllBelonge";
 import AlvenroToday from "@/components/AlvenroToday";
 import UpcomingEventCard from "@/components/Common/UpcomingEventCard";
 import RedyForNext from "@/components/RedyForNext";
+import Course from  "@/components/Course/Course";
+
+
 function page() {
   return (
     <div>
@@ -21,6 +24,7 @@ function page() {
       <AllBelonge />
       <AlvenroToday />
       <RedyForNext />
+ 
     </div>
   );
 }
