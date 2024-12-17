@@ -57,7 +57,7 @@ function ExploreCard({ title, description, buttontext, imgURL, rating }) {
           </div>
         </div>
 
-        {/* Right-Aligned Button */}
+        {/* Right-Aligned ss */}
         <div className="flex justify-end">
           <button className="bg-[#870024] text-white uppercase text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-full hover:bg-[#a0032e] transition">
             {buttontext}
