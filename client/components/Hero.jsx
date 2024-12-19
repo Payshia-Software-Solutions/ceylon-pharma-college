@@ -17,6 +17,7 @@ function Hero() {
 
     return () => clearTimeout(timer); // Cleanup the timer
   }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -47,15 +48,27 @@ function Hero() {
         loop
         muted
       ></video>
-      <div className="absolute bg-black w-full h-full bg-opacity-40">
+      <div className="absolute bg-black w-full h-full bg-opacity-40"></div>
 
-      </div>
-      <div className="relative z-10 flex h-screen items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12">
+      {/* Logo and Text Centered Together */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 md:px-8 lg:px-12">
+        {/* Logo */}
+        <div className="mb-6">
+          <img
+            src="/assets/images/logo.png"
+            className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto object-contain"
+            alt="Logo"
+          />
+        </div>
+
+        {/* Main Text */}
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[7rem] font-bold uppercase tracking-wide">
             Get Ready
           </h1>
-          <p className="mt-4 text-2xl sm:text-3xl md:text-4xl">To Ignite Your Potential</p>
+          <p className="mt-4 text-2xl sm:text-3xl md:text-4xl">
+            To Ignite Your Potential
+          </p>
           <div className="mt-6 flex justify-center space-x-4">
             <button className="px-6 py-3 text-xl bg-[#00b67d] rounded-full text-white font-medium">
               Apply Now
