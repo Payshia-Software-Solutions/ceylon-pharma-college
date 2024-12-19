@@ -6,10 +6,11 @@ import TestMotion from "@/components/TestMotion";
 import ExploreProgram from "@/components/ExploreProgram";
 import Testimonial from "@/components/Testimonial";
 import AllBelonge from "@/components/AllBelonge";
-import AlvenroToday from "@/components/AlvenroToday";
+import AlvenroToday from "@/components/EventToday";
 import UpcomingEventCard from "@/components/Common/UpcomingEventCard";
 import RedyForNext from "@/components/RedyForNext";
 import Course from  "@/components/Course/Course";
+import MainTestimonial from "@/components/MainTestimonial";
 
 
 function page() {
@@ -19,7 +20,7 @@ function page() {
 
       <Accredition  />
       <ExploreProgram />
-      <Testimonial />
+ =   <MainTestimonial/>
 
       <AllBelonge />
       <AlvenroToday />

@@ -37,7 +37,7 @@ function AlvenroToday() {
       {/* Heading */}
       <div className="my-5">
         <h2 className="text-2xl text-center sm:text-3xl md:text-4xl font-bold leading-snug">
-          Alverno Today
+           Today Events
         </h2>
         <hr className="w-24 md:w-32 border-t-4 border-maincolor mx-auto mt-4 md:mt-6" />
       </div>

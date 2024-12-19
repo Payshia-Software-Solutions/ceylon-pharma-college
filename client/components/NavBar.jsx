@@ -207,10 +207,8 @@ function NavBar() {
 
               <div className="relative">
                 <button
-                  onMouseEnter={() => handleAboutMouseEnter(true)}
-                  className="hover:text-gray-300"
-                >
-                  About Us
+               ><Link className="hover:text-gray-300" href="/about">  About Us</Link>
+                
                 </button>
                 {isAboutDropdownVisible && (
                   <div
