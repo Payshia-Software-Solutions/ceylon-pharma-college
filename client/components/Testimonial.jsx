@@ -57,7 +57,7 @@ function Testimonial({ imgURL, coverimgURL, description, name }) {
       <div className="hidden lg:flex items-center justify-center text-white h-screen relative z-10">
         {/* Content Wrapper */}
         <div className="relative h-[40rem] w-[60rem]">
-          <h3 className="text-6xl font-bold text-center">Testimonial</h3>
+          <h3 className="text-6xl font-bold text-center"></h3>
 
           {/* Left Quote Mark */}
           <div className="absolute top-16 left-8 text-white text-9xl font-bold">“</div>
