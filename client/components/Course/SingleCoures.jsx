@@ -90,7 +90,7 @@ function SingleCoures() {
                 </div>
               </div>
 
-              {/* Instructor Card */}
+              {/* Instructor Card here */}
               <div className="mt-8">
                 <InstructorCard />
               </div>
