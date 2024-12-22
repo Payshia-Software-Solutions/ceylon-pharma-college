@@ -10,6 +10,7 @@ function SingleCourse() {
   const { slug } = useParams(); // Get the slug from the dynamic route
 
   const [course, setCourse] = useState(null);
+  const [courseModules, setCourseModules] = useState([]); // State to hold course modules
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -30,7 +31,34 @@ function SingleCourse() {
 
         console.log("Course Data:", data);
 
-        setCourse(data);
+        if (data.module_list && typeof data.module_list === "string") {
+          // Split the module_list string into an array of module codes
+          const moduleCodes = data.module_list
+            .split(",")
+            .map((code) => code.trim());
+          console.log("Module Codes from course module_list:", moduleCodes);
+
+          // Fetch course modules
+          const modulesResponse = await fetch(
+            "http://localhost/pharma-college-project/server/course-modules"
+          );
+          if (!modulesResponse.ok) {
+            throw new Error("Failed to fetch course modules");
+          }
+          const modulesData = await modulesResponse.json();
+
+          console.log("Course Modules Data:", modulesData);
+
+          // Filter course modules by matching module codes
+          const filteredModules = modulesData.filter((module) =>
+            moduleCodes.includes(module.module_code)
+          );
+
+          console.log("Filtered Course Modules:", filteredModules);
+
+          setCourse(data); // Save course data to state
+          setCourseModules(filteredModules); // Save filtered modules to state
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -40,6 +68,13 @@ function SingleCourse() {
 
     fetchCourse();
   }, [slug]); // Trigger fetch when slug changes
+
+  // Log the modules data when courseModules state updates
+  useEffect(() => {
+    if (courseModules.length > 0) {
+      console.log("Course Modules State Updated:", courseModules);
+    }
+  }, [courseModules]);
 
   if (loading) return <p>Loading course details...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -55,7 +90,7 @@ function SingleCourse() {
         />
       </div>
 
-      <div className="px-4 py-2 md:px-16 md:py-8">
+      <div className="  container px-4 py-2 md:px-16 md:py-8">
         <div className="mt-8">
           {/* Heading */}
           <div className="mb-8">
@@ -75,7 +110,6 @@ function SingleCourse() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="max-w-md">
                   <h1 className="text-2xl font-semibold mb-4">Overview</h1>
-                 
 
                   <ul className="space-y-4">
                     <li className="flex justify-between border-b pb-2">
@@ -112,13 +146,26 @@ function SingleCourse() {
                     <h2 className="text-2xl mt-4 mb-6 font-bold">Curriculum</h2>
                     <ul className="uppercase font-semibold">
                       <li className="mt-4 text-xl">First Level</li>
+                      <ul>
+                        {courseModules.length > 0 &&
+                          courseModules.map((module) => (
+                            <li
+                              key={module.id}
+                              className="flex justify-between mt-2 border-b pb-2"
+                            >
+                              {/* Module Name */}
+                              <span className="font-medium ">
+                                {module.module_name}
+                              </span>
+                              {/* Module Duration */}
+                              <span>{module.duration} mins</span>
+                            </li>
+                          ))}
+                      </ul>
                       <li className="mt-4 text-xl">Second Level</li>
                       <li className="mt-4 text-xl">Final</li>
                     </ul>
                   </div>
-
-
-
                 </div>
 
                 {/* Course Description Section */}
