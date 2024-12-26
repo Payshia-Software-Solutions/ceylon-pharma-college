@@ -290,7 +290,7 @@ function NavBar() {
                   Request info
                   </button>
                   <button className="bg-[#00b67d] text-xl py-2 px-4 rounded-full h-auto">
-                    Apply
+                  <Link href="/applynow">Apply Now</Link>
                   </button>
                 </div>
               </div>

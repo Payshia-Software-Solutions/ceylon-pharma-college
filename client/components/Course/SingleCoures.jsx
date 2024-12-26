@@ -90,7 +90,7 @@ function SingleCourse() {
         />
       </div>
 
-      <div className="  container px-4 py-2 md:px-16 md:py-8">
+      <div className="mx-auto  container px-4 py-2 md:px-16 md:py-8">
         <div className="mt-8">
           {/* Heading */}
           <div className="mb-8">
@@ -138,13 +138,13 @@ function SingleCourse() {
                     </li>
                     <li className="flex justify-between border-b pb-2">
                       <span className="font-medium">👥 Students</span>
-                      <span>300</span>
+                      <span>500</span>
                     </li>
                   </ul>
 
                   <div>
-                    <h2 className="text-2xl mt-4 mb-6 font-bold">Curriculum</h2>
-                    <ul className="uppercase font-semibold">
+                    <h2 className="sm:text-3xl  text-sm mt-4 mb-6 font-bold">Curriculum</h2>
+                    <ul className=" font-semibold">
                       <li className="mt-4 text-xl">First Level</li>
                       <ul>
                         {courseModules.length > 0 &&
