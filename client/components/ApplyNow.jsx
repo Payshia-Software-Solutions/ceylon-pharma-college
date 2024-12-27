@@ -1,14 +1,13 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "./Common/Input";
+import Swal from "sweetalert2";
 
 function ApplyNow() {
   const API_URL = "http://localhost/pharma-college-project/server/temp-users";
   const CITIES_API_URL = "http://localhost/pharma-college-project/server/cities";
 
-
   const [formData, setFormData] = useState({
-  
     email_address: "",
     civil_status: "Mr.",
     first_name: "",
@@ -39,8 +38,7 @@ function ApplyNow() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [filteredCities, setFilteredCities] = useState([]);
 
-   // Fetch cities when the component mounts
-   useEffect(() => {
+  useEffect(() => {
     const fetchCities = async () => {
       try {
         const response = await fetch(CITIES_API_URL);
@@ -59,8 +57,6 @@ function ApplyNow() {
     fetchCities();
   }, []);
 
-
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -69,7 +65,6 @@ function ApplyNow() {
     }));
 
     if (name === "city") {
-      // Filter cities for suggestions
       const suggestions = cities.filter((city) =>
         city.name_en.toLowerCase().startsWith(value.toLowerCase())
       );
@@ -88,8 +83,8 @@ function ApplyNow() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted Data:", formData);
-  
+    setIsSubmitting(true);
+
     try {
       const response = await fetch(API_URL, {
         method: "POST",
@@ -98,27 +93,51 @@ function ApplyNow() {
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (!response.ok) {
         const error = await response.json();
         console.error("Server Error:", error);
-        alert("Failed to register. " + (error.message || "Please check the input."));
+        Swal.fire({
+          icon: "error",
+          title: "Registration Failed",
+          text: error.message || "Please check the input.",
+        });
         return;
       }
-  
+
       const result = await response.json();
-      console.log("Server Response:", result);
-      alert("Registration successful!");
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful",
+        text: "Welcome to Ceylon Pharma College!",
+      });
+
+      // Open a new page with success details
+
+      window.open(`applynow/success?user_id=${result.user_id}`);
+
     } catch (error) {
       console.error("Submission Error:", error);
-      alert("An error occurred. Please try again.");
+      Swal.fire({
+        icon: "error",
+        title: "An Error Occurred",
+        text: "Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
-  
+
   return (
-    <div className="bg-gray-50 min-h-screen p-6 container mx-auto">
+    <div className="bg-gray-50 min-h-screen p-6 container mx-auto relative">
+      {/* Overlay when submitting */}
+      {isSubmitting && (
+        <div className="absolute inset-0 bg-white bg-opacity-75 z-50 flex items-center justify-center">
+          <div className="loader border-t-4 border-maincolor rounded-full w-16 h-16 animate-spin"></div>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Left Section */}
         <div className="md:col-span-1 max-h-[35rem] bg-maincolor text-white p-6 rounded-lg">
           <h1 className="text-3xl font-bold mb-4">User Registration</h1>
           <p className="mb-4">
@@ -137,21 +156,11 @@ function ApplyNow() {
           </div>
         </div>
 
-        {/* Right Section */}
         <div className="md:col-span-2 bg-white p-6 rounded-lg shadow-md">
-          <div>
-            <p className="text-2xl sm:text-3xl md:text-3xl uppercase mt-4 mb-6 border-l-4 sm:border-l-8 border-maincolor">
-              <span className="font-bold mx-2">Basic</span>
-              Information
-            </p>
-          </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex gap-4">
               <div className="max-w-[5rem]">
-                <label
-                  htmlFor="civil_status"
-                  className="block text-sm font-medium"
-                >
+                <label htmlFor="civil_status" className="block text-sm font-medium">
                   Title
                 </label>
                 <select
@@ -226,27 +235,13 @@ function ApplyNow() {
               <option>Medicine</option>
               <option>Nursing</option>
             </select>
-            <div>
-              <p className="text-2xl sm:text-3xl md:text-3xl uppercase mt-6 border-l-4 sm:border-l-8 border-maincolor">
-                <span className="font-bold mx-2">Authentication</span>
-                Information
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <Input
-                name="password"
-                type="password"
-                placeholder="Password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <p className="text-2xl sm:text-3xl md:text-3xl uppercase mt-6 border-l-4 sm:border-l-8 border-maincolor">
-                <span className="font-bold mx-2">Contact</span>
-                Information
-              </p>
-            </div>
+            <Input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+            />
             <Input
               name="email_address"
               type="email"
@@ -274,53 +269,31 @@ function ApplyNow() {
               value={formData.address_l1}
               onChange={handleChange}
             />
-            <div className="grid grid-cols-2 gap-4">
-              <Input
-                name="address_l2"
-                placeholder="Address Line 2"
-                value={formData.address_l2}
-                onChange={handleChange}
-              />
-             {/* <select
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                className="w-full border-gray-300 px-4 py-2 rounded-md"
-              >
-                <option value="">Select City</option>
-                {loadingCities ? (
-                  <option value="">Loading cities...</option>
-                ) : (
-                  cities.map((city) => (
-                    <option key={city.id} value={city.name_en}>
-                      {city.name_en}
-                    </option>
-                  ))
-                )}
-              </select> */}
-
-              <div>
-              <Input
-                name="city"
-                placeholder="Enter City"
-                value={formData.city}
-                onChange={handleChange}
-              />
-              {showSuggestions && filteredCities.length > 0 && (
-                <ul className="absolute z-10 bg-white border border-gray-300 w-full rounded-md shadow-lg">
-                  {filteredCities.map((city) => (
-                    <li
-                      key={city.id}
-                      className="px-4 py-2 cursor-pointer hover:bg-gray-100"
-                      onClick={() => handleCitySelect(city.name_en)}
-                    >
-                      {city.name_en}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              </div>
-            </div>
+            <Input
+              name="address_l2"
+              placeholder="Address Line 2"
+              value={formData.address_l2}
+              onChange={handleChange}
+            />
+            <Input
+              name="city"
+              placeholder="Enter City"
+              value={formData.city}
+              onChange={handleChange}
+            />
+            {showSuggestions && filteredCities.length > 0 && (
+              <ul className="absolute z-10 bg-white border border-gray-300 w-full rounded-md shadow-lg">
+                {filteredCities.map((city) => (
+                  <li
+                    key={city.id}
+                    className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                    onClick={() => handleCitySelect(city.name_en)}
+                  >
+                    {city.name_en}
+                  </li>
+                ))}
+              </ul>
+            )}
             <button
               type="submit"
               className={`w-full bg-maincolor text-white py-2 rounded-md font-bold text-lg hover:bg-yellow-600 ${
