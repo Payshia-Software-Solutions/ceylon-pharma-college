@@ -23,48 +23,31 @@ const juliusSansOne = Julius_Sans_One({
   subsets: ["latin"],
 });
 
-const exploreData = [
-  {
-    title: "Undergraduate First Year",
-    description:
-      "Explore our undergraduate major and minor programs for women.",
-    buttontext: "LEARN MORE",
-    imgURL: "/assets/explore/black-tea.webp",
-    rating: "4.5", // Rating out of 5
-  },
-  {
-    title: "Undergraduate First Year",
-    description:
-      "Explore our undergraduate major and minor programs for women.",
-    buttontext: "LEARN MORE",
-    imgURL: "/assets/explore/black-tea.webp",
-  },
-  {
-    title: "Undergraduate First Year",
-    description:
-      "Explore our undergraduate major and minor programs for women.",
-    buttontext: "LEARN MORE",
-    imgURL: "/assets/explore/black-tea.webp",
-  },
-  {
-    title: "Undergraduate First Year",
-    description:
-      "Explore our undergraduate major and minor programs for women.",
-    buttontext: "LEARN MORE",
-    imgURL: "/assets/explore/black-tea.webp",
-  },
-  {
-    title: "Undergraduate First Year",
-    description:
-      "",
-    buttontext: "LEARN MORE",
-    imgURL: "/assets/explore/black-tea.webp",
-  },
-];
-
-// Backend connection
 function Course() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [courses, setCourses] = useState([]); // State to store fetched courses
+  const [loading, setLoading] = useState(true); // State to handle loading status
+  const [error, setError] = useState(null); // State to handle errors
+
+  useEffect(() => {
+    // Fetch course data from the API
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch("http://localhost/pharma-college-project/server/parent-main-course");
+        if (!response.ok) {
+          throw new Error("Failed to fetch courses");
+        }
+        const data = await response.json();
+        setCourses(data); // Set the fetched data to the state
+      } catch (err) {
+        setError(err.message); // Handle any errors
+      } finally {
+        setLoading(false); // Set loading to false when data is fetched
+      }
+    };
+
+    fetchCourses();
+  }, []); // Empty dependency array ensures this runs only once on component mount
 
   return (
     <section className="h-full">
@@ -89,18 +72,29 @@ function Course() {
             <h2 className="text-3xl font-bold text-black mb-4">Courses</h2>
             <hr className="border-black border-t-2 mb-6" />
 
+            {/* Loading state */}
+            {loading && <p>Loading courses...</p>}
+
+            {/* Error state */}
+            {error && <p>Error: {error}</p>}
+
             {/* Responsive Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4  gap-2  md:gap-4">
-              {exploreData.map((explore, index) => (
-                <ExploreCard
-                  key={index}
-                  title={explore.title}
-                  description={explore.description}
-                  buttontext={explore.buttontext}
-                  imgURL={explore.imgURL}
-                  rating={explore.rating}
-                />
-              ))}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+              {courses.length > 0 ? (
+                courses.map((course, index) => (
+                  <ExploreCard
+                    key={index}
+                    title={course.course_name} // Assuming the field is 'course_name'
+                    description={course.course_description} // Assuming the field is 'course_description'
+                    buttontext="LEARN MORE"
+                    imgURL={course.course_img || "/assets/explore/black-tea.webp"} // Default image if not provided
+                    slug={course.slug} // Assuming the field is 'slug'
+                    price={course.course_fee}
+                  />
+                ))
+              ) : (
+                <p>No courses found</p>
+              )}
             </div>
           </div>
         </div>

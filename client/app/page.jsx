@@ -11,6 +11,8 @@ import UpcomingEventCard from "@/components/Common/UpcomingEventCard";
 import RedyForNext from "@/components/RedyForNext";
 import Course from "@/components/Course/Course";
 import MainTestimonial from "@/components/MainTestimonial";
+import Certificate from "@/components/Certificate";
+
 
 function page() {
   return (
@@ -19,6 +21,9 @@ function page() {
 
       <Accredition />
       <ExploreProgram />
+
+      <section id="certificates"><Certificate /></section>
+    
       <MainTestimonial />
 
       <AllBelonge />

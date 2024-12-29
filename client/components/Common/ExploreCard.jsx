@@ -1,11 +1,12 @@
+import Link from "next/link";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { FiStar } from "react-icons/fi";
 import { GiMoneyStack } from "react-icons/gi";
 
-function ExploreCard({ title, description, buttontext, imgURL, rating }) {
+function ExploreCard({ title, description, buttontext, imgURL, rating,slug,price }) {
   return (
-    <div className="max-w-full sm:max-w-[20rem] md:max-w-[24rem] lg:max-w-[28rem] my-5 rounded-lg overflow-hidden shadow-lg border border-gray-200 bg-white hover:scale-105 transition-transform duration-300">
+    <div className="max-w-full max-h-[38rem] sm:max-w-[20rem] md:max-w-[24rem] lg:max-w-[28rem] my-5 rounded-lg overflow-hidden shadow-lg border border-gray-200 bg-white hover:scale-105 transition-transform duration-300">
       {/* Image */}
       <img
         className="w-full h-[12rem] sm:h-[15rem] lg:h-[18rem] object-cover border-b-4 border-maincolor"
@@ -40,9 +41,11 @@ function ExploreCard({ title, description, buttontext, imgURL, rating }) {
           <div className="flex items-center space-x-2">
             <GiMoneyStack className="w-6 h-6 sm:w-8 sm:h-8" />
             <span className="text-gray-700 text-sm sm:text-lg font-bold">
-              $1500
+              {price}
             </span>
           </div>
+
+       
 
           {/* Seat Icon */}
           <div className="flex items-center space-x-2">
@@ -59,8 +62,9 @@ function ExploreCard({ title, description, buttontext, imgURL, rating }) {
 
         {/* Right-Aligned ss */}
         <div className="flex justify-end">
+     
           <button className="bg-[#870024] text-white uppercase text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-full hover:bg-[#a0032e] transition">
-            {buttontext}
+            <Link href={`/course/${slug}`}>    Learn More </Link>     
           </button>
         </div>
       </div>

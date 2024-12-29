@@ -20,7 +20,7 @@ function page() {
       <div>
         <WhyChoose />
       </div>
-     <Counter/>
+        <Counter/>
         <WelcomeSection/>
 
         <div>
