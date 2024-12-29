@@ -13,6 +13,7 @@ import Course from "@/components/Course/Course";
 import MainTestimonial from "@/components/MainTestimonial";
 import Certificate from "@/components/Certificate";
 
+
 function page() {
   return (
     <div>
@@ -22,7 +23,7 @@ function page() {
       <ExploreProgram />
 
       <section id="certificates"><Certificate /></section>
-     
+    
       <MainTestimonial />
 
       <AllBelonge />
