@@ -18,6 +18,10 @@ const juliusSansOne = Julius_Sans_One({
   subsets: ["latin"],
 });
 
+
+
+
+
 function NavBar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -45,17 +49,20 @@ function NavBar() {
       .replace("LKR", "Rs"); // Replaces 'LKR' with 'Rs'
   };
 
-  const TeaTypes = {
-    1: "Tea Bag",
-    2: "Pyramid Tea Bag",
-    3: "Loose Leaf Tea",
-  };
 
-  const TeaIcons = {
-    1: "/assets/icons/tea-bag.png", // Icon for Tea Bag
-    2: "/assets/icons/teabag-icon.svg", // Icon for Pyramid Tea Bag
-    3: "/assets/icons/loose-leaf-icon.svg", // Icon for Loose Leaf Tea
-  };
+
+    // Scroll to Certificates section
+    const scrollToCertificates = () => {
+      const element = document.getElementById("certificates");
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop,
+          behavior: "smooth", // smooth scroll
+        });
+      }
+    };
+
+
   // Fetch departments
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -114,38 +121,16 @@ function NavBar() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
-  const [isTeaDropdownVisible, setTeaDropdownVisible] = useState(false);
-  const [isAboutDropdownVisible, setAboutDropdownVisible] = useState(false);
-  const [isOurTeasDropdownVisible, setOurTeasDropdownVisible] = useState(false);
 
-  const handleAboutMouseEnter = () => {
-    setTeaDropdownVisible(false); // Close the Tea dropdown
-    setAboutDropdownVisible(true); // Open the About dropdown
-    setOurTeasDropdownVisible(false); // Close the Tea dropdown
-  };
 
-  const handleOurTeasMouseEnter = () => {
-    setAboutDropdownVisible(false); // Open the About dropdown
-    setTeaDropdownVisible(false); // Close the Tea dropdown
-    setOurTeasDropdownVisible(true); // Close the Tea dropdown
-  };
 
-  const handleShopMouseEnter = () => {
-    setAboutDropdownVisible(false); // Open the About dropdown
-    setTeaDropdownVisible(true); // Close the Tea dropdown
-  };
+
 
   // Search Function
 
   const [products, setProducts] = useState([]);
   const [isSearchDropdownVisible, setIsSearchDropdownVisible] = useState(false);
   // Fetch products on component mount
-
-  // console.log(products);
-  const [query, setQuery] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState(products);
-
-  // Detect clicks outside of the search bar
 
   return (
     <div>
@@ -201,38 +186,19 @@ function NavBar() {
                 Home
               </Link>
 
-              <Link href="/shop" className="relative">
-                <button className="hover:text-gray-300">Shop</button>
-              </Link>
+              <button
+                  onClick={scrollToCertificates}
+                  className="hover:text-gray-300"
+                >
+                  Certificate
+                </button>
 
               <div className="relative">
                 <button
                ><Link className="hover:text-gray-300" href="/about">  About Us</Link>
                 
                 </button>
-                {isAboutDropdownVisible && (
-                  <div
-                    onMouseLeave={() => setAboutDropdownVisible(false)}
-                    className="fixed w-screen left-0 bg-emerald-950 text-white  shadow-md"
-                    style={{ top: "100%" }}
-                  >
-                    <div className="shadow-lg py-4 px-6 grid grid-cols-4 gap-6 max-w-7xl mx-auto">
-                      {/* Column 1 */}
-                      <div>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              href="/tea-jar-story"
-                              className="hover:text-gray-300"
-                            >
-                              Tea Jar Story
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                )}
+              
               </div>
 
               <div className="relative">
@@ -253,7 +219,7 @@ function NavBar() {
 
               <Link
                 onMouseEnter={() => setOurTeasDropdownVisible(false)}
-                href="/contact"
+                href="/contactus"
                 className="hover:text-gray-300"
               >
                 Contact Us
@@ -300,12 +266,7 @@ function NavBar() {
         </div>
       </header>
 
-      {/* No results */}
-      {isSearchDropdownVisible && products.length === 0 && (
-        <div className="absolute bg-white border border-gray-300 mt-2 w-full rounded-lg shadow-lg z-50 p-4 text-gray-500">
-          No products found.
-        </div>
-      )}
+
       <div>
         {/* Side Bar Cart */}
         {isMobileMenuOpen && (

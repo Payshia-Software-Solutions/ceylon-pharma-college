@@ -5,7 +5,8 @@ import Swal from "sweetalert2";
 
 function ApplyNow() {
   const API_URL = "http://localhost/pharma-college-project/server/temp-users";
-  const CITIES_API_URL = "http://localhost/pharma-college-project/server/cities";
+  const CITIES_API_URL =
+    "http://localhost/pharma-college-project/server/cities";
 
   const [formData, setFormData] = useState({
     email_address: "",
@@ -114,8 +115,7 @@ function ApplyNow() {
 
       // Open a new page with success details
 
-      window.open(`applynow/success?user_id=${result.user_id}`);
-
+      window.location.href(`applynow/success?user_id=${result.user_id}`);
     } catch (error) {
       console.error("Submission Error:", error);
       Swal.fire({
@@ -160,7 +160,10 @@ function ApplyNow() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex gap-4">
               <div className="max-w-[5rem]">
-                <label htmlFor="civil_status" className="block text-sm font-medium">
+                <label
+                  htmlFor="civil_status"
+                  className="block text-sm font-medium"
+                >
                   Title
                 </label>
                 <select

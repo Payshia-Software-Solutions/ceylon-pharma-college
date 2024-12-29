@@ -6,16 +6,15 @@ import Alverno from "@/components/Alverno";
 import Testimonial from "@/components/Testimonial";
 import UpcomingEventCard from "@/components/Common/UpcomingEventCard";
 import IsoCertificateCard from "@/components/Common/IsoCertificateCard";
+import NameCard from "@/components/Common/NameCard";
 
 function page() {
   return (
-    <div>
+    <div className="bg-maincolor">
       <div className="mt-48">
-        <ViewSchoalership />
-
-        <ExploreProgram />
-        <Testimonial />
-        <IsoCertificateCard/>
+       <div className="mt-14">
+        <NameCard/>
+       </div>
       </div>
     </div>
   );
