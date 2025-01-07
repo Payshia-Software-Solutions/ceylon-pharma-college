@@ -64,23 +64,7 @@ function NavBar() {
 
 
   // Fetch departments
-  useEffect(() => {
-    const fetchDepartments = async () => {
-      try {
-        setDepartmentsLoading(true);
-        const res = await fetch(`${config.API_BASE_URL}/departments`);
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        const data = await res.json();
-        setDepartments(data);
-      } catch (error) {
-        setDepartmentsError("Failed to fetch Departments");
-        console.error(error);
-      } finally {
-        setDepartmentsLoading(false);
-      }
-    };
-    fetchDepartments();
-  }, []);
+
   useEffect(() => {
     if (pathname !== "/") {
       setIsVisible(false);
@@ -113,9 +97,6 @@ function NavBar() {
     setIsDropdownVisible(state);
   };
 
-  const toggleAboutDropdown = (state) => {
-    setAboutDropdownVisible(state);
-  };
 
   // Close mobile menu when a link is clicked
   const closeMobileMenu = () => {
@@ -181,7 +162,7 @@ function NavBar() {
               <Link
                 href="/"
                 className="hover:text-gray-300"
-                onMouseEnter={() => setTeaDropdownVisible(false)}
+            
               >
                 Home
               </Link>

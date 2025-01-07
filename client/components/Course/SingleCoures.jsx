@@ -85,7 +85,7 @@ function SingleCourse() {
       {/* Header Section */}
       <div>
         <SectionHeader
-          imgURL={course.course_img || "/assets/testimonial/doctor1.jpg"}
+          imgURL={"/assets/testimonial/doctor1.jpg"}
           title={course.course_name || "Course Details"}
         />
       </div>

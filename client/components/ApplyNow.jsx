@@ -115,7 +115,8 @@ function ApplyNow() {
 
       // Open a new page with success details
 
-      window.location.href(`applynow/success?user_id=${result.user_id}`);
+      // window.open(`applynow/success?user_id=${result.user_id}`);
+      window.location.href = `applynow/success?user_id=${result.user_id}`;
     } catch (error) {
       console.error("Submission Error:", error);
       Swal.fire({
