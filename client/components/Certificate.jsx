@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import NameCard from "./Common/NameCard";
 import CertificateConfirmation from "./CertificateConfirmation";
+import config from "@/config";
 
 function Certificate() {
   const [userCount, setUserCount] = useState(null);
@@ -9,15 +10,13 @@ function Certificate() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState(null);
   const [selectedUserDetails, setSelectedUserDetails] = useState(null);
-  const [selectedCourseDetails, setSelectedCourseDetails] = useState(null); // New state for course selection
+  const [selectedCourseDetails, setSelectedCourseDetails] = useState(null); // New state for course selection `${API_BASE_URL}/endpoint`   /parent-main-course/get/counts
 
-  const COURSE_URL =
-    "http://localhost/pharma-college-project/server/parent-main-course/get/counts";
-  const USER_URL = "http://localhost/pharma-college-project/server/users/count";
-  const USER_DETAILS_URL =
-    "http://localhost/pharma-college-project/server/certificate-verification?studentNumber";
-  const COURSE_DETAILS_URL =
-    "http://localhost/pharma-college-project/server/course/code/";
+
+  const COURSE_URL = `${config.API_BASE_URL}/parent-main-course/get/counts`;
+  const USER_URL = `${config.API_BASE_URL}/users/count`;
+  const USER_DETAILS_URL = `${config.API_BASE_URL}/certificate-verification?studentNumber`;
+  const COURSE_DETAILS_URL = `${config.API_BASE_URL}/course/code/`;
 
   // Fetch user count
   useEffect(() => {
