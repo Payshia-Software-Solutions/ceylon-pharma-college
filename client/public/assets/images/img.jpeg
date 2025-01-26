@@ -1,0 +1,5 @@
+<br />
+<b>Fatal error</b>:  Uncaught Error: Call to undefined function imagecreatefromjpeg() in C:\xampp\htdocs\textwritter\client\img.php:24
+Stack trace:
+#0 {main}
+  thrown in <b>C:\xampp\htdocs\textwritter\client\img.php</b> on line <b>24</b><br />

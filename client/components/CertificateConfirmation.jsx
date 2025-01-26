@@ -1,67 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-// Function to generate grade and star rating
-// function generateGradeAndStarRating(finalPercentage) {
-//   let grade = "Not Graded";
-//   let gradeResult = "Not Graded";
-//   let starCount = 0;
-
-//   if (finalPercentage === "Not Graded") {
-//     grade = "Not Graded";
-//   } else if (finalPercentage >= 90) {
-//     grade = "A+";
-//   } else if (finalPercentage >= 80) {
-//     grade = "A";
-//   } else if (finalPercentage >= 75) {
-//     grade = "A-";
-//   } else if (finalPercentage >= 70) {
-//     grade = "B+";
-//   } else if (finalPercentage >= 65) {
-//     grade = "B";
-//   } else if (finalPercentage >= 60) {
-//     grade = "B-";
-//   } else if (finalPercentage >= 55) {
-//     grade = "C+";
-//   } else if (finalPercentage >= 45) {
-//     grade = "C";
-//   } else if (finalPercentage >= 40) {
-//     grade = "C-";
-//   } else if (finalPercentage >= 35) {
-//     grade = "D+";
-//   } else if (finalPercentage >= 30) {
-//     grade = "D";
-//   } else if (finalPercentage >= 0) {
-//     grade = "E";
-//   }
-
-//   if (finalPercentage === "Not Graded") {
-//     gradeResult = "Not Graded";
-//     starCount = 0;
-//   } else if (finalPercentage >= 80) {
-//     gradeResult = "Excellent";
-//     starCount = 5;
-//   } else if (finalPercentage >= 75) {
-//     gradeResult = "Good";
-//     starCount = 4;
-//   } else if (finalPercentage >= 60) {
-//     gradeResult = "Pretty Good";
-//     starCount = 3;
-//   } else if (finalPercentage >= 40) {
-//     gradeResult = "Poor";
-//     starCount = 2;
-//   } else {
-//     gradeResult = "Weak";
-//     starCount = 1;
-//   }
-
-//   return { grade, gradeResult, starCount };
-// }
-
-function CertificateConfirmation({ userData, onClose, courseData }) {
+function CertificateConfirmation({ userData,  courseData }) {
   const { title, studentInfo, userGradeDetails } = userData;
 
-  // Directly use grade and star count from userGradeDetails
-  const { finalGrade, gradeResult, starCount } = userGradeDetails;
+  // Safe destructuring with fallback values
+  const { finalGrade = "Not Submitted", gradeResult = "No Grade", starCount = 0 } = courseData || {};
+  
+  // State to store fetched course details
+  const [courseDetails, setCourseDetails] = useState(null);
+
+  // Fetch course details by course code
+  useEffect(() => {
+    const fetchCourseDetails = async () => {
+      if (!courseData?.courseCode) {
+        console.error("Course code is missing.");
+        return;
+      }
+      console.log("Course Code to Fetch:", courseData?.courseCode);
+      
+      try {
+        const response = await fetch(`http://localhost/pharma-college-project/server/course/code/${courseData?.courseCode}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch course data");
+        }
+        const data = await response.json();
+        
+        if (!data || !data.course_name) {
+          console.error("Course data is empty or invalid:", data);
+          return;
+        }
+        
+        setCourseDetails(data); // Store the fetched data in state
+      } catch (error) {
+        console.error("Error fetching course details:", error);
+      }
+    };
+
+    fetchCourseDetails();
+  }, [courseData]); // Run when courseData changes
+
+
+  const handleViewReport = () => {
+    // Construct the URL dynamically using the student_id and course_code
+    const url = `http://localhost/textwritter/client/index.php/generate-certificate.php?student_id=${studentInfo.username}&course_code=${courseData.courseCode}`;
+    
+    // Redirect the user to the URL
+    window.open(url, "_blank"); // Open the certificate generation URL in a new tab
+  };
+  
+  console.log("this is course data", courseData);
+  console.log("fetched course details", courseDetails);
 
   return (
     <div className="max-w-xl mx-auto bg-white my-6 p-6 text-maincolor rounded-lg shadow-lg">
@@ -100,19 +88,19 @@ function CertificateConfirmation({ userData, onClose, courseData }) {
         {/* Course Name */}
         <div className="mb-2 border-b border-gray-300 pb-2">
           <span className="font-semibold">Course Name:</span>{" "}
-          {courseData.course_name || "Not Available"}
+          {courseDetails?.course_name || "Loading..."} {/* Display loading state */}
         </div>
 
         {/* Course Code */}
         <div className="mb-2 border-b border-gray-300 pb-2">
           <span className="font-semibold">Course Code:</span>{" "}
-          {courseData.course_code || "Not Available"}
+          {courseData?.courseCode || "Not Available"}
         </div>
 
         {/* Course Result */}
         <div className="mb-2 border-b border-gray-300 pb-2">
           <span className="font-semibold">Course Result:</span>{" "}
-          {finalGrade || "Not Submitted"}
+          {finalGrade}
         </div>
 
         {/* Rating */}
@@ -139,7 +127,7 @@ function CertificateConfirmation({ userData, onClose, courseData }) {
       {/* Button */}
       <div className="mt-6 text-center">
         <button
-          onClick={onClose}
+           onClick={handleViewReport}
           className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium text-lg"
         >
           View Full Report

@@ -95,17 +95,33 @@ function Certificate() {
   };
 
   // Handle course name click to show CertificateConfirmation
-  const handleCourseClick = async (courseCode) => {
-    console.log("course code",courseCode)
+  const handleCourseClick = (courseCode) => {
+    console.log("Clicked course code:", courseCode);
+  
     try {
-      const response = await fetch(`${COURSE_DETAILS_URL}${courseCode}`);
-      const courseData = await response.json();
-      setSelectedCourseDetails(courseData); 
+      // Ensure selectedUserDetails is defined
+      if (!selectedUserDetails || !selectedUserDetails.CourseResultInfo) {
+        console.error("Selected user details or course results not available.");
+        return;
+      }
+  
+      // Retrieve the course result for the given courseCode
+      const courseResult = selectedUserDetails.CourseResultInfo[selectedUserDetails.studentInfo.username]?.find(
+        (result) => result.courseCode === courseCode
+      );
+  
+      if (courseResult) {
+        console.log("Course result:", courseResult); // Log the course result
+        setSelectedCourseDetails(courseResult); // Update the state
+      } else {
+        console.error("No matching course result found for code:", courseCode);
+      }
     } catch (error) {
-      console.error("Error fetching course details:", error);
+      console.error("Error handling course click:", error);
     }
   };
-
+  
+  
   // Handle reset
   const handleReset = () => {
     setSelectedUserDetails(null);
@@ -182,7 +198,7 @@ function Certificate() {
           <CertificateConfirmation
             userData={selectedUserDetails}
             courseData={selectedCourseDetails}
-            onClose={closeCertificateConfirmation}
+  
           />
         )}
       </div>
