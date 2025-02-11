@@ -33,7 +33,7 @@ function SideBar() {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-24 left-0 h-full  z-10 transition-transform duration-300 ${
+        className={`fixed top-24 left-0 h-full bg-white  z-10 transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:static md:translate-x-0 w-64 md:w-80 p-8`}
       >
