@@ -38,7 +38,7 @@ function Certificate() {
   useEffect(() => {
     if (searchQuery.trim() !== "") {
       fetch(
-        `http://localhost/pharma-college-project/server/users/search/${searchQuery}`
+        `${config.API_BASE_URL}/users/search/${searchQuery}`
       )
         .then((response) => response.json())
         .then((data) => {
