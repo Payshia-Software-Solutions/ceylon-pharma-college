@@ -91,6 +91,7 @@ function Course() {
                     imgURL={course.course_img || "/assets/explore/black-tea.webp"} // Default image if not provided
                     slug={course.slug} // Assuming the field is 'slug'
                     price={course.course_fee}
+                    seat={course.seat}
                   />
                 ))
               ) : (
