@@ -12,6 +12,7 @@ function ExploreCard({
   rating,
   slug,
   price,
+  seat,
 }) {
   return (
     <>
@@ -65,7 +66,7 @@ function ExploreCard({
                   className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
                 />
                 <span className="text-gray-700 text-sm sm:text-lg font-bold">
-                  15
+                {seat}
                 </span>
               </div>
             </div>

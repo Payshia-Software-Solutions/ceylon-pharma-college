@@ -58,7 +58,7 @@ function ExploreProgram() {
 
       {/* Swiper Section */}
       {!loading && !error && (
-        <div className="mt-6 lg:px-24">
+        <div className="mt-6  lg:py-8 lg:px-24">
           <Swiper
             slidesPerView={1.2}
             spaceBetween={5}
@@ -87,6 +87,7 @@ function ExploreProgram() {
                     imgURL={course.course_img?.trim() ? course.course_img : "/assets/explore/black-tea.webp"}
                     slug={course.slug}
                     price={course.course_fee}
+                    seat={course.seat}
                   />
                 </motion.div>
               </SwiperSlide>
