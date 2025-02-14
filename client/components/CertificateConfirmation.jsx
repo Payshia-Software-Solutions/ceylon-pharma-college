@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import config from "@/config";
 
 function CertificateConfirmation({ userData,  courseData }) {
   const { title, studentInfo, userGradeDetails } = userData;
@@ -19,7 +20,7 @@ function CertificateConfirmation({ userData,  courseData }) {
       console.log("Course Code to Fetch:", courseData?.courseCode);
       
       try {
-        const response = await fetch(`http://localhost/pharma-college-project/server/course/code/${courseData?.courseCode}`);
+        const response = await fetch(`${config.API_BASE_URL}/course/code/${courseData?.courseCode}`);
         if (!response.ok) {
           throw new Error("Failed to fetch course data");
         }
@@ -30,7 +31,7 @@ function CertificateConfirmation({ userData,  courseData }) {
           return;
         }
         
-        setCourseDetails(data); // Store the fetched data in state
+        setCourseDetails(data); // Store the fetched data in state  CERTIFICATE_URL
       } catch (error) {
         console.error("Error fetching course details:", error);
       }
@@ -42,7 +43,9 @@ function CertificateConfirmation({ userData,  courseData }) {
 
   const handleViewReport = () => {
     // Construct the URL dynamically using the student_id and course_code
-    const url = `http://localhost/textwritter/client/index.php/generate-certificate.php?student_id=${studentInfo.username}&course_code=${courseData.courseCode}`;
+    // const url = `${config.CERTIFICATE_URL}/certificate-generator?student_id=${studentInfo.username}&course_code=${courseData.courseCode}`;
+    const url = `http://localhost:3000/viewcertificate?student_id=${studentInfo.username}&course_code=${courseData.courseCode}`;
+
     
     // Redirect the user to the URL
     window.open(url, "_blank"); // Open the certificate generation URL in a new tab
