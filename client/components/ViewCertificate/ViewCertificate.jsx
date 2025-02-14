@@ -17,22 +17,29 @@ const ViewCertificate = () => {
     setCourseCode(courseCodeParam);
 
     if (studentIdParam && courseCodeParam) {
-      const apiUrl = `http://localhost/pharma-college-project/certificate-generator/?student_id=${studentIdParam}&course_code=${courseCodeParam}`;
+        const apiUrl = `http://localhost/pharma-college-project/certificate-generator/?student_id=${studentIdParam}&course_code=${courseCodeParam}`;
 
-      console.log("Fetching API:", apiUrl); // ✅ Log the URL
+      console.log("Sending API Request:", apiUrl);
 
       fetch(apiUrl, {
-        method: "GET",
+        method: "POST",  // ✅ Use POST instead of GET
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          student_id: studentIdParam,
+          course_code: courseCodeParam,
+        }),
       })
         .then((response) => {
-          console.log("Response Status:", response.status); // ✅ Log status
+          console.log("Response Status:", response.status);
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           return response.json();
         })
         .then((data) => {
-          console.log("API Response:", data); // ✅ Log the JSON response
+          console.log("API Response:", data);
           setCertificateData(data);
           setLoading(false);
         })
@@ -53,30 +60,18 @@ const ViewCertificate = () => {
 
       {certificateData && (
         <div>
-          <p>
-            <strong>Success:</strong> {certificateData.success}
-          </p>
-          <p>
-            <strong>Certificate Path:</strong> {certificateData.ftp_path}
-          </p>
-          <p>
-            <strong>FTP Status:</strong> {certificateData.ftp_status}
-          </p>
-          <p>
-            <strong>Database Status:</strong> {certificateData.database_status}
-          </p>
-          <p>
-            <strong>messeage</strong> {certificateData.certificate_image}
-          </p>
-          <p>
-            <strong>image name</strong> {certificateData.message}
-          </p>
+          <p><strong>Success:</strong> {certificateData.success}</p>
+          <p><strong>Certificate Path:</strong> {certificateData.ftp_path}</p>
+          <p><strong>FTP Status:</strong> {certificateData.ftp_status}</p>
+          <p><strong>Database Status:</strong> {certificateData.database_status}</p>
+          <p><strong>Message:</strong> {certificateData.certificate_image}</p>
+          <p><strong>Image Name:</strong> {certificateData.certificate_image_name}</p>
 
-          {/* Display the certificate image from the FTP URL */}
-          {certificateData?.ftp_path && (
+          {/* Display the certificate image */}
+          {certificateData?.certificate_image_name && (
             <div className="mt-4">
               <img
-                src="/assets/images/cover2.jpg"
+                src={`https://content-provider.pharmacollege.lk/content-provider/certificates/e-certificate/${studentId}/${certificateData.certificate_image_name}`}
                 alt="Generated Certificate"
                 className="border rounded shadow-lg"
                 onError={(e) => console.error("Image failed to load:", e)}
