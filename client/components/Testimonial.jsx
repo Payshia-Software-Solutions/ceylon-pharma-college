@@ -10,8 +10,10 @@ function Testimonial({ imgURL, coverimgURL, description, name }) {
         className="relative bg-cover bg-center bg-no-repeat h-screen hidden lg:flex items-center justify-center text-white"
         style={{ backgroundImage: `url(${coverimgURL})` }}
       >
+
         {/* Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="text-center text-white absolute top-4  font-bold  text-4xl"><h2> Testimonial</h2></div>
 
         <div className="relative z-10 h-[40rem] w-[60rem]">
           {/* Left Quote Mark */}

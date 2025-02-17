@@ -26,7 +26,7 @@ function page() {
     
       <MainTestimonial />
 
-      <AllBelonge />
+      {/* <AllBelonge /> */}
       <AlvenroToday />
 
       <RedyForNext />

@@ -46,10 +46,8 @@ function MainTestimonial() {
   }, []);
 
   return (
-    <div className=" mt-5">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6">
-        Testimonials
-      </h2>
+    <div className=" mt-0">
+      
       <Swiper
         ref={swiperRef}
         slidesPerView={1}
