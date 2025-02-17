@@ -94,28 +94,33 @@ function Certificate() {
     }
   };
 
-  // Handle course name click to show CertificateConfirmation
   const handleCourseClick = (courseCode) => {
     console.log("Clicked course code:", courseCode);
   
     try {
-      // Ensure selectedUserDetails is defined
       if (!selectedUserDetails || !selectedUserDetails.CourseResultInfo) {
-        console.error("Selected user details or course results not available.");
+        console.warn("Selected user details or course results not available.");
+        return;
+      }
+  
+      // Ensure studentInfo and username exist
+      const username = selectedUserDetails?.studentInfo?.username;
+      if (!username) {
+        console.warn("Username not available.");
         return;
       }
   
       // Retrieve the course result for the given courseCode
-      const courseResult = selectedUserDetails.CourseResultInfo[selectedUserDetails.studentInfo.username]?.find(
+      const courseResult = selectedUserDetails.CourseResultInfo[username]?.find(
         (result) => result.courseCode === courseCode
       );
   
-      if (courseResult) {
-        console.log("Course result:", courseResult); // Log the course result
-        setSelectedCourseDetails(courseResult); // Update the state
-      } else {
-        console.error("No matching course result found for code:", courseCode);
-      }
+      // If no course result is found, set a default "Not Submitted" message
+      setSelectedCourseDetails(
+        courseResult || { courseCode, status: "Not Submitted" }
+      );
+  
+      console.log("Course result:", courseResult || "Not Submitted");
     } catch (error) {
       console.error("Error handling course click:", error);
     }
