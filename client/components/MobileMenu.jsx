@@ -6,35 +6,13 @@ import config from "@/config"; // Import your configuration
 
 const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
   const [isTeasDropdownOpen, setIsTeasDropdownOpen] = useState(false);
-  const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
+
 
   const [isShopDropdownOpen, setIsShopDropdownOpen] = useState(false);
-  const [isShopByTeaDropdownOpen, setIsShopByTeaDropdownOpen] = useState(false);
-  const [isTeaFormatDropdownOpen, setIsTeaFormatDropdownOpen] = useState(false);
-  const [isTeaEditsDropdownOpen, setIsTeaEditsDropdownOpen] = useState(false);
 
-  const [departmentsLoading, setDepartmentsLoading] = useState(true);
-  const [departmentsError, setDepartmentsError] = useState(null);
-  const [departments, setDepartments] = useState([]);
 
-  // Fetch departments
-  useEffect(() => {
-    const fetchDepartments = async () => {
-      try {
-        setDepartmentsLoading(true);
-        const res = await fetch(`${config.API_BASE_URL}/departments`);
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        const data = await res.json();
-        setDepartments(data);
-      } catch (error) {
-        setDepartmentsError("Failed to fetch Departments");
-        console.error(error);
-      } finally {
-        setDepartmentsLoading(false);
-      }
-    };
-    fetchDepartments();
-  }, []);
+
+
 
   return (
     <div
@@ -94,44 +72,8 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           </Link>
 
           {/* Other Links */}
-          {/* Shop Dropdown (Modified) */}
-          <div>
-            <button
-              className="flex items-center justify-between w-full py-2 text-lg font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-              onClick={() => setIsShopDropdownOpen(!isShopDropdownOpen)}
-            >
-              Shop
-              <svg
-                className={`w-5 h-5 transition-transform ${
-                  isShopDropdownOpen ? "rotate-180" : ""
-                }`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
-            {isShopDropdownOpen && (
-              <ul className="mt-2 space-y-2 pl-4">
-                <li>
-                  <Link
-                    href="/shop"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-sm font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2 mb-2"
-                  >
-                    Shop All Teas
-                  </Link>
-                </li>
-              </ul>
-            )}
-          </div>
+       
+          
 
           {/* About Dropdown */}
           <div>
@@ -139,8 +81,12 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
               className="flex items-center justify-between w-full py-2 text-lg font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
               
             >
-              <Link href="/about">
-              About Us </Link>
+            <Link
+                 href ="/course"
+                 className="hover:text-gray-300"
+                 >
+                  Courses
+                </Link>
            
             </button>
 
@@ -151,40 +97,18 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           <div>
             <button
               className="flex items-center justify-between w-full py-2 text-lg font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-              onClick={() => setIsTeasDropdownOpen(!isTeasDropdownOpen)}
+      
             >
-              Our Teas
-              <svg
-                className={`w-5 h-5 transition-transform ${
-                  isTeasDropdownOpen ? "rotate-180" : ""
-                }`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
+              <Link
+                onMouseEnter={() => setOurTeasDropdownVisible(false)}
+                href="/contactus"
+                className="hover:text-gray-300"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
+                Contact Us
+              </Link>
+          
             </button>
-            {isTeasDropdownOpen && (
-              <ul className="mt-2 space-y-2 pl-4">
-                <li>
-                  <Link
-                    href="/our-teas/classic-teas"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-sm font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-                  >
-                    Classic Teas
-                  </Link>
-                </li>
-
-              </ul>
-            )}
+          
           </div>
 
           <Link

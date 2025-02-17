@@ -2,11 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import SideBar from "@/components/Course/SideBar";
-import config from "@/config";
+
 import ExploreCard from "../Common/ExploreCard";
 import Image from "next/image";
+import config from "@/config";
 
-// Components
+// Components  `${config.API_BASE_URL}/parent-main-course`
 import ProductSectionHeader from "@/components/Course/CourseSectionheader";
 import SectionHeader from "../Common/SectionHeader";
 
@@ -33,7 +34,7 @@ function Course() {
     // Fetch course data from the API
     const fetchCourses = async () => {
       try {
-        const response = await fetch("http://localhost/pharma-college-project/server/parent-main-course");
+        const response = await fetch(`${config.API_BASE_URL}/parent-main-course`);
         if (!response.ok) {
           throw new Error("Failed to fetch courses");
         }
@@ -90,6 +91,7 @@ function Course() {
                     imgURL={course.course_img || "/assets/explore/black-tea.webp"} // Default image if not provided
                     slug={course.slug} // Assuming the field is 'slug'
                     price={course.course_fee}
+                    seat={course.seat}
                   />
                 ))
               ) : (

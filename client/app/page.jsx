@@ -19,7 +19,7 @@ function page() {
     <div>
       <Hero />
 
-      <Accredition />
+  
       <ExploreProgram />
 
       <section id="certificates"><Certificate /></section>
@@ -28,7 +28,9 @@ function page() {
 
       <AllBelonge />
       <AlvenroToday />
+
       <RedyForNext />
+      <Accredition />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { useParams } from "next/navigation"; // Use useParams for accessing dyna
 import SectionHeader from "../Common/SectionHeader";
 import InstructorCard from "@/components/Course/InstructorCard";
 import DescriptionCard from "./DescriptionCard";
+import config from "@/config";
 
 function SingleCourse() {
   const { slug } = useParams(); // Get the slug from the dynamic route
@@ -22,7 +23,7 @@ function SingleCourse() {
       try {
         console.log("Fetching course for slug:", slug);
         const response = await fetch(
-          `http://localhost/pharma-college-project/server/parent-main-course/${slug}`
+          `${config.API_BASE_URL}/parent-main-course/${slug}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch course details");
@@ -40,7 +41,7 @@ function SingleCourse() {
 
           // Fetch course modules
           const modulesResponse = await fetch(
-            "http://localhost/pharma-college-project/server/course-modules"
+             `${config.API_BASE_URL}/course-modules`
           );
           if (!modulesResponse.ok) {
             throw new Error("Failed to fetch course modules");

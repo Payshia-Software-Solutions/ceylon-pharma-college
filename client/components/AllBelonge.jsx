@@ -4,11 +4,11 @@ function AllBelonge() {
   return (
     <div className="relative text-black">
       {/* Background image */}
-      <div className="h-[25rem] sm:h-[25rem] md:h-[25rem] lg:h-[30rem] w-full">
+      <div className="h-[25rem] sm:h-[25rem] md:h-[40rem] lg:h-[40rem] w-full">
         <img
-          src="/assets/images/peach.jpg"
+          src="/assets/images/doctors.jpg"
           alt="Background"
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full object-top"
         />
       </div>
 

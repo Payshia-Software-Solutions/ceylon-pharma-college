@@ -1,11 +1,15 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Testimonial from "./Testimonial";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonialData = [
   {
@@ -13,7 +17,7 @@ const testimonialData = [
     description:
       "At Alverno, I’ve been able to develop my communication skills and learned how to work well independently and on a team. With the support of my professors, I’ve been able to gain valuable career experience on and off campus. Ultimately, I’m becoming a stronger leader.",
     imgURL: "/assets/images/cover.png",
-    coverimgURL: "/assets/images/cover2.jpg",
+    coverimgURL: "https://content-provider.pharmacollege.lk/content-provider/certificates/e-certificate/PA0107/eCertificate-CPCC4-PA0107-1739517605.jpg"
   },
   {
     name: "Thilina",
@@ -25,12 +29,29 @@ const testimonialData = [
 ];
 
 function MainTestimonial() {
+  const swiperRef = useRef(null);
+
+  useEffect(() => {
+    if (!swiperRef.current) return;
+
+    const swiper = swiperRef.current.swiper;
+    
+    swiper.on("slideChange", () => {
+      ScrollTrigger.refresh(); // Refresh GSAP animations on slide change
+    });
+
+    return () => {
+      swiper.off("slideChange");
+    };
+  }, []);
+
   return (
     <div className="w-screen mt-5">
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6">
         Testimonials
       </h2>
       <Swiper
+        ref={swiperRef}
         slidesPerView={1}
         spaceBetween={20}
         pagination={{ clickable: true }}
