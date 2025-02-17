@@ -133,7 +133,7 @@ function CertificateConfirmation({ userData,  courseData }) {
            onClick={handleViewReport}
           className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium text-lg"
         >
-          View Full Report
+          View Certificate
         </button>
       </div>
     </div>
