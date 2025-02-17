@@ -1,6 +1,6 @@
 // config.js
 const config = {
-  API_BASE_URL: "http://localhost/pharma-college-project/server",
+  API_BASE_URL: "https://qa-api.pharmacollege.lk",
   ADMIN_BASE_URL: "https://kdu-admin.payshia.com",
   CERTIFICATE_URL:"http://localhost/pharma-college-project"
   // API_BASE_URL: "http://localhost/TeaJarWebsite/server",

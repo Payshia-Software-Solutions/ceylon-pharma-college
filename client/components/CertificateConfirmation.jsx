@@ -5,14 +5,18 @@ import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 import config from "@/config";
 
 function CertificateConfirmation({ userData, courseData }) {
+
   const { title, studentInfo } = userData;
+
 
   // Safe destructuring with fallback values
   const {
     finalGrade = "Not Submitted",
     gradeResult = "No Grade",
     starCount = 0,
+
     courseCode = "Not Available",
+
   } = courseData || {};
 
   // State to store fetched course details
@@ -28,9 +32,11 @@ function CertificateConfirmation({ userData, courseData }) {
       console.log("Course Code to Fetch:", courseData?.courseCode);
 
       try {
+
         const response = await fetch(
           `${config.API_BASE_URL}/course/code/${courseData?.courseCode}`
         );
+
         if (!response.ok) {
           throw new Error("Failed to fetch course data");
         }
@@ -41,7 +47,9 @@ function CertificateConfirmation({ userData, courseData }) {
           return;
         }
 
+
         setCourseDetails(data); // Store the fetched data in state
+
       } catch (error) {
         console.error("Error fetching course details:", error);
       }
@@ -49,6 +57,7 @@ function CertificateConfirmation({ userData, courseData }) {
 
     fetchCourseDetails();
   }, [courseData]); // Run when courseData changes
+
 
   // Handle certificate viewing
   const handleViewReport = () => {
@@ -68,7 +77,7 @@ function CertificateConfirmation({ userData, courseData }) {
     // Construct the URL dynamically
     const url = `http://localhost:3000/viewcertificate?student_id=${studentInfo.username}&course_code=${courseData.courseCode}`;
     window.open(url, "_blank"); // Open in new tab
-  };
+
 
   console.log("this is course data", courseData);
   console.log("fetched course details", courseDetails);
@@ -106,18 +115,22 @@ function CertificateConfirmation({ userData, courseData }) {
             {studentInfo.username}
           </div>
 
+
           <div className="mb-2 border-b border-gray-300 pb-2">
             <span className="font-semibold">Course Name:</span>{" "}
             {courseDetails?.course_name || "Loading..."}
           </div>
 
+
           <div className="mb-2 border-b border-gray-300 pb-2">
             <span className="font-semibold">Course Code:</span> {courseCode}
           </div>
 
+
           <div className="mb-2 border-b border-gray-300 pb-2">
             <span className="font-semibold">Course Result:</span> {finalGrade}
           </div>
+
 
           <div className="mt-4">
             <span className="font-semibold">Rating:</span>{" "}
@@ -139,6 +152,7 @@ function CertificateConfirmation({ userData, courseData }) {
           </div>
         </div>
 
+
         {/* Button */}
         <div className="mt-6 text-center">
           <button
@@ -153,6 +167,7 @@ function CertificateConfirmation({ userData, courseData }) {
             View Certificate
           </button>
         </div>
+
       </div>
     </div>
   );
