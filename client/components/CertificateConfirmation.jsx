@@ -1,12 +1,17 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import config from "@/config";
 
-function CertificateConfirmation({ userData,  courseData }) {
+function CertificateConfirmation({ userData, courseData }) {
   const { title, studentInfo, userGradeDetails } = userData;
 
   // Safe destructuring with fallback values
-  const { finalGrade = "Not Submitted", gradeResult = "No Grade", starCount = 0 } = courseData || {};
-  
+  const {
+    finalGrade = "Not Submitted",
+    gradeResult = "No Grade",
+    starCount = 0,
+  } = courseData || {};
+
   // State to store fetched course details
   const [courseDetails, setCourseDetails] = useState(null);
 
@@ -18,20 +23,24 @@ function CertificateConfirmation({ userData,  courseData }) {
         return;
       }
       console.log("Course Code to Fetch:", courseData?.courseCode);
-      
+
       try {
+
         const response = await fetch(`${config.API_BASE_URL}/course/code/${courseData?.courseCode}`);
+
         if (!response.ok) {
           throw new Error("Failed to fetch course data");
         }
         const data = await response.json();
-        
+
         if (!data || !data.course_name) {
           console.error("Course data is empty or invalid:", data);
           return;
         }
+
         
         setCourseDetails(data); // Store the fetched data in state  CERTIFICATE_URL
+
       } catch (error) {
         console.error("Error fetching course details:", error);
       }
@@ -40,17 +49,16 @@ function CertificateConfirmation({ userData,  courseData }) {
     fetchCourseDetails();
   }, [courseData]); // Run when courseData changes
 
-
   const handleViewReport = () => {
     // Construct the URL dynamically using the student_id and course_code
+
     // const url = `${config.CERTIFICATE_URL}/certificate-generator?student_id=${studentInfo.username}&course_code=${courseData.courseCode}`;
     const url = `http://localhost:3000/viewcertificate?student_id=${studentInfo.username}&course_code=${courseData.courseCode}`;
 
-    
     // Redirect the user to the URL
     window.open(url, "_blank"); // Open the certificate generation URL in a new tab
   };
-  
+
   console.log("this is course data", courseData);
   console.log("fetched course details", courseDetails);
 
@@ -91,7 +99,8 @@ function CertificateConfirmation({ userData,  courseData }) {
         {/* Course Name */}
         <div className="mb-2 border-b border-gray-300 pb-2">
           <span className="font-semibold">Course Name:</span>{" "}
-          {courseDetails?.course_name || "Loading..."} {/* Display loading state */}
+          {courseDetails?.course_name || "Loading..."}{" "}
+          {/* Display loading state */}
         </div>
 
         {/* Course Code */}
@@ -102,8 +111,7 @@ function CertificateConfirmation({ userData,  courseData }) {
 
         {/* Course Result */}
         <div className="mb-2 border-b border-gray-300 pb-2">
-          <span className="font-semibold">Course Result:</span>{" "}
-          {finalGrade}
+          <span className="font-semibold">Course Result:</span> {finalGrade}
         </div>
 
         {/* Rating */}
@@ -130,7 +138,7 @@ function CertificateConfirmation({ userData,  courseData }) {
       {/* Button */}
       <div className="mt-6 text-center">
         <button
-           onClick={handleViewReport}
+          onClick={handleViewReport}
           className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded-lg font-medium text-lg"
         >
           View Full Report
