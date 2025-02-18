@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PersonInfoCard from "./PersonInfoCard";
 import AboutCourseCard from "./AboutCourseCard";
 import Link from "next/link";
+import config from "@/config";
 
 const ViewCertificate = () => {
   const [studentId, setStudentId] = useState("");
@@ -30,7 +31,7 @@ const ViewCertificate = () => {
 
 
     if (studentIdParam && courseCodeParam) {
-      const apiUrl = `http://localhost/pharma-college-project/certificate-generator/?student_id=${studentIdParam}&course_code=${courseCodeParam}`;
+      const apiUrl = `${config.CERTIFICATE_URL}/?student_id=${studentIdParam}&course_code=${courseCodeParam}`;
 
       console.log("Sending API Request:", apiUrl);
 
@@ -89,7 +90,7 @@ const ViewCertificate = () => {
 
   // Fetch Student Name
   const fetchStudentName = (studentId) => {
-    const studentApiUrl = `http://localhost/pharma-college-project/server/certificate-verification?studentNumber=${studentId}`;
+    const studentApiUrl = `${config.API_BASE_URL}/certificate-verification?studentNumber=${studentId}`;
 
     fetch(studentApiUrl)
       .then((response) => {
@@ -110,7 +111,7 @@ const ViewCertificate = () => {
   const fetchCourseData = (courseCode) => {
     if (!courseCode) return;
 
-    const courseApiUrl = `http://localhost/pharma-college-project/server/parent-main-course/code/${courseCode}`;
+    const courseApiUrl = `${config.API_BASE_URL}/parent-main-course/code/${courseCode}`;
 
     fetch(courseApiUrl)
       .then((response) => {
@@ -132,7 +133,7 @@ const ViewCertificate = () => {
 
 
   return (
-    <div className="mt-56">
+    <div className="mt-48">
       <ToastContainer />
 
       {loading && (
@@ -162,7 +163,8 @@ const ViewCertificate = () => {
                 {certificateData?.certificate_image_name && (
                   <div className="mt-4">
                     <img
-                      src={`https://content-provider.pharmacollege.lk/content-provider/certificates/e-certificate/${studentId}/${certificateData.certificate_image_name}`}
+                    //
+                      src={`${config.CERTIFICATE_IMG_URL}/e-certificate/${studentId}/${certificateData.certificate_image_name}`}
                       alt="Generated Certificate"
                       className="border rounded shadow-lg w-full"
                       onError={(e) => console.error("Image failed to load:", e)}
@@ -178,7 +180,7 @@ const ViewCertificate = () => {
               Course Certificate
             </h2>
             <h1 className="text-2xl md:text-3xl font-bold">
-              Certificate Course in Pharmacy Practice
+            {courseDetails?.course_name || "Loading..."}
             </h1>
 
             {/*persone info card */}
