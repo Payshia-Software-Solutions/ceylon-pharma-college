@@ -119,7 +119,7 @@ const Footer = () => {
 
         {/* Bottom Section */}
         <div className="mt-16 pt-8 border-t border-white">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white">
             <p>© {currentYear} Tea Jar. All rights reserved.</p>
             <div className="flex items-center gap-2">
               <span>Powered by</span>
