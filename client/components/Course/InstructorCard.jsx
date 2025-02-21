@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaGoogle } from "react-icons/fa";
 
@@ -18,34 +19,34 @@ function InstructorCard() {
             <h3 className="text-lg md:text-xl font-bold">Dilip Fonseka</h3>
             <p className="text-gray-600 text-sm md:text-base">Instructor</p>
             <div className="mt-4 flex justify-center md:justify-start space-x-4">
-              <a
+              <Link
                 href="#"
                 className="text-blue-600 hover:text-blue-700 text-lg transition"
                 aria-label="Facebook"
               >
                 <FaFacebookF />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-blue-400 hover:text-blue-500 text-lg transition"
                 aria-label="Twitter"
               >
                 <FaTwitter />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-blue-700 hover:text-blue-800 text-lg transition"
                 aria-label="LinkedIn"
               >
                 <FaLinkedinIn />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-red-600 hover:text-red-700 text-lg transition"
                 aria-label="Google"
               >
                 <FaGoogle />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
@@ -36,12 +37,12 @@ const Footer = () => {
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.title}>
-                    <a
+                    <Link
                       href={link.href}
                       className="text-white hover:text-gray-300 text-sm transition-colors"
                     >
                       {link.title}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -72,13 +73,6 @@ const Footer = () => {
 
                 <p className="mb-2"> 0715 884 884</p>
               </div>
-
-              {/* <div>
-                <p className="font-medium mb-2">Tea Tasting Sessions:</p>
-                <a href="/tea-tasting" className="text-white hover:underline">
-                  Click Here For Available Slots
-                </a>
-              </div> */}
             </div>
           </div>
         </div>
@@ -107,13 +101,6 @@ const Footer = () => {
               <p className="mb-2">Wholesale Inquiries: (+94)70 55 08 800</p>
               <p>Email: marketing@teajarceylon.com</p>
             </div>
-
-            {/* <div>
-                <p className="font-medium mb-2">Tea Tasting Sessions:</p>
-                <a href="/tea-tasting" className="text-white hover:underline">
-                  Click Here For Available Slots
-                </a>
-              </div> */}
           </div>
         </div>
 
@@ -123,14 +110,14 @@ const Footer = () => {
             <p>© {currentYear} Tea Jar. All rights reserved.</p>
             <div className="flex items-center gap-2">
               <span>Powered by</span>
-              <a
+              <Link
                 href="https://www.payshia.com"
                 className="text-white hover:underline"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Payshia Software Solutions
-              </a>
+              </Link>
             </div>
           </div>
         </div>

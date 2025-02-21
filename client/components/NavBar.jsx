@@ -18,10 +18,6 @@ const juliusSansOne = Julius_Sans_One({
   subsets: ["latin"],
 });
 
-
-
-
-
 function NavBar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -49,19 +45,16 @@ function NavBar() {
       .replace("LKR", "Rs"); // Replaces 'LKR' with 'Rs'
   };
 
-
-
-    // Scroll to Certificates section
-    const scrollToCertificates = () => {
-      const element = document.getElementById("certificates");
-      if (element) {
-        window.scrollTo({
-          top: element.offsetTop,
-          behavior: "smooth", // smooth scroll
-        });
-      }
-    };
-
+  // Scroll to Certificates section
+  const scrollToCertificates = () => {
+    const element = document.getElementById("certificates");
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: "smooth", // smooth scroll
+      });
+    }
+  };
 
   // Fetch departments
 
@@ -97,15 +90,10 @@ function NavBar() {
     setIsDropdownVisible(state);
   };
 
-
   // Close mobile menu when a link is clicked
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
-
-
-
-
 
   // Search Function
 
@@ -116,7 +104,7 @@ function NavBar() {
   return (
     <div>
       <header
-        className={`fixed top-0 left-0 w-full bg-white  text-black z-50 transition-transform duration-300 ${
+        className={`fixed top-0 left-0 w-full bg-white shadow text-black z-50 transition-transform duration-300 ${
           isVisible ? "-translate-y-full" : "translate-y-0"
         }`}
       >
@@ -159,35 +147,28 @@ function NavBar() {
             </div>
             {/* Navigation */}
             <nav className="hidden md:flex gap-8 items-center">
-              <Link
-                href="/"
-                className="hover:text-gray-300"
-            
-              >
+              <Link href="/" className="hover:text-gray-300">
                 Home
               </Link>
 
               <button
-                  onClick={scrollToCertificates}
-                  className="hover:text-gray-300"
-                >
-                  Certificate
-                </button>
+                onClick={scrollToCertificates}
+                className="hover:text-gray-300"
+              >
+                Certificate
+              </button>
 
               <div className="relative">
-                <button
-               ><Link className="hover:text-gray-300" href="/about">  About Us</Link>
-                
+                <button>
+                  <Link className="hover:text-gray-300" href="/about">
+                    {" "}
+                    About Us
+                  </Link>
                 </button>
-              
               </div>
 
               <div className="relative">
-
-                <Link
-                 href ="/course"
-                 className="hover:text-gray-300"
-                 >
+                <Link href="/course" className="hover:text-gray-300">
                   Courses
                 </Link>
                 {/* <button
@@ -234,19 +215,17 @@ function NavBar() {
               <div className="md:flex justify-between items-center">
                 <div className="text-white text-center flex justify-around gap-4">
                   <button className="bg-[#00b67d] text-xl py-2 px-4  rounded-full w- h-auto">
-                  Request info
+                    Request info
                   </button>
                   <button className="bg-[#00b67d] text-xl py-2 px-4 rounded-full h-auto">
-                  <Link href="/applynow">Apply Now</Link>
+                    <Link href="/applynow">Apply Now</Link>
                   </button>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
       </header>
-
 
       <div>
         {/* Side Bar Cart */}
