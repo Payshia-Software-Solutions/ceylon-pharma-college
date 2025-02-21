@@ -8,5 +8,6 @@ const config = {
     "https://content-provider.pharmacollege.lk/content-provider/certificates",
   // API_BASE_URL: "http://localhost/TeaJarWebsite/server",
   // ADMIN_BASE_URL: "http://localhost/TeaJarWebsite/admin",
+  FTP_URL: "https://content-provider.pharmacollege.lk/",
 };
 export default config;

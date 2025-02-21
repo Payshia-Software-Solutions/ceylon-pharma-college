@@ -17,7 +17,9 @@ function ExploreProgram() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch(`${config.API_BASE_URL}/parent-main-course`);
+        const response = await fetch(
+          `${config.API_BASE_URL}/parent-main-course`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch courses");
         }
@@ -49,42 +51,53 @@ function ExploreProgram() {
         </div>
       )}
 
-      {/* Loading State */}
-      {loading && (
-        <div className="text-center mt-4" aria-live="polite">
-          Loading programs...
-        </div>
-      )}
-
       {/* Swiper Section */}
-      {!loading && !error && (
-        <div className="mt-6  lg:py-8 lg:px-24">
-          <Swiper
-            slidesPerView={1.2}
-            spaceBetween={5}
-            pagination={{ clickable: true }}
-            breakpoints={{
-              576: { slidesPerView: 2, spaceBetween: 10 },
-              768: { slidesPerView: 3, spaceBetween: 15 },
-              1024: { slidesPerView: 4, spaceBetween: 20 },
-            }}
-            modules={[Pagination, A11y]}
-            className="mySwiper"
-          >
-            {courses.map((course, index) => (
+      <div className="lg:py-8 lg:px-24">
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={10}
+          pagination={{ clickable: true }}
+          breakpoints={{
+            576: { slidesPerView: 2, spaceBetween: 10 }, // Tablets: 2 placeholders
+            768: { slidesPerView: 3, spaceBetween: 10 }, // Small laptops: 3 placeholders
+            1024: { slidesPerView: 4, spaceBetween: 15 }, // Large screens: 4 placeholders
+          }}
+          modules={[Pagination, A11y]}
+          className="mySwiper"
+        >
+          {/* Show Loading Placeholders with Responsive Count */}
+          {loading &&
+            Array.from({ length: 4 }).map((_, index) => (
+              <SwiperSlide key={index} className="p-2 mb-5">
+                <div className="animate-pulse bg-gray-200 p-4 rounded-lg">
+                  <div className="w-full h-40 bg-gray-300 rounded-md mb-4"></div>
+                  <div className="h-5 bg-gray-300 rounded w-3/4 mb-2"></div>
+                  <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+                </div>
+              </SwiperSlide>
+            ))}
+
+          {/* Show Courses When Loaded */}
+          {!loading &&
+            !error &&
+            courses.map((course, index) => (
               <SwiperSlide key={index} className="p-2 mb-5">
                 <motion.div
                   className="transform transition-all duration-500 ease-in-out"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.0, ease: "easeOut", delay: index * 0.4 }}
+                  transition={{
+                    duration: 1.0,
+                    ease: "easeOut",
+                    delay: index * 0.4,
+                  }}
                   viewport={{ once: true, amount: 0.2 }}
                 >
                   <ExploreCard
                     title={course.course_name}
                     description={course.mini_description}
                     buttontext="LEARN MORE"
-                    imgURL={`/assets/explore/${course.course_img}`}
+                    imgURL={`${config.FTP_URL}/courses/${course.course_code}/${course.course_img}`}
                     slug={course.slug}
                     price={course.course_fee}
                     seat={course.seat}
@@ -92,9 +105,8 @@ function ExploreProgram() {
                 </motion.div>
               </SwiperSlide>
             ))}
-          </Swiper>
-        </div>
-      )}
+        </Swiper>
+      </div>
     </div>
   );
 }
