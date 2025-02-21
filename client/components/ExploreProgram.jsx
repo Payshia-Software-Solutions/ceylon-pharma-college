@@ -82,9 +82,9 @@ function ExploreProgram() {
                 >
                   <ExploreCard
                     title={course.course_name}
-                    description={course.course_description}
+                    description={course.mini_description}
                     buttontext="LEARN MORE"
-                    imgURL={course.course_img?.trim() ? course.course_img : "/assets/explore/black-tea.webp"}
+                    imgURL={`/assets/explore/${course.course_img}`}
                     slug={course.slug}
                     price={course.course_fee}
                     seat={course.seat}
