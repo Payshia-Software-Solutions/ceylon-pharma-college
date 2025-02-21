@@ -86,9 +86,9 @@ function Course() {
                   <ExploreCard
                     key={index}
                     title={course.course_name} // Assuming the field is 'course_name'
-                    description={course.course_description} // Assuming the field is 'course_description'
+                    description={course.mini_description} // Assuming the field is 'course_description'
                     buttontext="LEARN MORE"
-                    imgURL={course.course_img || "/assets/explore/black-tea.webp"} // Default image if not provided
+                    imgURL={`/assets/explore/${course.course_img}`} // Default image if not provided   /assets/explore/professional-training.jpg
                     slug={course.slug} // Assuming the field is 'slug'
                     price={course.course_fee}
                     seat={course.seat}

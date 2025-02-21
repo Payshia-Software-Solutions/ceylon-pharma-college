@@ -1,65 +1,55 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation"; // Use useParams for accessing dynamic route parameters
+import { useParams } from "next/navigation"; 
 import SectionHeader from "../Common/SectionHeader";
 import InstructorCard from "@/components/Course/InstructorCard";
 import DescriptionCard from "./DescriptionCard";
 import config from "@/config";
 
 function SingleCourse() {
-  const { slug } = useParams(); // Get the slug from the dynamic route
+  const { slug } = useParams(); 
 
   const [course, setCourse] = useState(null);
-  const [courseModules, setCourseModules] = useState([]); // State to hold course modules
+  const [courseModules, setCourseModules] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!slug) return; // Wait until slug is available
+    if (!slug) return;
 
-    // Fetch course data based on the slug
     const fetchCourse = async () => {
       try {
         console.log("Fetching course for slug:", slug);
         const response = await fetch(
           `${config.API_BASE_URL}/parent-main-course/${slug}`
         );
-        if (!response.ok) {
-          throw new Error("Failed to fetch course details");
-        }
-        const data = await response.json();
+        if (!response.ok) throw new Error("Failed to fetch course details");
 
+        const data = await response.json();
         console.log("Course Data:", data);
 
         if (data.module_list && typeof data.module_list === "string") {
-          // Split the module_list string into an array of module codes
           const moduleCodes = data.module_list
             .split(",")
             .map((code) => code.trim());
-          console.log("Module Codes from course module_list:", moduleCodes);
+          console.log("Module Codes:", moduleCodes);
 
-          // Fetch course modules
-          const modulesResponse = await fetch(
-             `${config.API_BASE_URL}/course-modules`
-          );
-          if (!modulesResponse.ok) {
-            throw new Error("Failed to fetch course modules");
-          }
+          const modulesResponse = await fetch(`${config.API_BASE_URL}/course-modules`);
+          if (!modulesResponse.ok) throw new Error("Failed to fetch course modules");
+
           const modulesData = await modulesResponse.json();
 
-          console.log("Course Modules Data:", modulesData);
-
-          // Filter course modules by matching module codes
           const filteredModules = modulesData.filter((module) =>
             moduleCodes.includes(module.module_code)
           );
 
-          console.log("Filtered Course Modules:", filteredModules);
-
-          setCourse(data); // Save course data to state
-          setCourseModules(filteredModules); // Save filtered modules to state
+          setCourseModules(filteredModules.length > 0 ? filteredModules : []);
+        } else {
+          setCourseModules([]); 
         }
+
+        setCourse(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -68,11 +58,10 @@ function SingleCourse() {
     };
 
     fetchCourse();
-  }, [slug]); // Trigger fetch when slug changes
+  }, [slug]);
 
-  // Log the modules data when courseModules state updates
   useEffect(() => {
-    if (courseModules.length > 0) {
+    if (courseModules && courseModules.length > 0) {
       console.log("Course Modules State Updated:", courseModules);
     }
   }, [courseModules]);
@@ -80,6 +69,7 @@ function SingleCourse() {
   if (loading) return <p>Loading course details...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!course) return <p>No course found</p>;
+
 
   return (
     <div>
@@ -144,27 +134,35 @@ function SingleCourse() {
                   </ul>
 
                   <div>
-                    <h2 className="sm:text-3xl  text-sm mt-4 mb-6 font-bold">Curriculum</h2>
-                    <ul className=" font-semibold">
-                      <li className="mt-4 text-xl">First Level</li>
-                      <ul>
-                        {courseModules.length > 0 &&
-                          courseModules.map((module) => (
-                            <li
-                              key={module.id}
-                              className="flex justify-between mt-2 border-b pb-2"
-                            >
-                              {/* Module Name */}
-                              <span className="font-medium ">
-                                {module.module_name}
-                              </span>
-                              {/* Module Duration */}
-                              <span>{module.duration} mins</span>
-                            </li>
-                          ))}
-                      </ul>
-                      <li className="mt-4 text-xl">Second Level</li>
-                      <li className="mt-4 text-xl">Final</li>
+                    <h2 className="sm:text-3xl  text-sm mt-4 mb-6 font-bold">
+                      Curriculum
+                    </h2>
+                    <h2 className="sm:text-3xl text-sm mt-4 mb-6 font-bold">
+                      Curriculum
+                    </h2>
+                    <ul className="font-semibold">
+                      {courseModules && courseModules.length > 0 ? (
+                        <>
+                          <li className="mt-4 text-xl">First Level</li>
+                          <ul>
+                            {courseModules.map((module) => (
+                              <li
+                                key={module.id}
+                                className="flex justify-between mt-2 border-b pb-2"
+                              >
+                                <span className="font-medium">
+                                  {module.module_name}
+                                </span>
+                                <span>{module.duration} mins</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <li className="mt-4 text-xl">Second Level</li>
+                          <li className="mt-4 text-xl">Final</li>
+                        </>
+                      ) : (
+                        <p className="text-gray-600">No module codes</p> // Show this if there are no module codes
+                      )}
                     </ul>
                   </div>
                 </div>
@@ -176,7 +174,7 @@ function SingleCourse() {
                       Course Description
                     </h1>
                     <p className="text-gray-600 mb-8">
-                      {course.course_description || "No description available"}
+                      {course.mini_description || "No description available"}
                     </p>
 
                     <h1 className="text-2xl font-semibold mb-4">
