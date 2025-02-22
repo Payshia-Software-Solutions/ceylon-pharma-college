@@ -1,17 +1,18 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+import config from '@/config';
 
 function Counter() {
-  const [userCount, setUserCount] = useState(null); // State to store user count
+  const [userCount, setUserCount] = useState(null); 
   const [courseCount,setcourseCount] = useState(null);
 
 
 
-  const COURSE_URL = "http://localhost/pharma-college-project/server/parent-main-course/get/counts";
+  const COURSE_URL = `${config.API_BASE_URL}/parent-main-course/get/counts`;
 
   useEffect(() => {
     // Fetch user count from the API
-    fetch('http://localhost/pharma-college-project/server/users/count')
+    fetch(`${config.API_BASE_URL}/users/count`)
       .then(response => response.json())
       .then(data => {
         if (data.user_count) {

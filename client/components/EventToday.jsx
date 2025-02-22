@@ -5,50 +5,96 @@ import UpcomingEventCard from "./Common/UpcomingEventCard";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
+
+const eventData = [
+  {
+    date: "25",
+    monthYear: "Mar 2025",
+    image: "/assets/event/eventp .webp",
+    title: "AI & Machine Learning Conference",
+    description:
+      "A deep dive into the latest trends in AI and ML with industry experts.",
+    location: "📍 San Francisco, CA",
+    time: "⏰ 10:00 AM",
+  },
+  {
+    date: "05",
+    monthYear: "Jun 2025",
+    image: "/assets/event/eventp2.webp",
+    title: "Blockchain & Web3 Meetup",
+    description:
+      "Explore the future of decentralized applications and blockchain technology.",
+    location: "📍 Online",
+    time: "⏰ 6:30 PM",
+  },
+  {
+    date: "05",
+    monthYear: "Jun 2025",
+    image: "/assets/event/eventp .webp",
+    title: "Blockchain & Web3 Meetup",
+    description:
+      "Explore the future of decentralized applications and blockchain technology.",
+    location: "📍 Online",
+    time: "⏰ 6:30 PM",
+  },
+];
 
 function EventToday() {
   const cards = [0, 1, 2];
 
   return (
-    <div>
-      {/* Heading */}
-      <div className="my-5">
-        <h2 className="text-2xl text-center sm:text-3xl md:text-4xl font-bold leading-snug">
-          Today Events
+    <div className="bg-gray-50 py-12 relative">
+      {/* Heading Section */}
+
+      <div className="text-center mb-10">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 hover:text-red-700 transition duration-300">
+          Today’s Events
         </h2>
-        <hr className="w-24 md:w-32 border-t-4 border-maincolor mx-auto mt-4 md:mt-6" />
+        <p className="text-gray-600 mt-2 text-lg">
+          Stay updated with our latest institute events.
+        </p>
+        <hr className="w-32 border-t-4 border-maincolor mx-auto mt-4" />
       </div>
 
-      {/* Cards Section */}
-      <div className="px-4 sm:px-6 md:px-24">
-        <div className="shadow-2xl p-8 my-5">
+      {/* Event Cards Section */}
+      <div className="px-6 md:px-16 lg:px-24">
+        <div className="shadow-2xl p-10 rounded-xl bg-white">
           <div className="flex justify-center">
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, amount: 0.1 }} // More sensitive to scrolling
-              transition={{ staggerChildren: 0.3 }} // Delay between cards
+              viewport={{ once: false, amount: 0.1 }}
+              transition={{ staggerChildren: 0.3 }}
             >
-              {cards.map((_, index) => (
+              {eventData.map((event, index) => (
                 <motion.div key={index} variants={cardVariants}>
-                  <UpcomingEventCard />
+                  <UpcomingEventCard
+                    date={event.date}
+                    monthYear={event.monthYear}
+                    image={event.image}
+                    title={event.title}
+                    description={event.description}
+                    location={event.location}
+                    time={event.time}
+                  />
                 </motion.div>
               ))}
             </motion.div>
           </div>
 
-          {/* Button with Animation */}
-          <div className="mt-10 flex justify-center">
+          {/*  Button */}
+          <div className="mt-12 flex justify-center">
             <motion.button
-              className="uppercase border-black border-2 hover:bg-maincolor hover:text-white hover:border-none p-3 rounded-full text-sm sm:text-base md:text-lg"
+              className="bg-gradient-to-r from-[#00b67d] to-[#008f65] text-white py-3 px-6 rounded-full shadow-md text-lg font-medium flex items-center gap-2 hover:scale-105 transition transform duration-300 relative overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
             >
-              See All Events
+              View All Events
+              <span className="ml-2">→</span>
+              <span className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition" />
             </motion.button>
           </div>
         </div>
