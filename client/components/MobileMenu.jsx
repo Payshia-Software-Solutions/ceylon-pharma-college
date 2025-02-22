@@ -100,7 +100,25 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
       
             >
               <Link
-                onMouseEnter={() => setOurTeasDropdownVisible(false)}
+              
+                href="/about"
+                className="hover:text-gray-300"
+              >
+                About Us
+              </Link>
+          
+            </button>
+          
+          </div>
+
+
+          <div>
+            <button
+              className="flex items-center justify-between w-full py-2 text-lg font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
+      
+            >
+              <Link
+               
                 href="/contactus"
                 className="hover:text-gray-300"
               >
@@ -111,14 +129,7 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           
           </div>
 
-          <Link
-            href="/contact"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="block py-2 text-lg font-medium transition hover:text-green-700 hover:bg-gray-100 hover:p-2"
-          >
-            Contact Us
-          </Link>
-
+         
           <div className="md:flex justify-between items-center mt-5">
             <div className="text-white text-center flex justify-around gap-2">
               <button className="bg-[#00b67d] text-lg py-2 px-4  rounded-full  h-auto">

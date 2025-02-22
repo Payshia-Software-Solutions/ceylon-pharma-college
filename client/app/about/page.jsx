@@ -11,9 +11,9 @@ import CommentSection from "@/components/About/CommentSection";
 function page() {
   return (
     <div className="mt-24">
-      <div>
+      
         <SectionHeader title={"About Us"} imgURL={"/assets/images/cover.png"} />
-      </div>
+      
       <div className="px-4 md:px-16">
         <Description />
       </div>
