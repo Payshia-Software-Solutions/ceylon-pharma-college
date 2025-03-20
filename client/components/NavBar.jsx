@@ -114,11 +114,11 @@ function NavBar() {
             {/* Links section */}
 
             <div className="flex gap-6">
-              <Link href={"#"}>Athletics</Link>
-              <Link href={"#"}>Athletics</Link>
-              <Link href={"#"}>Athletics</Link>
-              <Link href={"#"}>Athletics</Link>
-              <Link href={"#"}>Athletics</Link>
+              <Link href={"#"}>Student Login</Link>
+              <Link href={"#"}>Portal</Link>
+              <Link href={"#"}>Graduation</Link>
+              <Link href={"#"}>Certificate</Link>
+              <Link href={"#"}>POS</Link>
             </div>
           </div>
         </div>
@@ -214,11 +214,9 @@ function NavBar() {
             <div className="hidden md:flex">
               <div className="md:flex justify-between items-center">
                 <div className="text-white text-center flex justify-around gap-4">
-                  <button className="bg-[#00b67d] text-xl py-2 px-4  rounded-full w- h-auto">
-                    Request info
-                  </button>
+                  
                   <button className="bg-[#00b67d] text-xl py-2 px-4 rounded-full h-auto">
-                    <Link href="/applynow">Apply Now</Link>
+                    <Link href="https://portal.pharmacollege.lk/register" target="_blank">Apply Now</Link>
                   </button>
                 </div>
               </div>
