@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from 'next/link';
+
 
 function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -64,17 +66,19 @@ function Hero() {
 
         {/* Main Text */}
         <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[7rem] font-bold uppercase tracking-wide">
-            Get Ready
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] font-bold uppercase tracking-wide">
+            Learning Today
           </h1>
-          <p className="mt-4 text-2xl sm:text-3xl md:text-4xl">
-            To Ignite Your Potential
+          <p className="mt-4 text-5xl sm:text-5xl md:text-5rem">
+           Leading tomorrow
           </p>
           <div className="mt-6 flex justify-center space-x-4">
-            <button className="px-6 py-3 text-xl bg-[#00b67d] rounded-full text-white font-medium">
-              Apply Now
-            </button>
-          </div>
+  <Link href="https://portal.pharmacollege.lk/register" passHref>
+    <button className="px-6 py-3 text-xl bg-[#00b67d] rounded-full text-white font-medium">
+      Apply Now
+    </button>
+  </Link>
+</div>
         </div>
       </div>
     </section>
