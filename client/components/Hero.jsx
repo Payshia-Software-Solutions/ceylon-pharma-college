@@ -44,6 +44,7 @@ function Hero() {
           scrolled ? "rounded-none md:rounded-3xl" : ""
         }`}
         src="/assets/videos/hero-bg.mp4" // Replace with the path to your video file
+
         autoPlay
         loop
         muted

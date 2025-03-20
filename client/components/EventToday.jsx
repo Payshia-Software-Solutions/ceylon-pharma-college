@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import UpcomingEventCard from "./Common/UpcomingEventCard";
+import NewEventCard from "./Common/NewEventCard";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -59,7 +60,7 @@ function EventToday() {
       </div>
 
       {/* Event Cards Section */}
-      <div className="px-6 md:px-16 lg:px-24">
+      <div className="px- md:px-16 lg:px-24">
         <div className="shadow-2xl p-10 rounded-xl bg-white">
           <div className="flex justify-center">
             <motion.div
@@ -71,7 +72,7 @@ function EventToday() {
             >
               {eventData.map((event, index) => (
                 <motion.div key={index} variants={cardVariants}>
-                  <UpcomingEventCard
+                  <NewEventCard
                     date={event.date}
                     monthYear={event.monthYear}
                     image={event.image}

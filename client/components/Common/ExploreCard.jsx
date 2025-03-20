@@ -86,7 +86,7 @@ function ExploreCard({
           </div>
           {/* Right-Aligned ss */}
           <div className="flex pt-1 p-2">
-            <button className="bg-white text-black border-black border uppercase w-full text-xs sm:text-sm px-3 sm:px-4 py-2 transition hover:bg-black hover:text-white rounded-lg">
+            <button className="bg-gradient-to-r from-[#00b67d] to-[#008f65] text-white uppercase w-full text-xs sm:text-sm px-3 sm:px-4 py-2 transition  rounded-lg">
               <Link href={`/course/${slug}`}> More Details </Link>
             </button>
           </div>

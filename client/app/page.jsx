@@ -12,6 +12,8 @@ import RedyForNext from "@/components/RedyForNext";
 import Course from "@/components/Course/Course";
 import MainTestimonial from "@/components/MainTestimonial";
 import Certificate from "@/components/Certificate";
+import NewEventCard from "@/components/Common/NewEventCard";
+import Heroabout from "@/components/Heroabout";
 
 
 function page() {
@@ -23,14 +25,18 @@ function page() {
       <ExploreProgram />
 
       <section id="certificates"><Certificate /></section>
+      <Heroabout/>
     
       <MainTestimonial />
 
       {/* <AllBelonge /> */}
       <AlvenroToday />
 
-      <RedyForNext />
+
       <Accredition />
+
+   
+     
     </div>
   );
 }
