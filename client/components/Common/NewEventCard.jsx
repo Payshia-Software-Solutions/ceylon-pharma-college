@@ -25,7 +25,7 @@ function NewEventCard({
 
   return (
     <motion.div
-      className="w-full sm:max-w-md rounded-tl-[2.5rem] rounded-br-[2.5rem] my-6 overflow-hidden shadow-lg relative hover:scale-95 duration-300"
+      className="w-full sm:max-w-md rounded-tl-[2.5rem] rounded-br-[2.5rem] md:my-6 overflow-hidden shadow-lg relative hover:scale-95 duration-300"
       whileHover={"visible"}
       initial="hidden"
     >
