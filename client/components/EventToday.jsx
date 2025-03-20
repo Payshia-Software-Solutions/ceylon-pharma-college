@@ -60,7 +60,7 @@ function EventToday() {
       </div>
 
       {/* Event Cards Section */}
-      <div className="px-6 md:px-16 lg:px-24">
+      <div className="px- md:px-16 lg:px-24">
         <div className="shadow-2xl p-10 rounded-xl bg-white">
           <div className="flex justify-center">
             <motion.div
