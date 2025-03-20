@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import UpcomingEventCard from "./Common/UpcomingEventCard";
+import NewEventCard from "./Common/NewEventCard";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -71,7 +72,7 @@ function EventToday() {
             >
               {eventData.map((event, index) => (
                 <motion.div key={index} variants={cardVariants}>
-                  <UpcomingEventCard
+                  <NewEventCard
                     date={event.date}
                     monthYear={event.monthYear}
                     image={event.image}
