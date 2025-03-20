@@ -17,14 +17,14 @@ const testimonialData = [
     description:
       "At Alverno, I’ve been able to develop my communication skills and learned how to work well independently and on a team. With the support of my professors, I’ve been able to gain valuable career experience on and off campus. Ultimately, I’m becoming a stronger leader.",
     imgURL: "/assets/images/cover.png",
-    coverimgURL: "/assets/images/cover2.jpg"
+    coverimgURL: "/assets/images/bg-convo.jpg"
   },
   {
     name: "Thilina",
     description:
       "At Alverno, I’ve been able to develop my communication skills and learned how to work well independently and on a team. With the support of my professors, I’ve been able to gain valuable career experience on and off campus. Ultimately, I’m becoming a stronger leader.",
     imgURL: "/assets/testimonial/doctor1.jpg",
-    coverimgURL: "/assets/images/cover2.jpg",
+    coverimgURL: "/assets/images/bg-convo.jpg",
   },
 ];
 

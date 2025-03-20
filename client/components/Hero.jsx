@@ -43,7 +43,8 @@ function Hero() {
         className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-in-out ${
           scrolled ? "rounded-none md:rounded-3xl" : ""
         }`}
-        src="/assets/videos/newhero.mp4" // Replace with the path to your video file
+        src="/assets/videos/hero-bg.mp4" // Replace with the path to your video file
+
         autoPlay
         loop
         muted
