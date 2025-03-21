@@ -1,3 +1,5 @@
+"use client"
+import { on } from "events";
 import Link from "next/link";
 import React from "react";
 
@@ -7,9 +9,9 @@ const Footer = () => {
   const footerLinks = {
     "Get In Touch": [
       { title: "Careers", href: "/tea-jar-story" },
-      { title: "Courses", href: "/tea-heritage" },
+      { title: "Courses", href: "/course" },
       { title: "Profile", href: "/tea-heritage" },
-      { title: "Certificate", href: "/#" },
+      // { title: "Certificate", href: "/#", onclick:"scrollToCertificates" },
     ],
     "Our Policies": [
       { title: "Privacy Policy", href: "/policies/privacy-policy" },
@@ -19,12 +21,25 @@ const Footer = () => {
     ],
     " Company": [
       { title: "Home", href: "#" },
-      { title: "About", href: "/contact" },
-      { title: "Contact", href: "#" },
-      { title: "Posts", href: "#" },
-      { title: "Event", href: "#" },
+      { title: "About", href: "/about" },
+      { title: "Contact", href: "/contactus" },
+      { title: "Blogs", href: "/blog" },
+      { title: "Event", href: "/event" },
     ],
   };
+
+
+    // Scroll to Certificates section
+    const scrollToCertificates = () => {
+      const element = document.getElementById("certificates");
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop,
+          behavior: "smooth", // smooth scroll
+        });
+      }
+    };
+  
 
   return (
     <footer className="bg-maincolor text-white pt-16 pb-8">
@@ -40,11 +55,18 @@ const Footer = () => {
                     <Link
                       href={link.href}
                       className="text-white hover:text-gray-300 text-sm transition-colors"
+                   
                     >
                       {link.title}
                     </Link>
+
                   </li>
+                  
                 ))}
+
+
+               
+             
               </ul>
             </div>
           ))}
@@ -107,7 +129,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="mt-16 pt-8 border-t border-white">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white">
-            <p>© {currentYear} Tea Jar. All rights reserved.</p>
+            <p>© {currentYear} Ceylon Pharma College. All rights reserved.</p>
             <div className="flex items-center gap-2">
               <span>Powered by</span>
               <Link
