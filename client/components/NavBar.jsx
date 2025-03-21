@@ -109,16 +109,20 @@ function NavBar() {
         }`}
       >
         {/* Top Bar */}
-        <div className="flex  justify-center">
-          <div className="bg-maincolor  w-full text-sm py-2 px-4 flex justify-center  text-white">
+        <div className="flex justify-center">
+          <div className="bg-maincolor w-full text-sm py-2 px-4 flex sm:justify-start md:justify-center text-white">
             {/* Links section */}
-
             <div className="flex gap-6">
-              <Link href={"#"}>Student Login</Link>
-              <Link href={"#"}>Portal</Link>
-              <Link href={"#"}>Graduation</Link>
-              <Link href={"#"}>Certificate</Link>
-              <Link href={"#"}>POS</Link>
+              <Link href={"#"} className="font-semibold">
+                Student Login
+              </Link>
+
+              <div className="hidden md:flex gap-6">
+                <Link href={"#"}>Portal</Link>
+                <Link href={"#"}>Graduation</Link>
+                <Link href={"#"}>Certificate</Link>
+                <Link href={"#"}>POS</Link>
+              </div>
             </div>
           </div>
         </div>
@@ -214,9 +218,13 @@ function NavBar() {
             <div className="hidden md:flex">
               <div className="md:flex justify-between items-center">
                 <div className="text-white text-center flex justify-around gap-4">
-                  
                   <button className="bg-[#00b67d] text-xl py-2 px-4 rounded-full h-auto">
-                    <Link href="https://portal.pharmacollege.lk/register" target="_blank">Apply Now</Link>
+                    <Link
+                      href="https://portal.pharmacollege.lk/register"
+                      target="_blank"
+                    >
+                      Apply Now
+                    </Link>
                   </button>
                 </div>
               </div>
