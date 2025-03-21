@@ -25,8 +25,8 @@ function Heroabout() {
   }, []);
 
   return (
-    <div className="px-6 md:px-32 py-4">
-      <div className="flex flex-col md:flex-row w-full overflow-hidden bg-white my-4">
+    <div className="">
+      <div className="flex flex-col md:flex-row w-full overflow-hidden bg-white">
         {/* Left side with image - curved edge effect */}
         <div className="w-full md:w-1/2 relative h-60 md:h-auto">
           <div className="absolute inset-0 overflow-hidden">
@@ -54,7 +54,7 @@ function Heroabout() {
         {/* Right side with content */}
         <div className="w-full md:w-1/2 p-4 md:p-12 flex flex-col justify-center">
           <h1 className="text-3xl md:text-5xl font-bold text-blue-900 mb-4 text-center md:text-left">
-            Why OUR?
+            Why Ceylon Pharma College?
           </h1>
 
           <p className="text-gray-700 mb-4 text-center md:text-left">

@@ -51,7 +51,7 @@ function EventToday() {
 
       <div className="text-center mb-10">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 hover:text-red-700 transition duration-300">
-          Today’s Events
+          Event Calender
         </h2>
         <p className="text-gray-600 mt-2 text-lg">
           Stay updated with our latest institute events.
@@ -60,8 +60,8 @@ function EventToday() {
       </div>
 
       {/* Event Cards Section */}
-      <div className="px- md:px-16 lg:px-24">
-        <div className="shadow-2xl p-10 rounded-xl bg-white">
+      <div className="md:px-16 lg:px-24">
+        <div className="shadow-xl p-10 rounded-[50px] bg-white">
           <div className="flex justify-center">
             <motion.div
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"

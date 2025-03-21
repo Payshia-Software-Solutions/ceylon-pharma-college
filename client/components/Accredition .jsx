@@ -15,22 +15,19 @@ function Accredition() {
         {/* Main Heading */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl leading-snug text-center">
           <span className="font-bold ml-2 text-center">
-            Ceylon Pharma College is accredited by the
+            Ceylon Pharma College is accredited by,
           </span>{" "}
         </h2>{" "}
         <p className="text-xl  my-6">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-          dignissimos corrupti dolores mollitia eius consequuntur voluptas nobis
-          sint quas nesciunt cumque, obcaecati unde rem placeat nisi,
-          voluptatibus animi magni repudiandae.
+        At Ceylon Pharma College, we take pride in our strong collaborations with top-tier institutions and industry leaders, which enrich our academic programs and expand opportunities for our students. Our unwavering commitment to excellence in education has earned us numerous prestigious recognitions and esteemed accreditations, reinforcing our position as a leading institution in pharmaceutical education.
         </p>
       </div>
 
       {/* Swiper for small screens, Grid for large screens */}
-      <div className="mt-10 mb-8 px-24">
+      <div className="mt-10 mb-8 px-8 md:px-24">
         <Swiper
-          slidesPerView={1}
-          spaceBetween={10}
+          slidesPerView={3}
+          spaceBetween={40}
           pagination={{ clickable: true }}
           autoplay={{
             delay: 3000, // 3 seconds per slide
@@ -38,9 +35,9 @@ function Accredition() {
           }}
           loop={true} // Enables infinite scrolling
           breakpoints={{
-            640: { slidesPerView: 2 },
-            768: { slidesPerView: 3 },
-            1024: { slidesPerView: 3 },
+            640: { slidesPerView: 3 },
+            768: { slidesPerView: 6 },
+            1024: { slidesPerView: 8 },
           }}
           modules={[Pagination, Autoplay]}
           className="w-full sm:hidden " // Only show Swiper on small screens
@@ -56,6 +53,18 @@ function Accredition() {
           </SwiperSlide>
           <SwiperSlide>
             <IsoCertificateCard imgUrl={"/assets/logo/scc.png"} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <IsoCertificateCard imgUrl={"/assets/logo/iqa.png"} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <IsoCertificateCard imgUrl={"/assets/logo/wes.svg"} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <IsoCertificateCard imgUrl={"/assets/logo/acuk.png"} />
+          </SwiperSlide>
+          <SwiperSlide>
+            <IsoCertificateCard imgUrl={"/assets/logo/gatehouse.png"} />
           </SwiperSlide>
        
         </Swiper>
