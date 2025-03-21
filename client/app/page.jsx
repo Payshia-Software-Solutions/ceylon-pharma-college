@@ -14,6 +14,7 @@ import MainTestimonial from "@/components/MainTestimonial";
 import Certificate from "@/components/Certificate";
 import NewEventCard from "@/components/Common/NewEventCard";
 import Heroabout from "@/components/Heroabout";
+import ApplyNowBottemBar from "@/components/ApplyNowBottemBar";
 
 
 function page() {
@@ -34,6 +35,7 @@ function page() {
 
 
       <Accredition />
+      <ApplyNowBottemBar/>
 
    
      
