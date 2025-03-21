@@ -71,7 +71,7 @@ function ContactUs() {
       {/* Toast container */}
       <SectionHeader title="Contact Us" imgURL="/assets/images/cover.png" />
       <div className="container max-w-7xl mx-auto my-8">
-        <div className="flex flex-col md:flex-row gap-8 px-8 py-8 bg-white shadow-lg rounded-lg">
+        <div className="flex flex-col md:flex-row gap-8 px-8 py-8 bg-white  rounded-lg">
           {/* Contact Information */}
           <div className="w-full md:w-1/3 max-h-[35rem] bg-gray-200 bg-opacity-40 rounded-md p-8">
             <h2 className="text-xl font-semibold mb-6">Contact Information</h2>
