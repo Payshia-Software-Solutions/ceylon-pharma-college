@@ -83,7 +83,7 @@ const Footer = () => {
               <div>
                 <p className="mb-1">Customer Service: 011 74 94 335</p>
 
-                <p>Email: marketing@teajarceylon.com</p>
+                <p>Email: info@phamacollege.lk</p>
               </div>
 
               <div className="my-2">
@@ -132,7 +132,7 @@ const Footer = () => {
 
             <div>
 
-              <p>Email: marketing@teajarceylon.com</p>
+              <p>Email: info@phamacollege.lk</p>
             </div>
           </div>
         </div>
