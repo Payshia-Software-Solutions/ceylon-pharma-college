@@ -88,7 +88,8 @@ function Course() {
                     title={course.course_name} // Assuming the field is 'course_name'
                     description={course.mini_description} // Assuming the field is 'course_description'
                     buttontext="LEARN MORE"
-                    imgURL={`/assets/explore/${course.course_img}`} // Default image if not provided   /assets/explore/professional-training.jpg
+                    // imgURL={`/assets/explore/${course.course_img}`} // Default image if not provided /assets/explore/professional-training.jpg
+                    imgURL={`${config.FTP_URL}/courses/${course.course_code}/${course.course_img}`}  
                     slug={course.slug} // Assuming the field is 'slug'
                     price={course.course_fee}
                     seat={course.seat}
