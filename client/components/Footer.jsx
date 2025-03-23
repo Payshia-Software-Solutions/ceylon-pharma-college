@@ -100,27 +100,38 @@ const Footer = () => {
         </div>
         {/* Company Information */}
         <div className="md:hidden text-center md:text-start ">
-          <h3 className="text-white text-lg mt-8 mb-4">Tea Jar</h3>
+          <h3 className="text-white text-lg mt-8 mb-4">Head Office</h3>
           <div className="space-y-4 text-sm ">
-            <p>
-              Corporate Office: KDU Exports PVT LTD,
-              <br />
-              427 A, Galle Road, Colombo 03, Sri Lanka
-            </p>
+          <p>
+                Ceylon Pharma College (PVT) LTD,
+                <br />
+                L35, West Tower, World Trade Center, Colombo 01, Sri Lanka
+              </p>
 
             <p>
-              Factory: KDU Exports PVT LTD,
+              <p className="mb-1">Customer Service: 011 74 94 335</p>
               <br />
-              Galpadithanna Tea Factory, Lellopitiya,Rathnapura.
+        
             </p>
 
-            <div>
-              <p className="mb-2">Customer Service: (+94)70 55 08 800</p>
-              <p>Service Hours: Daily 9 am - 6 pm</p>
-            </div>
+            {/* <div>
+              <p className="mb-2">Customer Service: 011 74 94 335</p>
+              
+            </div> */}
+
+            
+            <div className="my-2">
+                <h1 className="text-xl font-bold">Operation Branch</h1>
+
+                <p>
+                  L35, West Tower, World Trade Center, Colombo 01, Sri Lanka
+                </p>
+
+                <p className="mb-2"> 0715 884 884</p>
+              </div>
 
             <div>
-              <p className="mb-2">Wholesale Inquiries: (+94)70 55 08 800</p>
+
               <p>Email: marketing@teajarceylon.com</p>
             </div>
           </div>
