@@ -1,49 +1,41 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import UpcomingEventCard from "./Common/UpcomingEventCard";
 import NewEventCard from "./Common/NewEventCard";
+import Link from "next/link";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-const eventData = [
-  {
-    date: "25",
-    monthYear: "Mar 2025",
-    image: "/assets/event/eventp .webp",
-    title: "AI & Machine Learning Conference",
-    description:
-      "A deep dive into the latest trends in AI and ML with industry experts.",
-    location: "📍 San Francisco, CA",
-    time: "⏰ 10:00 AM",
-  },
-  {
-    date: "05",
-    monthYear: "Jun 2025",
-    image: "/assets/event/eventp2.webp",
-    title: "Blockchain & Web3 Meetup",
-    description:
-      "Explore the future of decentralized applications and blockchain technology.",
-    location: "📍 Online",
-    time: "⏰ 6:30 PM",
-  },
-  {
-    date: "05",
-    monthYear: "Jun 2025",
-    image: "/assets/event/eventp .webp",
-    title: "Blockchain & Web3 Meetup",
-    description:
-      "Explore the future of decentralized applications and blockchain technology.",
-    location: "📍 Online",
-    time: "⏰ 6:30 PM",
-  },
-];
-
 function EventToday() {
   const cards = [0, 1, 2];
+
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost/pharma-college-project/server/events-page/latest"
+        );
+        if (!response.ok) throw new Error("Failed to fetch events");
+
+        const data = await response.json();
+        setEvents(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   return (
     <div className="bg-gray-50 py-12 relative">
@@ -70,16 +62,24 @@ function EventToday() {
               viewport={{ once: false, amount: 0.1 }}
               transition={{ staggerChildren: 0.3 }}
             >
-              {eventData.map((event, index) => (
+              {events.map((event, index) => (
                 <motion.div key={index} variants={cardVariants}>
                   <NewEventCard
-                    date={event.date}
-                    monthYear={event.monthYear}
-                    image={event.image}
+                    key={event.id}
+                    date={new Date(event.event_date).getDate()}
+                    monthYear={new Date(event.event_date).toLocaleString(
+                      "en-US",
+                      {
+                        month: "short",
+                        year: "numeric",
+                      }
+                    )}
+                    Label={event.label}
                     title={event.title}
-                    description={event.description}
-                    location={event.location}
-                    time={event.time}
+                    minidescription={event.mini_description}
+                    phone={event.phone}
+                    image={` /assets/event/${event.image_url}`}
+                    slug={event.slug}
                   />
                 </motion.div>
               ))}
@@ -88,15 +88,17 @@ function EventToday() {
 
           {/*  Button */}
           <div className="mt-12 flex justify-center">
-            <motion.button
-              className="bg-gradient-to-r from-[#00b67d] to-[#008f65] text-white py-3 px-6 rounded-full shadow-md text-lg font-medium flex items-center gap-2 hover:scale-105 transition transform duration-300 relative overflow-hidden"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View All Events
-              <span className="ml-2">→</span>
-              <span className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition" />
-            </motion.button>
+            <Link href="/event">
+              <motion.button
+                className="bg-gradient-to-r from-[#00b67d] to-[#008f65] text-white py-3 px-6 rounded-full shadow-md text-lg font-medium flex items-center gap-2 hover:scale-105 transition-transform duration-300 relative"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                View All Events
+                <span className="ml-2">→</span>
+                <span className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition" />
+              </motion.button>
+            </Link>
           </div>
         </div>
       </div>
