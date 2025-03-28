@@ -1,27 +1,36 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function NewEventCard({
   date,
   monthYear,
   Label,
   title,
-  description,
+  minidescription,
   phone,
   image,
-  ctaText = "LEARN MORE"
+  slug
 }) {
   // Create variants for hover animations
   const itemVariants = {
     hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   const dateVariants = {
     hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/events/${slug}`); // Navigate to event details
+  };
+
 
   return (
     <motion.div
@@ -31,14 +40,10 @@ function NewEventCard({
     >
       {/* Background Image */}
       <div className="relative w-full h-[350px] sm:h-[500px]">
-        <img
-          src={image}
-          className="h-full w-full object-cover"
-          alt="Event"
-        />
+        <img src={image} className="h-full w-full object-cover" alt="Event" />
 
         {/* Date Badge */}
-        <motion.div 
+        <motion.div
           className="bg-gradient-to-r from-[#00b67d] to-[#008f65] absolute right-3 sm:right-5 top-0 text-white flex flex-col w-20 sm:w-24 rounded-b-lg items-center py-2 sm:py-3 shadow-md z-10"
           variants={dateVariants}
           transition={{ duration: 0.4 }}
@@ -60,7 +65,7 @@ function NewEventCard({
           </div>
 
           {/* Label */}
-          <motion.div 
+          <motion.div
             className="text-center mb-3 sm:mb-4"
             variants={itemVariants}
             transition={{ duration: 0.4 }}
@@ -72,26 +77,26 @@ function NewEventCard({
           <div className="flex-grow"></div>
 
           {/* Description */}
-          <motion.div 
+          <motion.div
             className="text-center mb-6 sm:mb-8"
             variants={itemVariants}
             transition={{ duration: 0.4 }}
           >
-
-            <div className="bg-gray-100 bg-opacity-10 px-4 py-2 ">  
-            <p className="text-base sm:text-lg whitespace-pre-line">{description}</p>
-
+            <div className="bg-gray-100 bg-opacity-10 px-4 py-2 ">
+              <p className="text-base sm:text-lg whitespace-pre-line">
+                {minidescription}
+              </p>
             </div>
           </motion.div>
 
           {/* CTA Button */}
-          <motion.div 
+          <motion.div
             className="text-center mb-5 sm:mb-6"
             variants={itemVariants}
             transition={{ duration: 0.4 }}
           >
             <button className="bg-gradient-to-r from-[#00b67d] to-[#008f65] text-white font-medium py-2 px-10 sm:py-3 sm:px-16 rounded-lg transition-colors duration-300">
-              {ctaText}
+             <Link href={ ` /event/${slug}`}> LEARN MORE</Link>
             </button>
           </motion.div>
         </div>
