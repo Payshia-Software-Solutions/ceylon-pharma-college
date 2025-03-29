@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import UpcomingEventCard from "./Common/UpcomingEventCard";
 import NewEventCard from "./Common/NewEventCard";
 import Link from "next/link";
+import config from "@/config";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -21,7 +22,7 @@ function EventToday() {
     const fetchEvents = async () => {
       try {
         const response = await fetch(
-          "http://localhost/pharma-college-project/server/events-page/latest"
+          `${config.API_BASE_URL}/events-page/latest`
         );
         if (!response.ok) throw new Error("Failed to fetch events");
 

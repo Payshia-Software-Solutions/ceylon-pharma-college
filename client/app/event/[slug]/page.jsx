@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation"; // Using useParams instead of useSearchParams
+import { useParams } from "next/navigation";
 import SingleEvent from "@/components/SingleEvent";
-import config from "@/config"; // Assuming you have a config file for API URLs
+import config from "@/config";
 
 const page = () => {
-  const { slug } = useParams(); // Get slug from dynamic route
+  const { slug } = useParams();
 
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ const page = () => {
     const fetchEvent = async () => {
       try {
         console.log("Fetching event for slug:", slug);
-        const apiUrl = `http://localhost/pharma-college-project/server/events-page/${slug}`; // Dynamic API call
+        const apiUrl = `${config.API_BASE_URL}/events-page/${slug}`;
         console.log("API URL:", apiUrl);
 
         const response = await fetch(apiUrl);
