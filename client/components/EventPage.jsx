@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import SectionHeader from "./Common/SectionHeader";
 import NewEventCard from "./Common/NewEventCard";
+import config from "@/config";
 
 function EventPage() {
   const [events, setEvents] = useState([]);
@@ -11,7 +12,8 @@ function EventPage() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("http://localhost/pharma-college-project/server/events-page");
+        const response = await fetch(  `${config.API_BASE_URL}/events-page  `);            
+
         if (!response.ok) throw new Error("Failed to fetch events");
         
         const data = await response.json();
