@@ -58,7 +58,7 @@ function Hero() {
         {/* Logo */}
         <div className="mb-6">
           <img
-            src="/assets/images/logo.png"
+            src="/assets/logo/logo-cpc.png"
             className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto object-contain"
             alt="Logo"
           />
