@@ -51,7 +51,7 @@ function Hero() {
         loop
         muted
       ></video>
-      <div className="absolute bg-black w-full h-full bg-opacity-40"></div>
+      <div className="absolute bg-black w-full h-full bg-opacity-30"></div>
 
       {/* Logo and Text Centered Together */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 md:px-8 lg:px-12">

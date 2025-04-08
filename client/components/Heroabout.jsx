@@ -54,7 +54,7 @@ function Heroabout() {
         {/* Right side with content */}
         <div className="w-full md:w-1/2 p-4 md:p-12 flex flex-col justify-center">
           <h1 className="text-3xl md:text-5xl font-bold text-maincolor mb-4 text-center md:text-left">
-            Why Ceylon Pharma College?
+            Why Choose Us?
           </h1>
 
           <p className="text-gray-700 mb-4 text-center md:text-left">

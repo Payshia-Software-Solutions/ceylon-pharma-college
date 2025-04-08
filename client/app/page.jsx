@@ -15,6 +15,7 @@ import Certificate from "@/components/Certificate";
 import NewEventCard from "@/components/Common/NewEventCard";
 import Heroabout from "@/components/Heroabout";
 import ApplyNowBottemBar from "@/components/ApplyNowBottemBar";
+import NewTestamonial from "@/components/NewTestamonial"
 
 
 function page() {
@@ -28,7 +29,9 @@ function page() {
       <section id="certificates"><Certificate /></section>
       <Heroabout/>
     
-      <MainTestimonial />
+      {/* <MainTestimonial /> */}
+      <NewTestamonial/>
+      
 
       {/* <AllBelonge /> */}
       <AlvenroToday />
