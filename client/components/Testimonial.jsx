@@ -7,7 +7,7 @@ function Testimonial({ imgURL, coverimgURL, description, name }) {
     <>
       {/* Desktop View */}
       <div
-        className="relative bg-cover bg-center bg-no-repeat h-1/2 hidden lg:flex items-center justify-center text-white"
+        className="relative bg-cover bg-center bg-no-repeat h-1/2 hidden lg:flex items-center justify-center text-white py-10"
         style={{ backgroundImage: `url(${coverimgURL})` }}
       >
 

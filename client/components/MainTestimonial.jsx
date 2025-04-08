@@ -46,7 +46,7 @@ function MainTestimonial() {
   }, []);
 
   return (
-    <div className=" mt-0">
+    <div className="mt-0">
       
       <Swiper
         ref={swiperRef}
