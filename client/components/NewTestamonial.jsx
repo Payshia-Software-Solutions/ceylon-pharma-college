@@ -11,7 +11,6 @@ import Image from "next/image";
 import { FaPlusCircle } from "react-icons/fa";
 import config from "@/config";
 
-
 const FireworkParticle = ({ x, y, angle, distance, color, delay, size }) => {
   return (
     <motion.div
@@ -19,58 +18,55 @@ const FireworkParticle = ({ x, y, angle, distance, color, delay, size }) => {
       style={{
         backgroundColor: color,
       }}
-      initial={{ 
-        width: 0, 
-        height: 0, 
+      initial={{
+        width: 0,
+        height: 0,
         opacity: 0,
         x: x,
         y: y,
       }}
-      animate={{ 
+      animate={{
         x: x + Math.cos(angle) * distance,
         y: y + Math.sin(angle) * distance,
         width: size,
         height: size,
         opacity: [0, 1, 0],
       }}
-      transition={{ 
-        duration: 1.5, 
+      transition={{
+        duration: 1.5,
         ease: "easeOut",
         delay: delay,
-        times: [0, 0.2, 1]
+        times: [0, 0.2, 1],
       }}
     />
   );
 };
 
-
 const FireworkExplosion = ({ x, y }) => {
   const particleCount = 30 + Math.floor(Math.random() * 20);
   const baseColor = [
     "#FF5252",
-    "#FFEB3B", 
-    "#2196F3", 
-    "#4CAF50", 
-    "#9C27B0", 
-    "#FF9800", 
-    "#00BCD4", 
+    "#FFEB3B",
+    "#2196F3",
+    "#4CAF50",
+    "#9C27B0",
+    "#FF9800",
+    "#00BCD4",
   ][Math.floor(Math.random() * 7)];
-  
+
   const particles = [];
-  
+
   for (let i = 0; i < particleCount; i++) {
     const angle = (Math.PI * 2 * i) / particleCount;
-    const distance = 150 + Math.random() * 150; 
+    const distance = 150 + Math.random() * 150;
     const delay = Math.random() * 0.2;
     const size = 12 + Math.random() * 12;
-    
 
     let color = baseColor;
     if (Math.random() > 0.7) {
-    
       color = ["#FFD700", "#FFFFFF"][Math.floor(Math.random() * 2)];
     }
-    
+
     particles.push(
       <FireworkParticle
         key={`particle-${i}`}
@@ -84,66 +80,58 @@ const FireworkExplosion = ({ x, y }) => {
       />
     );
   }
-  
+
   return <>{particles}</>;
 };
 
 const FireworkDisplay = ({ active }) => {
   const [explosions, setExplosions] = useState([]);
-  
+
   useEffect(() => {
     if (!active) return;
-    
 
     const interval = setInterval(() => {
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
-      
 
       const newExplosions = [];
       const count = 1 + Math.floor(Math.random() * 2);
-      
+
       for (let i = 0; i < count; i++) {
         newExplosions.push({
           id: Date.now() + Math.random(),
           x: Math.random() * viewportWidth,
-          y: Math.random() * (viewportHeight * 0.7), 
+          y: Math.random() * (viewportHeight * 0.7),
         });
       }
-      
-      setExplosions(prev => [...prev, ...newExplosions]);
-    }, 250); 
-    
-   
+
+      setExplosions((prev) => [...prev, ...newExplosions]);
+    }, 250);
+
     const cleanup = setInterval(() => {
-      setExplosions((prev) => 
-        prev.filter(exp => Date.now() - parseInt(exp.id) < 2000)
+      setExplosions((prev) =>
+        prev.filter((exp) => Date.now() - parseInt(exp.id) < 2000)
       );
     }, 1000);
-    
-    
+
     const timer = setTimeout(() => {
       clearInterval(interval);
       clearInterval(cleanup);
     }, 5000);
-    
+
     return () => {
       clearInterval(interval);
       clearInterval(cleanup);
       clearTimeout(timer);
     };
   }, [active]);
-  
+
   if (!active) return null;
-  
+
   return (
     <div className="fixed inset-0 pointer-events-none z-50">
       {explosions.map((exp) => (
-        <FireworkExplosion
-          key={exp.id}
-          x={exp.x}
-          y={exp.y}
-        />
+        <FireworkExplosion key={exp.id} x={exp.x} y={exp.y} />
       ))}
     </div>
   );
@@ -199,7 +187,7 @@ const Testimonial = () => {
 
   const fetchTestimonials = async () => {
     try {
-      const res = await fetch(`${config.API_BASE_URL}/testimonials` );
+      const res = await fetch(`${config.API_BASE_URL}/testimonials`);
       // `${config.API_BASE_URL}/users/search/${searchQuery}` testimonials
       const data = await res.json();
       setTestimonials(data);
@@ -231,21 +219,21 @@ const Testimonial = () => {
       });
       setFormData({ name: "", role: "", comment: "", rating: 0 });
       setShowModal(false);
-      
+
       // Show congratulations and fireworks
       setShowCongrats(true);
       setShowFireworks(true);
-      
+
       // Hide congratulations after 6 seconds
       setTimeout(() => {
         setShowCongrats(false);
       }, 6000);
-      
+
       // Hide fireworks after 5 seconds
       setTimeout(() => {
         setShowFireworks(false);
       }, 5000);
-      
+
       fetchTestimonials(); // refresh
     } catch (error) {
       console.error("Error submitting feedback:", error);
@@ -255,7 +243,7 @@ const Testimonial = () => {
   return (
     <section className="relative w-full bg-white px-8 flex justify-center items-center min-h-[700px]">
       <FireworkDisplay active={showFireworks} />
-      
+
       <div className="absolute inset-0 h-auto md:h-[700px] flex justify-center items-center">
         <Image
           src="/assets/images/cover.png"
@@ -330,7 +318,10 @@ const Testimonial = () => {
               <SwiperSlide key={index}>
                 <TestamonialCard
                   name={card.name}
-                  image={`/assets/testimonial/${card.image_url}`|| "/assets/testimonial/doctor1.jp"}
+                  image={
+                    `/assets/testimonial/${card.image_url}` ||
+                    "/assets/testimonial/doctor1.jp"
+                  }
                   role={card.role}
                   comment={card.comment}
                   rating={card.rating}
@@ -355,25 +346,28 @@ const Testimonial = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-white p-6 rounded-2xl w-full max-w-md shadow-lg relative"
+              className="bg-white p-4 md:p-6 rounded-2xl w-full max-w-xs md:max-w-md shadow-lg relative mx-4" // smaller on mobile with margin
             >
               <button
-                className="absolute top-3 right-4 text-black font-bold text-xl"
+                className="absolute top-2 right-3 md:top-3 md:right-4 text-black font-bold text-xl"
                 onClick={() => setShowModal(false)}
               >
                 ×
               </button>
-              <h3 className="text-2xl text-maincolor font-bold mb-4">
+              <h3 className="text-xl md:text-2xl text-maincolor font-bold mb-3 md:mb-4">
                 Leave Your Feedback
               </h3>
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-3 md:gap-4"
+              >
                 <input
                   type="text"
                   name="name"
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="border border-maincolor rounded-md px-4 py-2"
+                  className="border border-maincolor rounded-md px-3 py-1.5 md:px-4 md:py-2 text-sm md:text-base"
                   required
                 />
                 <input
@@ -382,24 +376,24 @@ const Testimonial = () => {
                   placeholder="Your Role"
                   value={formData.role}
                   onChange={handleInputChange}
-                  className="border border-maincolor rounded-md px-4 py-2"
+                  className="border border-maincolor rounded-md px-3 py-1.5 md:px-4 md:py-2 text-sm md:text-base"
                 />
                 <textarea
                   name="comment"
                   placeholder="Your Feedback"
-                  rows={4}
+                  rows={3}
                   value={formData.comment}
                   onChange={handleInputChange}
-                  className="border border-maincolor rounded-md px-4 py-2"
+                  className="border border-maincolor rounded-md px-3 py-1.5 md:px-4 md:py-2 text-sm md:text-base"
                   required
                 />
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-1 md:gap-2 items-center">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
                       key={star}
                       type="button"
                       onClick={() => handleRatingChange(star)}
-                      className="text-yellow-400 text-2xl focus:outline-none"
+                      className="text-yellow-400 text-xl md:text-2xl focus:outline-none"
                     >
                       {star <= formData.rating ? (
                         <AiFillStar />
@@ -411,7 +405,7 @@ const Testimonial = () => {
                 </div>
                 <button
                   type="submit"
-                  className="bg-maincolor capitalize text-white py-2 px-4 rounded-md font-semibold transition"
+                  className="bg-maincolor capitalize text-white py-1.5 px-3 md:py-2 md:px-4 rounded-md font-semibold transition text-sm md:text-base"
                 >
                   Submit your review
                 </button>
@@ -432,50 +426,50 @@ const Testimonial = () => {
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0, y: 20 }}
-              animate={{ 
+              animate={{
                 scale: [0.8, 1.1, 1],
-                opacity: 1, 
-                y: 0 
+                opacity: 1,
+                y: 0,
               }}
               exit={{ scale: 0.8, opacity: 0, y: 20 }}
-              transition={{ 
+              transition={{
                 duration: 0.5,
                 times: [0, 0.6, 1],
                 type: "spring",
                 stiffness: 300,
-                damping: 15
+                damping: 15,
               }}
-              className="bg-white p-8 rounded-2xl w-full max-w-md shadow-lg text-center"
+              className="bg-white p-5 md:p-8 rounded-2xl w-full max-w-xs md:max-w-md shadow-lg text-center mx-4" // smaller on mobile with margin
             >
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ 
+                animate={{
                   scale: [0.5, 1.2, 1],
                   opacity: 1,
-                  rotate: [0, 10, -10, 0]
+                  rotate: [0, 10, -10, 0],
                 }}
                 transition={{
                   duration: 0.8,
                   delay: 0.2,
-                  times: [0, 0.6, 0.8, 1]
+                  times: [0, 0.6, 0.8, 1],
                 }}
-                className="text-7xl mb-4"
+                className="text-6xl md:text-7xl mb-3 md:mb-4"
               >
                 🎉
               </motion.div>
-              <motion.h3 
+              <motion.h3
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-3xl font-bold text-maincolor mb-2"
+                className="text-2xl md:text-3xl font-bold text-maincolor mb-1 md:mb-2"
               >
                 Thank You!
               </motion.h3>
-              <motion.p 
+              <motion.p
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="text-gray-700 text-lg"
+                className="text-gray-700 text-base md:text-lg"
               >
                 Your feedback has been submitted successfully!
               </motion.p>
