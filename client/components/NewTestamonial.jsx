@@ -3,15 +3,44 @@ import React, { useRef, useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-
 import Image from "next/image";
-import TestamonialCard from "./Common/TestamonialCard";
 import { FaPlusCircle } from "react-icons/fa";
+
+const TestamonialCard = ({ name, role, image, comment, rating }) => {
+  return (
+    <div className="bg-white text-black p-6 rounded-xl shadow-md h-full">
+      <div className="flex items-center gap-4 mb-4">
+        <img
+          src={image}
+          alt={name}
+          className="w-12 h-12 rounded-full object-cover"
+        />
+        <div>
+          <h4 className="font-semibold">{name}</h4>
+          <p className="text-sm text-gray-500">{role}</p>
+        </div>
+      </div>
+      <div className="flex text-yellow-400 text-xl mb-2">
+        {[1, 2, 3, 4, 5].map((i) =>
+          i <= Math.floor(rating) ? (
+            <AiFillStar key={i} />
+          ) : (
+            <AiOutlineStar key={i} />
+          )
+        )}
+      </div>
+      <div className="text-sm text-gray-700">
+        {comment.split("\n").map((line, i) => (
+          <p key={i}>{line}</p>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Testimonial = () => {
   const prevRef = useRef(null);
@@ -19,11 +48,27 @@ const Testimonial = () => {
   const swiperRef = useRef(null);
 
   const [showModal, setShowModal] = useState(false);
+  const [testimonials, setTestimonials] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
-    feedback: "",
+    role: "",
+    comment: "",
     rating: 0,
   });
+
+  const fetchTestimonials = async () => {
+    try {
+      const res = await fetch("http://localhost/pharma-college-project/server/testimonials");
+      const data = await res.json();
+      setTestimonials(data);
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,44 +79,21 @@ const Testimonial = () => {
     setFormData((prev) => ({ ...prev, rating }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted Feedback:", formData);
-
-    setFormData({ name: "", feedback: "" });
-    setShowModal(false);
-  };
-
-  const cards = [
-    {
-      name: "Yomal",
-      role: "Theekshan",
-      image: "/assets/images/cover.png",
-      comment:
-        "Assessment and Certification system of Skill Development Council Canada is simply amazing. They have a very transparent and fully digital system for all processes. We are very thankful to SDC Canada for our partnership.",
-    },
-    {
-      name: "Alex",
-      role: "Designer",
-      image: "/assets/testimonial/doctor1.jpg",
-      comment:
-        "The best part of Skill Development Council Canada is their team of experts. Their team is wonderful and helped us solve our challenges in conducting assessments and awarding the qualifications. We recommend them to all training organizations worldwide.",
-    },
-    {
-      name: "Emma",
-      role: "Developer",
-      image: "/assets/images/cover.png",
-      comment:
-        "Assessment and Certification system of Skill Development Council Canada is simply amazing. They have a very transparent and fully digital system for all processes. We are very thankful to SDC Canada for our partnership.",
-    },
-  ];
-
-  useEffect(() => {
-    if (swiperRef.current && swiperRef.current.navigation) {
-      swiperRef.current.navigation.init();
-      swiperRef.current.navigation.update();
+    try {
+      await fetch("http://localhost/pharma-college-project/server/testimonials", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      setFormData({ name: "", role: "", comment: "", rating: 0 });
+      setShowModal(false);
+      fetchTestimonials(); // refresh
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
     }
-  }, []);
+  };
 
   return (
     <section className="relative w-full bg-white px-8 flex justify-center items-center min-h-[700px]">
@@ -86,16 +108,12 @@ const Testimonial = () => {
       </div>
       <div className="absolute inset-0 bg-black opacity-40"></div>
 
-      {/* Content */}
       <div className="grid text-white bg-maincolor/80 my-4 md:px-8 py-2 px-4 md:py-16 rounded-3xl min-h-[600px] grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-[100rem] relative items-center text-center md:text-left backdrop-blur-md">
-        {/* Left Section */}
-        <div className="col-span-1 flex flex-col justify-start items-center md:items-start text-start md:text-left">
+        <div className="col-span-1 flex flex-col justify-start items-center md:items-start">
           <p className="text-base my-6 md:my-0 uppercase">Testimonial</p>
-          <div>
-            <h2 className="text-3xl md:text-5xl font-bold">
-              23k+ Customers gave their <span>Feedback</span>
-            </h2>
-          </div>
+          <h2 className="text-3xl md:text-5xl font-bold">
+            23k+ Customers gave their <span>Feedback</span>
+          </h2>
 
           <div className="mt-8 gap-5 hidden md:flex">
             <button
@@ -112,27 +130,16 @@ const Testimonial = () => {
             </button>
           </div>
 
-          {/* Description and Feedback Button */}
-          <div className="mt-4">
-            {/* <p className="text-sm font-semibold">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. A facilis
-              soluta ipsam est libero eaque culpa deserunt, voluptatibus ab,
-              molestiae ut cumque, deleniti iusto? Nam natus est fugit
-              reiciendis ut?
-            </p> */}
-
-            <div className="flex justify-start mt-4">
-              <button
-                onClick={() => setShowModal(true)}
-                className="bg-white flex gap-2 text-black px-4 py-2  items-center  capitalize border border-white hover:bg-maincolor hover:text-white rounded-lg font-bold my-4"
-              >
-                <FaPlusCircle className="w-4 h-4" /> Add your feedback
-              </button>
-            </div>
+          <div className="flex justify-start mt-4">
+            <button
+              onClick={() => setShowModal(true)}
+              className="bg-white flex gap-2 text-black px-4 py-2 items-center capitalize border border-white hover:bg-maincolor hover:text-white rounded-lg font-bold my-4"
+            >
+              <FaPlusCircle className="w-4 h-4" /> Add your feedback
+            </button>
           </div>
         </div>
 
-        {/* Right Section - Swiper */}
         <div className="col-span-2">
           <Swiper
             modules={[Autoplay, Navigation]}
@@ -160,13 +167,16 @@ const Testimonial = () => {
               }
             }}
           >
-            {cards.map((card, index) => (
+            {testimonials.map((card, index) => (
               <SwiperSlide key={index}>
                 <TestamonialCard
                   name={card.name}
-                  image={card.image}
+                  image={`/assets/testimonial/${card.image_url}`}
                   role={card.role}
                   comment={card.comment}
+                  rating={card.rating}    
+                  // {` /assets/testimonial/${image_url}`}
+                
                 />
               </SwiperSlide>
             ))}
@@ -174,7 +184,7 @@ const Testimonial = () => {
         </div>
       </div>
 
-      {/* pop up card */}
+      {/* Modal */}
       <AnimatePresence>
         {showModal && (
           <motion.div
@@ -209,17 +219,23 @@ const Testimonial = () => {
                   className="border border-maincolor rounded-md px-4 py-2"
                   required
                 />
-
+                <input
+                  type="text"
+                  name="role"
+                  placeholder="Your Role"
+                  value={formData.role}
+                  onChange={handleInputChange}
+                  className="border border-maincolor rounded-md px-4 py-2"
+                />
                 <textarea
-                  name="feedback"
+                  name="comment"
                   placeholder="Your Feedback"
                   rows={4}
-                  value={formData.feedback}
+                  value={formData.comment}
                   onChange={handleInputChange}
                   className="border border-maincolor rounded-md px-4 py-2"
                   required
                 />
-
                 <div className="flex gap-2 items-center">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
@@ -236,7 +252,6 @@ const Testimonial = () => {
                     </button>
                   ))}
                 </div>
-
                 <button
                   type="submit"
                   className="bg-maincolor capitalize text-white py-2 px-4 rounded-md font-semibold transition"
