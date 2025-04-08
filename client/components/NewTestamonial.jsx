@@ -18,21 +18,21 @@ const Testimonial = () => {
     {
       name: "Yomal",
       role: "Theekshan",
-      image: "/assets/curriculum/card1.jpg",
+      image: "/assets/images/cover.png",
       comment:
         "Assessment and Certification system of Skill Development Council Canada is simply amazing. They have a very transparent and fully digital system for all processes. We are very thankful to SDC Canada for our partnership.",
     },
     {
       name: "Alex",
       role: "Designer",
-      image: "/assets/curriculum/card2.jpg",
+      image: "/assets/testimonial/doctor1.jpg",
       comment:
         "The best part of Skill Development Council Canada is their team of experts. Their team is wonderful and helped us solve our challenges in conducting assessments and awarding the qualifications. We recommend them to all training organizations worldwide.",
     },
     {
       name: "Emma",
       role: "Developer",
-      image: "/assets/curriculum/card3.jpg",
+      image: "/assets/images/cover.png",
       comment:
         "Assessment and Certification system of Skill Development Council Canada is simply amazing. They have a very transparent and fully digital system for all processes. We are very thankful to SDC Canada for our partnership.",
     },
