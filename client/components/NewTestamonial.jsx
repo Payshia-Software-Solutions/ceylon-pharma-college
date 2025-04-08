@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import { FaPlusCircle } from "react-icons/fa";
+import config from "@/config";
 
 const TestamonialCard = ({ name, role, image, comment, rating }) => {
   return (
@@ -58,7 +59,8 @@ const Testimonial = () => {
 
   const fetchTestimonials = async () => {
     try {
-      const res = await fetch("http://localhost/pharma-college-project/server/testimonials");
+      const res = await fetch( `${config.API_BASE_URL}/testimonials`);
+      // `http://localhost:3000/viewcertificate?student_id=${studentInfo.username}&course_code=${courseData.courseCode}`
       const data = await res.json();
       setTestimonials(data);
     } catch (error) {
