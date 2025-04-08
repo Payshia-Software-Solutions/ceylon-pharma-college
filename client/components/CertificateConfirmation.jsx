@@ -142,7 +142,7 @@ function CertificateConfirmation({ userData, courseData }) {
         </div>
 
         {/* Button */}
-        <div className="mt-6 text-center">
+        {/* <div className="mt-6 text-center">
           <button
             onClick={handleViewReport}
             className={`px-6 py-3 rounded-lg font-medium text-lg ${
@@ -153,7 +153,7 @@ function CertificateConfirmation({ userData, courseData }) {
           >
             View Certificate
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
