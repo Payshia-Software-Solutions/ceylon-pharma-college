@@ -54,7 +54,49 @@ const courseDataMapping = {
         iconPath: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2'
       },
     ]
-  }
+  },
+  'certificate-course-in-pharmaceuticals': {
+    title: 'Certificate Course in Pharmaceuticals',
+    description: `This comprehensive certificate course provides essential knowledge about pharmaceuticals designed specifically for the general public. Understanding medications, their proper use, and their effects on the body can empower individuals to make informed healthcare decisions and communicate effectively with healthcare providers.`,
+    features: [
+      {
+        title: 'Comprehensive Curriculum',
+        description: 'Learn all aspects of pharmacy practice through a well-structured program.',
+        iconPath: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'
+      },
+      {
+        title: 'Hands-on Practice',
+        description: 'Gain practical experience through simulated pharmacy settings and real-world scenarios.',
+        iconPath: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2'
+      },
+      {
+        title: 'Recognized Certification',
+        description: 'Earn a certificate recognized by ACTD and the Skill Development Council of Canada.',
+        iconPath: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+      }
+    ]
+  },
+  'advanced-certificate-course-in-pharmaceuticals': {
+    title: 'Advanced Certificate Course in Pharmaceuticals',
+    description: `This advanced certificate program delves deeper into pharmaceutical science and applications, designed for those who have completed our basic pharmaceuticals course or have equivalent knowledge. This comprehensive program explores complex medication therapy management, specialized drug categories, and advanced concepts in pharmaceutical care to further empower individuals in healthcare decision-making.`,
+    features: [
+      {
+        title: 'Comprehensive Curriculum',
+        description: 'Learn all aspects of pharmacy practice through a well-structured program.',
+        iconPath: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'
+      },
+      {
+        title: 'Hands-on Practice',
+        description: 'Gain practical experience through simulated pharmacy settings and real-world scenarios.',
+        iconPath: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2'
+      },
+      {
+        title: 'Recognized Certification',
+        description: 'Earn a certificate recognized by ACTD and the Skill Development Council of Canada.',
+        iconPath: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+      }
+    ]
+  },
 };
 
 export default function AboutCourse({ slug }) {

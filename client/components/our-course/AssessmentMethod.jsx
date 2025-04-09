@@ -63,7 +63,57 @@ const assessmentDataMapping = {
         value: 1,
       },
     ]
-  }
+  },
+  'certificate-course-in-pharmaceuticals': {
+    title: 'Assessment Method for Pharmacy Course',
+    description: 'Your progress in the Certificate Course in Pharmacy Practice will be evaluated through the following methods:',
+    assessments: [
+      {
+        title: 'Assessments',
+        description: 'Evaluations during the course to track your progress',
+        value: 3,
+      },
+      {
+        title: 'Quizzes',
+        description: 'Regular quizzes to reinforce your knowledge',
+        value: 12,
+      },
+      {
+        title: 'Practical Exams',
+        description: 'Hands-on evaluations of your practical skills',
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+        ),
+      }
+    ]
+  },
+  'advanced-certificate-course-in-pharmaceuticals': {
+    title: 'Assessment Method for Advanced Pharmacy Course',
+    description: 'Your progress in the Certificate Course in Pharmacy Practice will be evaluated through the following methods:',
+    assessments: [
+      {
+        title: 'Assessments',
+        description: 'Evaluations during the course to track your progress',
+        value: 2,
+      },
+      {
+        title: 'Quizzes',
+        description: 'Regular quizzes to reinforce your knowledge',
+        value: 24,
+      },
+      {
+        title: 'Mid & final Exam',
+        description: 'Hands-on evaluations of your practical skills',
+        icon: (
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+        ),
+      }
+    ]
+  },  
 };
 
 export default function AssessmentMethod({ slug }) {

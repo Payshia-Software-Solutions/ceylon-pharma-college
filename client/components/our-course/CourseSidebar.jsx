@@ -70,6 +70,57 @@ const courseSidebarDataMapping = {
       workExperience: []
     }
   },
+  'certificate-course-in-pharmaceuticals': {
+    duration: '6 Months',
+    schedule: 'Weekends, 9 AM - 12 PM',
+    level: 'Intermediate',
+    price: 'LKR 15,000',
+    materials: [
+      "Printed study materials",
+      "Notebooks",
+      "Mobile phone mount",
+      "Games book",
+      "Pen",
+      "Exam book",
+      "Image book"
+    ],
+    entryRequirements: {
+      education: [
+        "Pass in Mathematics OR Science in GCE O/L",
+        "Pass in Mathematics, Science, OR Health Sciences in London O/L",
+        "Diploma or Certificate in Allied Health Sciences"
+      ],
+      workExperience: [
+        "At least 3 months experience as a Pharmacy Assistant",
+        "Experience as a Caregiver with medication management skills",
+        "Experience in a healthcare facility or pharmacy"
+      ]
+    }
+  },
+  'advanced-certificate-course-in-pharmaceuticals': {
+    duration: '6 Months',
+    schedule: 'Weekdays, 6 PM - 9 PM',
+    level: 'Advanced',
+    price: 'LKR 15,000',
+    materials: [
+      "Printed study materials",
+      "Notebooks",
+      "Mobile phone mount",
+      "Games book",
+      "Pen",
+      "Exam book",
+      "Image book"
+    ],
+    entryRequirements: {
+      education: [
+        "Should complete certificate course in pharmacy practice",
+        "03 passes in Advanced Level Exam With Chemistry",
+      ],
+      workExperience: [
+        "At least 6 months experience as a Pharmacy Assistant",
+      ]
+    }
+  },
   // Add more courses as necessary
 };
 

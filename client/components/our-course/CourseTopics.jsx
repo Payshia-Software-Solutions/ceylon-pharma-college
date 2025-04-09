@@ -137,7 +137,107 @@ const courseTopicsDataMapping = {
       "Pharmaceutical Care Plan Development and Communication"
     ]
   }
-  ]
+  ],
+  'certificate-course-in-pharmaceuticals': [
+  {
+    title: "Introduction to Pharmaceuticals",
+    items: [
+      "Basic concepts and terminology in the world of medicines"
+    ]
+  },
+  {
+    title: "Common Medication Classes",
+    items: [
+      "Overview of frequently prescribed medications and their purposes"
+    ]
+  },
+  {
+    title: "Reading Medication Labels",
+    items: [
+      "How to understand important information on prescription and over-the-counter products"
+    ]
+  },
+  {
+    title: "Proper Medication Storage and Disposal",
+    items: [
+      "Best practices for keeping medicines safe and effective"
+    ]
+  },
+  {
+    title: "Drug Interactions",
+    items: [
+      "Understanding how medications can interact with foods, supplements, and other drugs"
+    ]
+  },
+  {
+    title: "Recognizing Side Effects",
+    items: [
+      "How to identify common medication reactions and when to seek help"
+    ]
+  },
+  {
+    title: "Communicating with Healthcare Providers",
+    items: [
+      "Asking the right questions about your medications"
+    ]
+  },
+  {
+    title: "Medication Adherence",
+    items: [
+      "Strategies for taking medications as prescribed"
+    ]
+  }
+],
+'advanced-certificate-course-in-pharmaceuticals': [
+  {
+    title: "Advanced Pharmacology",
+    items: [
+      "Deeper understanding of how drugs work in the body and factors affecting drug response"
+    ]
+  },
+  {
+    title: "Specialized Medication Categories",
+    items: [
+      "In-depth exploration of medications for complex conditions including autoimmune disorders, cancer therapies, and rare diseases"
+    ]
+  },
+  {
+    title: "Therapeutic Substitutions",
+    items: [
+      "Understanding medication alternatives, generics vs. brand names, and their implications"
+    ]
+  },
+  {
+    title: "Medication Therapy Management",
+    items: [
+      "Advanced strategies for optimizing complex medication regimens"
+    ]
+  },
+  {
+    title: "Critical Evaluation of Medication Information",
+    items: [
+      "How to assess medication information from various sources"
+    ]
+  },
+  {
+    title: "Advanced Drug Interactions",
+    items: [
+      "Complex interactions between multiple medications and health conditions"
+    ]
+  },
+  {
+    title: "Pharmacogenomics Basics",
+    items: [
+      "Introduction to how genetics influence medication response"
+    ]
+  },
+  {
+    title: "Current Trends in Pharmaceutical Development",
+    items: [
+      "Overview of emerging therapies and medication technologies"
+    ]
+  }
+]
 
 };
 
