@@ -36,11 +36,7 @@ export default function EnrollmentSteps() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {steps.map((step, index) => (
             <div key={index} className="relative">
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-10 right-0 w-full h-1 bg-green-500">
-                  <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 rotate-45 w-2 h-2 border-t-2 border-r-2 border-green-300"></div>
-                </div>
-              )}
+              
               
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 h-full border border-white/20 hover:bg-white/20 transition duration-300">
                 <div className="bg-green-600 h-16 w-16 rounded-full flex items-center justify-center mx-auto mb-4">
