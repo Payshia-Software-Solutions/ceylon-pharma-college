@@ -77,34 +77,38 @@ function ExploreProgram() {
               </SwiperSlide>
             ))}
 
-          {/* Show Courses When Loaded */}
-          {!loading &&
-            !error &&
-            courses.map((course, index) => (
-              <SwiperSlide key={index} className="p-2 mb-5">
-                <motion.div
-                  className="transform transition-all duration-500 ease-in-out"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 1.0,
-                    ease: "easeOut",
-                    delay: index * 0.4,
-                  }}
-                  viewport={{ once: true, amount: 0.2 }}
-                >
-                  <ExploreCard
-                    title={course.course_name}
-                    description={course.mini_description}
-                    buttontext="LEARN MORE"
-                    imgURL={`${config.FTP_URL}/courses/${course.course_code}/${course.course_img}`}
-                    slug={course.slug}
-                    price={course.course_fee}
-                    seat={course.seat}
-                  />
-                </motion.div>
-              </SwiperSlide>
-            ))}
+         {/* Show Courses When Loaded */}
+{!loading &&
+  !error &&
+  courses
+    .slice() // Create a shallow copy to avoid mutating the original array
+    .reverse() // Reverse the copied array
+    .map((course, index) => (
+      <SwiperSlide key={index} className="p-2 mb-5">
+        <motion.div
+          className="transform transition-all duration-500 ease-in-out"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1.0,
+            ease: "easeOut",
+            delay: index * 0.04,
+          }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <ExploreCard
+            title={course.course_name}
+            description={course.mini_description}
+            buttontext="LEARN MORE"
+            imgURL={`${config.FTP_URL}/courses/${course.course_code}/${course.course_img}`}
+            slug={course.slug}
+            price={course.course_fee}
+            seat={course.seat}
+          />
+        </motion.div>
+      </SwiperSlide>
+    ))}
+
         </Swiper>
       </div>
     </div>

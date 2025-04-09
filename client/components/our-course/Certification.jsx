@@ -18,21 +18,33 @@ const certificationDataMapping = {
       certificationType: 'Recognized Certification',
     }
   },
-  'certificate-course-in-tech': {
-    title: 'Certification for Technology Course',
-    description: 'After successfully completing the Certificate Course in Technology, you will receive an official certificate. To qualify, you must:',
+  'advanced-course-in-pharmacy-practice': {
+    title: 'Certification for Advanced Pharmacy Course',
+    description: 'After successfully completing the Certificate Course in Pharmacy Practice, you will receive an official certificate. To qualify, you must:',
     requirements: [
       "Complete all course modules",
-      "Participate in project-based activities",
-      "Pass 2 tests and the final project",
-      "Maintain an average score of 65% or higher"
+      "Participate in learning games",
+      "Pass 3 tests and the final assignment",
+      "Maintain an average score of 60% or higher"
     ],
     certificateDetails: {
-      collegeName: 'Tech College',
-      courseName: 'Technology Essentials',
-      certificationType: 'Industry-Recognized Certification',
+      collegeName: 'Ceylon Pharma College',
+      courseName: 'Advanced Pharmacy Practice',
+      certificationType: 'Recognized Certification',
     }
-  }
+  },
+  'workshop-in-pharmacy-practice': {
+    title: 'Workshop in Pharmacy Practice',
+    description: 'After successfully completing the Certificate Course in Pharmacy Practice, you will receive an official certificate. To qualify, you must:',
+    requirements: [
+      "Participation",
+    ],
+    certificateDetails: {
+      collegeName: 'Ceylon Pharma College',
+      courseName: 'Workshop in Pharmacy Practice',
+      certificationType: 'Recognized Certification',
+    }
+  },
 };
 
 export default function Certification({ slug }) {

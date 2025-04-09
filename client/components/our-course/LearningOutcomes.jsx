@@ -12,15 +12,23 @@ const learningOutcomesDataMapping = {
     "Communicate clearly with patients about their medications",
     "Learn about career paths in pharmacy"
   ],
-  // Add more courses with their respective learning outcomes here
-  'certificate-course-in-tech': [
-    "Understand the fundamentals of software development",
-    "Learn how to code in popular programming languages",
-    "Apply coding skills to real-world projects",
-    "Understand computer systems and hardware",
-    "Collaborate with others on software development projects",
-    "Learn software testing and debugging techniques",
-    "Prepare for a career in tech and development"
+  'advanced-course-in-pharmacy-practice': [
+  "Apply advanced pharmacology knowledge to complex clinical scenarios",
+  "Perform pharmaceutical calculations for special patient populations",
+  "Utilize evidence-based principles to optimize medication therapy",
+  "Evaluate drug interactions, contraindications, and therapeutic duplications",
+  "Implement medication management protocols for chronic diseases",
+  "Master sterile compounding techniques and hazardous drug handling",
+  "Lead pharmacy teams and collaborate on quality improvement initiatives"
+],
+'workshop-in-pharmacy-practice': [
+    "Recognize and classify dosage forms through interactive identification exercises",
+    "Distinguish between similar pharmaceutical products using practical techniques",
+    "Interpret prescriptions accurately with a focus on common abbreviations and symbols",
+    "Practice with diverse prescription formats through gamified learning",
+    "Identify and troubleshoot errors in prescription orders",
+    "Apply critical thinking skills to translate prescription information into proper patient instructions",
+    "Gain confidence in handling specialized dosage forms and delivery systems"
   ]
 };
 
