@@ -21,6 +21,18 @@ const courseDataMapping = {
     description: 'Pharmacy Practice Workshop designed for pharmacy professionals looking to enhance their skills and knowledge in practical pharmacy applications.',
     breadcrumb: ['Home', 'Courses'],
   },
+  'certificate-course-in-pharmaceuticals': {
+    title: 'Certificate Course in Pharmaceuticals',
+    image: '/images/pharmacy-practice-hero.jpg',
+    description: 'Start your career in pharmacy with our comprehensive certificate program.',
+    breadcrumb: ['Home', 'Courses'],
+  },
+  'advanced-certificate-course-in-pharmaceuticals': {
+    title: 'Advanced Certificate Course in Pharmaceuticals',
+    image: '/images/pharmacy-practice-hero.jpg',
+    description: 'Start your career in pharmacy with our comprehensive advanced certificate program.',
+    breadcrumb: ['Home', 'Courses'],
+  },
 };
 
 export default function CourseHero({ slug }) {

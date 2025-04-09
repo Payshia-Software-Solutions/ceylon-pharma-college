@@ -29,6 +29,30 @@ const learningOutcomesDataMapping = {
     "Identify and troubleshoot errors in prescription orders",
     "Apply critical thinking skills to translate prescription information into proper patient instructions",
     "Gain confidence in handling specialized dosage forms and delivery systems"
+  ],
+  'certificate-course-in-pharmaceuticals': [
+    "Gain confidence in managing personal or family medication regimens according to medical advice",
+    "Develop skills to effectively communicate with healthcare providers",
+    "Learn to identify potential medication issues before they become problems",
+    "Understand how to maximize medication benefits while minimizing risks",
+    "Recognize the importance of adherence to prescribed medication regimens",
+    "Understand the impact of chronic conditions on medication management",
+    "Identify common medication interactions and side effects",
+    "Develop strategies for handling multiple medications safely and effectively",
+    "Be equipped with the knowledge to support caregivers in managing medication schedules",
+    "Receive a recognized certificate demonstrating your pharmaceutical knowledge"
+  ],
+  'advanced-certificate-course-in-pharmaceuticals': [
+    "Develop a sophisticated understanding of complex medication regimens",
+    "Gain confidence in navigating specialized healthcare systems",
+    "Learn to identify and manage complex medication interactions",
+    "Understand emerging trends in pharmaceutical care",
+    "Enhance your ability to partner effectively with healthcare providers",
+    "Be equipped to support patients with complex medical conditions and multiple therapies",
+    "Develop expertise in managing chronic conditions and their associated therapies",
+    "Increase your ability to educate and advocate for patients and their families",
+    "Gain advanced knowledge in pharmaceutical best practices and medication safety",
+    "Receive an advanced credential demonstrating your pharmaceutical expertise"
   ]
 };
 

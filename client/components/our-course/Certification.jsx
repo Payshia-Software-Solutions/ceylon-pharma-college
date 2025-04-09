@@ -45,6 +45,36 @@ const certificationDataMapping = {
       certificationType: 'Recognized Certification',
     }
   },
+  'certificate-course-in-pharmaceuticals': {
+    title: 'Certification for Pharmacy Course',
+    description: 'After successfully completing the Certificate Course in Pharmacy Practice, you will receive an official certificate. To qualify, you must:',
+    requirements: [
+      "Complete all course modules",
+      "Participate in learning games",
+      "Pass 3 tests and the final assignment",
+      "Maintain an average score of 60% or higher"
+    ],
+    certificateDetails: {
+      collegeName: 'Ceylon Pharma College',
+      courseName: 'Pharmacy Practice',
+      certificationType: 'Recognized Certification',
+    }
+  },
+  'advanced-certificate-course-in-pharmaceuticals': {
+    title: 'Certification for Advanced Pharmacy Course',
+    description: 'After successfully completing the Certificate Course in Pharmacy Practice, you will receive an official certificate. To qualify, you must:',
+    requirements: [
+      "Complete all course modules",
+      "Participate in learning games",
+      "Pass 3 tests and the final assignment",
+      "Maintain an average score of 60% or higher"
+    ],
+    certificateDetails: {
+      collegeName: 'Ceylon Pharma College',
+      courseName: 'Advanced Pharmacy Practice',
+      certificationType: 'Recognized Certification',
+    }
+  },
 };
 
 export default function Certification({ slug }) {
