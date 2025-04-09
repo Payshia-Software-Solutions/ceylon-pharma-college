@@ -24,7 +24,7 @@ function ExploreCard({
 
   return (
     <>
-      <Link href={`/course/${slug}`}>
+      <Link href={`/our-courses/${slug}`}>
         <div className="max-w-full relative max-h-full sm:max-w-[20rem] md:max-w-[24rem] lg:max-w-[28rem] my-5 rounded-xl overflow-hidden   bg-white md:hover:scale-95 md:hover:shadow-xl transition-transform duration-300 shadow">
           {/* Header  */}
           <div className="h-[80px]  bg-maincolor bg-opacity-80 w-full px-4 py-2 flex justify-center items-center">
@@ -87,7 +87,7 @@ function ExploreCard({
           {/* Right-Aligned ss */}
           <div className="flex pt-1 p-2">
             <button className="bg-gradient-to-r from-[#00b67d] to-[#008f65] text-white uppercase w-full text-xs sm:text-sm px-3 sm:px-4 py-2 transition  rounded-lg">
-              <Link href={`/course/${slug}`}> More Details </Link>
+              <Link href={`/our-courses/${slug}`}> More Details </Link>
             </button>
           </div>
         </div>
