@@ -27,7 +27,7 @@ function ExploreCard({
       <Link href={`/our-courses/${slug}`}>
         <div className="max-w-full relative max-h-full sm:max-w-[20rem] md:max-w-[24rem] lg:max-w-[28rem] my-5 rounded-xl overflow-hidden   bg-white md:hover:scale-95 md:hover:shadow-xl transition-transform duration-300 shadow">
           {/* Header  */}
-          <div className="h-[80px]  bg-maincolor bg-opacity-80 w-full px-4 py-2 flex justify-center items-center">
+          <div className="h-[80px] bg-maincolor bg-opacity-80 w-full px-4 py-2 flex justify-center items-center">
             <h3 className="text-lg sm:text-xl lg:text-[1.2rem] text-center flex justify-center font-bold text-white mb-2">
               {title}
             </h3>

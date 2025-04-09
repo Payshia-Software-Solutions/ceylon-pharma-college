@@ -7,13 +7,19 @@ const courseDataMapping = {
     title: 'Pharmacy Practice Certificate',
     image: '/images/pharmacy-practice-hero.jpg',
     description: 'Start your career in pharmacy with our comprehensive certificate program.',
-    breadcrumb: ['Home', 'Courses', 'Pharmacy Practice Certificate'],
+    breadcrumb: ['Home', 'Courses'],
   },
   'advanced-course-in-pharmacy-practice': {
     title: 'Advanced Course in Pharmacy Practice',
     image: '/images/pharmacy-practice-hero.jpg',
     description: 'Start your career in pharmacy with our comprehensive advanced certificate program.',
-    breadcrumb: ['Home', 'Courses', 'Advanced Course in Pharmacy Practic'],
+    breadcrumb: ['Home', 'Courses'],
+  },
+  'workshop-in-pharmacy-practice': {
+    title: 'Workshop in Pharmacy Practice',
+    image: '/images/pharmacy-practice-hero.jpg',
+    description: 'Pharmacy Practice Workshop designed for pharmacy professionals looking to enhance their skills and knowledge in practical pharmacy applications.',
+    breadcrumb: ['Home', 'Courses'],
   },
 };
 
@@ -34,7 +40,7 @@ export default function CourseHero({ slug }) {
 
   if (!courseData) {
     return (
-      <div>
+      <div className='container mx-auto px-4 md:px-8 relative z-20'>
         <h2>Course Not Found</h2>
         <p>The course details for the selected slug are not available.</p>
       </div>

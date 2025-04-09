@@ -54,6 +54,22 @@ const courseSidebarDataMapping = {
       ]
     }
   },
+  'workshop-in-pharmacy-practice': {
+    duration: '1 Day',
+    schedule: 'During the Certificate Coruse',
+    level: 'Beginner',
+    price: 'LKR 25,000',
+    materials: [
+      "Medical Pack",
+      "Prescriptions"
+    ],
+    entryRequirements: {
+      education: [
+        "Should be enrolled in certificate course in pharmacy practice",
+      ],
+      workExperience: []
+    }
+  },
   // Add more courses as necessary
 };
 

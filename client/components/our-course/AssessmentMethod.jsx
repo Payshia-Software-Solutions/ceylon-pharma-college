@@ -28,29 +28,40 @@ const assessmentDataMapping = {
       }
     ]
   },
-  'certificate-course-in-tech': {
-    title: 'Assessment Method for Technology Course',
-    description: 'Your progress in the Certificate Course in Technology will be evaluated through the following methods:',
+  'advanced-course-in-pharmacy-practice': {
+    title: 'Assessment Method for Advanced Pharmacy Course',
+    description: 'Your progress in the Certificate Course in Pharmacy Practice will be evaluated through the following methods:',
     assessments: [
       {
         title: 'Assessments',
         description: 'Evaluations during the course to track your progress',
-        value: 4,
+        value: 2,
       },
       {
         title: 'Quizzes',
         description: 'Regular quizzes to reinforce your knowledge',
-        value: 10,
+        value: 24,
       },
       {
-        title: 'Project Work',
-        description: 'Evaluate your learning through project-based assignments',
+        title: 'Mid & final Exam',
+        description: 'Hands-on evaluations of your practical skills',
         icon: (
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v4m0 0l2-2m-2 2l-2-2M16 8l2-2m-4 4l-2 2M8 8L6 6M12 12l2 2M16 16l2 2" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
           </svg>
         ),
       }
+    ]
+  },  
+  'workshop-in-pharmacy-practice': {
+    title: 'Assessment Method for Workshop in Pharmacy Practice',
+    description: 'This workshop is ideal for practicing pharmacists, pharmacy technicians, pharmacy students, and pharmacy managers seeking to strengthen their foundational knowledge in pharmaceutical products and prescription processing.',
+    assessments: [
+      {
+        title: 'Participation',
+        description: 'Evaluations during the course to track your progress',
+        value: 1,
+      },
     ]
   }
 };

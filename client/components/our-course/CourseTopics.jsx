@@ -85,34 +85,60 @@ const courseTopicsDataMapping = {
       ]
     }
   ],
-  // Add more courses with topics here
-  'certificate-course-in-tech': [
-    {
-      title: "Introduction to Technology in Healthcare",
-      items: [
-        "Overview of health tech applications",
-        "Tech advancements in healthcare systems",
-        "Basic digital health records management"
-      ]
-    },
-    {
-      title: "Basic Programming for Healthcare Professionals",
-      items: [
-        "Introduction to programming languages",
-        "Data structures and algorithms for health data",
-        "Healthcare-related programming projects"
-      ]
-    },
-    {
-      title: "Digital Health Tools and Devices",
-      items: [
-        "Wearable health tech",
-        "Monitoring devices in patient care",
-        "The future of health devices and technology"
-      ]
-    },
-    // Additional topics for the tech course
+  'advanced-course-in-pharmacy-practice': [
+  {
+    title: "Pharmacology and Therapeutics",
+    items: [
+      "Pharmacodynamics and Pharmacokinetics",
+      "Advanced Pathophysiology and Therapeutic Considerations",
+      "Complex Drug Interactions and Management Strategies"
+    ]
+  },
+  {
+    title: "Advanced Clinical Pharmacy Practice",
+    items: [
+      "Evidence-based Medicine and Clinical Decision Support",
+      "Clinical Pharmacy Interventions and Documentation",
+      "Medication Therapy Management for Complex Patients",
+      "Pharmacist-led Disease State Management"
+    ]
+  },
+  {
+    title: "Advanced Pharmaceutical Calculations and Compounding",
+    items: [
+      "Complex Dosing Calculations for Special Populations",
+      "Drug Formulation and Calculations",
+      "Advanced Sterile Compounding Techniques"
+    ]
+  },
+  {
+    title: "Pharmacy Management and Leadership",
+    items: [
+      "Pharmacy Operations Management and Workflow Optimization",
+      "Quality Assurance and Continuous Improvement Methodologies",
+      "Pharmacy Team Leadership and Professional Development",
+      "Financial Management in Pharmacy Settings"
+    ]
+  },
+  {
+    title: "Medication Safety and Risk Management",
+    items: [
+      "Systematic Approaches to Medication Error Prevention",
+      "Root Cause Analysis and Medication Incident Investigation",
+      "Implementation of Medication Safety Technologies"
+    ]
+  },
+  {
+    title: "Interprofessional Collaboration and Communication",
+    items: [
+      "Advanced Patient Counseling and Motivational Interviewing Techniques",
+      "Interdisciplinary Care Coordination and Team-Based Practice",
+      "Health Literacy Considerations in Complex Medication Regimens",
+      "Pharmaceutical Care Plan Development and Communication"
+    ]
+  }
   ]
+
 };
 
 export default function CourseTopics({ slug }) {
