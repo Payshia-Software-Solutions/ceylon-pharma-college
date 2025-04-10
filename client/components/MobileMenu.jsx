@@ -2,12 +2,34 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const pathname = usePathname();
 
   const toggleDropdown = (name) => {
     setActiveDropdown(activeDropdown === name ? null : name);
+  };
+
+
+  const handleCertificateClick = () => {
+    if (pathname === '/') {
+     
+      const element = document.getElementById("certificates");
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop,
+          behavior: "smooth",
+        });
+      }
+    } else {
+      
+      window.location.href = '/#certificates';
+    }
+    
+
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -64,9 +86,10 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
             onClick={() => setIsMobileMenuOpen(false)}
             className="flex items-center py-3 px-4 rounded-lg font-medium transition hover:bg-gray-50 hover:text-green-600"
           >
-            <span>Home</span>
+            <span>Home</span> 
           </Link>
 
+          
           <Link
             href="/course"
             onClick={() => setIsMobileMenuOpen(false)}
@@ -75,6 +98,13 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
             <span>Courses</span>
           </Link>
 
+          <button
+            onClick={handleCertificateClick}
+            className="flex items-center py-3 px-4 rounded-lg font-medium transition hover:bg-gray-50 hover:text-green-600 w-full text-left"
+          >
+            <span>Certificate</span>
+          </button>
+
           <Link
             href="/about"
             onClick={() => setIsMobileMenuOpen(false)}
@@ -82,9 +112,8 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           >
             <span>About Us</span>
           </Link>
-
           <Link
-            href="/contactus"
+            href="/contact-us"
             onClick={() => setIsMobileMenuOpen(false)}
             className="flex items-center py-3 px-4 rounded-lg font-medium transition hover:bg-gray-50 hover:text-green-600"
           >
@@ -101,7 +130,7 @@ const MobileMenu = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
               onClick={() => setIsMobileMenuOpen(false)}
               className="flex justify-center py-3 px-6 rounded-full bg-green-600 text-white font-medium hover:bg-green-700 transition shadow-sm"
             >
-              Request Info
+              Student Login
             </Link>
 
             <Link
