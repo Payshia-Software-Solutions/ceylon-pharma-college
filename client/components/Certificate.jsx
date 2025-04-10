@@ -140,7 +140,7 @@ function Certificate() {
   };
 
   return (
-    <div className="bg-maincolor text-white h-auto min-h-[25rem] p-4 flex flex-col items-center justify-center">
+    <div className="bg-maincolor text-white h-auto min-h-[25rem] p-4 flex flex-col items-center justify-center py-12 lg:py-20">
       <h1 className="text-xl md:text-6xl font-bold mb-8">
         Certificate Verification
       </h1>

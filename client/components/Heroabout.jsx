@@ -32,7 +32,7 @@ function Heroabout() {
           <div className="absolute inset-0 overflow-hidden">
             <div className="w-full h-full relative">
               <Image
-                src="/assets/event/eventp .webp"
+                src="/assets/images/why-chose.jpg"
                 alt="Graduate student receiving flowers"
                 fill
                 className="object-cover"

@@ -112,9 +112,9 @@ const Testimonial = () => {
 
       <div className="grid text-white bg-maincolor/80 my-4 md:px-8 py-2 px-4 md:py-16 rounded-3xl min-h-[600px] grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-[100rem] relative items-center text-center md:text-left backdrop-blur-md">
         <div className="col-span-1 flex flex-col justify-start items-center md:items-start">
-          <p className="text-base my-6 md:my-0 uppercase">Testimonial</p>
+          <p className="text-base my-6 md:my-0 uppercase">Reviews</p>
           <h2 className="text-3xl md:text-5xl font-bold">
-            23k+ Customers gave their <span>Feedback</span>
+          What people say about, <span className="inline-block font-extralight">Ceylon Pharma College</span>
           </h2>
 
           <div className="mt-8 gap-5 hidden md:flex">
