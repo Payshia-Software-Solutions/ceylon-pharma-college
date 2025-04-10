@@ -34,7 +34,7 @@ function ExploreCard({
           </div>
           {/* Image */}
           <img
-            className="w-full h-[18rem] sm:h-[15rem] lg:h-[25rem] object-cover border-b-4 border-maincolor"
+            className="w-full h-[10rem] sm:h-[12rem] lg:h-[18rem] object-cover border-b-4 border-maincolor"
             src={imgURL}
             alt={title}
           />

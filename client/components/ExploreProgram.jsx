@@ -53,14 +53,14 @@ function ExploreProgram() {
       <div className="lg:py-8 lg:px-24">
         <Swiper
           slidesPerView={1.5}
-          spaceBetween={10}
+          spaceBetween={5}
           pagination={{ clickable: true }}
           autoplay={{ delay: 3000, disableOnInteraction: false }} 
           loop={true}
           breakpoints={{
-            576: { slidesPerView: 2.5, spaceBetween: 10 },
-            768: { slidesPerView: 3.5, spaceBetween: 10 },
-            1024: { slidesPerView: 4.5, spaceBetween: 15 },
+            576: { slidesPerView: 2.5, spaceBetween: 5 },
+            768: { slidesPerView: 3.5, spaceBetween: 5 },
+            1024: { slidesPerView: 4.5, spaceBetween: 5 },
           }}
           modules={[Pagination, A11y, Autoplay]} 
           className="mySwiper"
