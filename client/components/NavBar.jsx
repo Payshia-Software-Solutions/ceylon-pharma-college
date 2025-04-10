@@ -56,6 +56,17 @@ function NavBar() {
     }
   };
 
+  // Handle certificate button click - works on any page
+  const handleCertificateClick = () => {
+    if (pathname === '/') {
+      // If on home page, just scroll to certificates
+      scrollToCertificates();
+    } else {
+      // If on another page, navigate to home page with a hash
+      window.location.href = '/#certificates';
+    }
+  };
+
   // Fetch departments
 
   useEffect(() => {
@@ -156,7 +167,7 @@ function NavBar() {
               </Link>
 
               <button
-                onClick={scrollToCertificates}
+                onClick={handleCertificateClick}
                 className="hover:text-gray-300"
               >
                 Certificate
@@ -185,7 +196,7 @@ function NavBar() {
 
               <Link
                 onMouseEnter={() => setOurTeasDropdownVisible(false)}
-                href="/contactus"
+                href="/contact-us"
                 className="hover:text-gray-300"
               >
                 Contact Us

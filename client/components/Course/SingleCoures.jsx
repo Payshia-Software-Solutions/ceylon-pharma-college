@@ -6,6 +6,7 @@ import SectionHeader from "../Common/SectionHeader";
 import InstructorCard from "@/components/Course/InstructorCard";
 import DescriptionCard from "./DescriptionCard";
 import config from "@/config";
+import Breadcrumb  from "../Breadcrumb.";
 
 function SingleCourse() {
   const { slug } = useParams(); 
@@ -70,6 +71,11 @@ function SingleCourse() {
   if (error) return <p>Error: {error}</p>;
   if (!course) return <p>No course found</p>;
 
+
+  const breadcrumbs = [
+    { href: "/", label: "Home", icon: true },
+    { href: "/course", label: "course" },
+  ];
 
   return (
     <div>

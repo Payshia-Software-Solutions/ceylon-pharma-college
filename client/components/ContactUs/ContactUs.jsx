@@ -4,7 +4,8 @@ import SectionHeader from "../Common/SectionHeader";
 import Input from "../Common/Input";
 import config from "@/config";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import styles
+import "react-toastify/dist/ReactToastify.css"; 
+import Breadcrumb from "../Breadcrumb.";
 
 function ContactUs() {
   const [formData, setFormData] = useState({
@@ -65,11 +66,21 @@ function ContactUs() {
     }
   };
 
+
+  const breadcrumbs = [
+    { href: "/", label: "Home", icon: true },
+    { href: "/about", label: "About Us" },
+   
+  ];
+
   return (
     <div>
       <ToastContainer position="top-right" autoClose={3000} />{" "}
+
+
       {/* Toast container */}
-      <SectionHeader title="Contact Us" imgURL="/assets/images/cover.png" />
+
+      
       <div className="container max-w-7xl mx-auto my-8">
         <div className="flex flex-col md:flex-row gap-8 px-8 py-8 bg-white  rounded-lg">
           {/* Contact Information */}
