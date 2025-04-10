@@ -2,7 +2,6 @@
 import SingleEvent from "@/components/SingleEvent";
 import config from "@/config";
 
-
 export async function generateMetadata({ params }) {
   const { slug } = params;
   
