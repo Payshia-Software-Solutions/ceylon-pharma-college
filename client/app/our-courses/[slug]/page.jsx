@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-
+// Get Sulgs  
 const getCourseDataBySlug = (slug) => {
   // Here, you can fetch data based on the slug, e.g., from an API or database
   const courseMapping = {
