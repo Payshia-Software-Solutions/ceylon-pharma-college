@@ -1,7 +1,7 @@
 import CoursePage from '@/components/CoursePage'; // Import the client-side component
 import config from '@/config'; // Assuming config contains your API_BASE_URL
 
-// Fetch metadata dynamically based on the slug
+
 export async function generateMetadata({ params }) {
   const { slug } = params;
 

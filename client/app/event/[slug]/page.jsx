@@ -1,62 +1,64 @@
-"use client";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+
 import SingleEvent from "@/components/SingleEvent";
 import config from "@/config";
 
 
-const page = () => {
-  const { slug } = useParams();
-
-  const [event, setEvent] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    if (!slug) {
-      console.warn("No slug found in URL!");
-      return;
-    }
-
-    const fetchEvent = async () => {
-      try {
-        console.log("Fetching event for slug:", slug);
-        const apiUrl = `${config.API_BASE_URL}/events-page/${slug}`;
-        console.log("API URL:", apiUrl);
-
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-          throw new Error(`Event not found. Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log("Fetched Event Data:", data);
-
-        setEvent(data);
-      } catch (err) {
-        console.error("Error fetching event:", err.message);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+  
+  try {
+    const eventData = await getEventBySlug(slug);
+    
+    return {
+      title: eventData ? `${eventData.title} | Events` : 'Event Details',
+      description: eventData ? eventData.description.substring(0, 160) : 'View event details.',
     };
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+    return {
+      title: 'Event Details',
+      description: 'View event details.',
+    };
+  }
+}
 
-    fetchEvent();
-  }, [slug]);
 
-  if (loading) return <p className="text-center">Loading event...</p>;
-  if (error) return <p className="text-center text-red-500">{error}</p>;
-  if (!event) return <p className="text-center">No event data available.</p>;
+async function getEventBySlug(slug) {
+  const apiUrl = `${config.API_BASE_URL}/events-page/${slug}`;
+  const response = await fetch(apiUrl, { next: { revalidate: 3600 } }); 
+  
+  if (!response.ok) {
+    throw new Error(`Event not found. Status: ${response.status}`);
+  }
+  
+  return response.json();
+}
 
-  return (
-    <SingleEvent
-      title={event.title}
-      description={event.description}
-      image={event.image_url}
-      label={event.label}
-      Date={event.event_date}
-    />
-  );
-};
 
-export default page;
+export async function generateStaticParams() {
+  try {
+
+    const res = await fetch(`${config.API_BASE_URL}/events-page`, { next: { revalidate: 3600 } });
+    
+    if (!res.ok) {
+      throw new Error("Failed to fetch events");
+    }
+    
+    const events = await res.json();
+    
+
+    return events.map((event) => ({
+      slug: event.slug,
+    }));
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return [];
+  }
+}
+
+export default async function EventPage({ params }) {
+  const { slug } = params;
+  
+
+  return <SingleEvent slug={slug} />;
+}
