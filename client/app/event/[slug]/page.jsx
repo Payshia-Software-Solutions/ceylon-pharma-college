@@ -4,10 +4,8 @@ import { useParams } from "next/navigation";
 import SingleEvent from "@/components/SingleEvent";
 import config from "@/config";
 
-
 const page = () => {
   const { slug } = useParams();
-
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
