@@ -1,4 +1,5 @@
 import CoursePage from '@/components/CoursePage'; // Import the client-side component
+import config from '@/config'; // Assuming config contains your API_BASE_URL
 
 // Fetch metadata dynamically based on the slug
 export async function generateMetadata({ params }) {
@@ -13,7 +14,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-// Example function to simulate fetching course data based on slug (replace with your actual logic)
+
 const getCourseDataBySlug = (slug) => {
   // Here, you can fetch data based on the slug, e.g., from an API or database
   const courseMapping = {
@@ -29,6 +30,26 @@ const getCourseDataBySlug = (slug) => {
 
   return courseMapping[slug];
 };
+
+// Generate static params for all courses
+export async function generateStaticParams() {
+  try {
+    const res = await fetch(`${config.API_BASE_URL}/parent-main-course`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch courses");
+    }
+    const data = await res.json();
+
+    // Returning dynamic slugs of all courses
+    return data.map((course) => ({
+      slug: course.slug,
+    }));
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return []; // If the fetch fails, return an empty array
+  }
+}
+
 
 export default function CoursePageWrapper({ params }) {
   const { slug } = params;

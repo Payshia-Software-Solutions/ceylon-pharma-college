@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import SingleEvent from "@/components/SingleEvent";
 import config from "@/config";
 
+
 const page = () => {
   const { slug } = useParams();
 

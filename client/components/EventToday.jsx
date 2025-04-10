@@ -69,7 +69,7 @@ function EventToday() {
             {isMobileView ? (
               // Swiper for Mobile View
               <Swiper
-                spaceBetween={10}
+                spaceBetween={5}
                 slidesPerView={1.2}
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
                 pagination={{ clickable: true }}
