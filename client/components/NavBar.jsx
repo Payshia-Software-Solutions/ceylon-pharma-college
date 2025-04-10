@@ -150,7 +150,7 @@ function NavBar() {
               </Link>
             </div>
             {/* Navigation */}
-            <nav className="hidden md:flex gap-8 items-center">
+            <nav className="hidden md:flex gap-8 items-center font-bold">
               <Link href="/" className="hover:text-gray-300">
                 Home
               </Link>

@@ -34,7 +34,7 @@ function ExploreCard({
           </div>
           {/* Image */}
           <img
-            className="w-full h-[12rem] sm:h-[15rem] lg:h-[18rem] object-cover border-b-4 border-maincolor"
+            className="w-full h-[18rem] sm:h-[15rem] lg:h-[25rem] object-cover border-b-4 border-maincolor"
             src={imgURL}
             alt={title}
           />
@@ -47,7 +47,7 @@ function ExploreCard({
             </h3> */}
 
               {/* Star Rating */}
-              <div className="flex gap-1 mb-3">
+              {/* <div className="flex gap-1 mb-3">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <span key={index}>
                     {index < Math.floor(rating) ? (
@@ -57,11 +57,11 @@ function ExploreCard({
                     )}
                   </span>
                 ))}
-              </div>
+              </div> */}
 
-              <p className="text-sm sm:text-base text-gray-600 mb-4 line-clamp-2 min-h-[3rem]">
+              {/* <p className="text-sm sm:text-base text-gray-600 mb-4 line-clamp-2 min-h-[3rem]">
                 {description}
-              </p>
+              </p> */}
 
               {/* Icons */}
               <div className="flex justify-between items-center mb-4">

@@ -59,19 +59,19 @@ function Hero() {
         <div className="mb-6">
           <img
             src="/assets/logo/logo-cpc.png"
-            className="w-24 sm:w-32 md:w-40 lg:w-48 h-auto object-contain"
+            className="w-40 sm:w-40 md:w-44 lg:w-60 h-auto object-contain"
             alt="Logo"
           />
         </div>
 
         {/* Main Text */}
         <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] font-bold uppercase tracking-wide">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] font-bold uppercase tracking-wide opacity-90">
             Learning Today
           </h1>
-          <p className="mt-4 text-5xl sm:text-5xl md:text-5rem">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[5rem] font-bold uppercase tracking-wide opacity-90">
            Leading tomorrow
-          </p>
+          </h1>
           <div className="mt-6 flex justify-center space-x-4">
   <Link href="https://portal.pharmacollege.lk/register" passHref>
     <button className="px-6 py-3 text-xl bg-[#00b67d] rounded-full text-white font-medium">

@@ -35,10 +35,10 @@ function ExploreProgram() {
   }, []);
 
   return (
-    <div className="mt-5 px-4 md:px-16">
+    <div className="mt-5 px-4 md:px-16 py-12">
       {/* Heading Section */}
       <div>
-        <h1 className="text-center text-3xl md:text-5xl font-semibold">
+        <h1 className="text-center text-3xl md:text-5xl font-bold">
           Explore our programs
         </h1>
         <hr className="w-24 md:w-32 border-t-4 border-maincolor mx-auto mt-4 md:mt-6" />
@@ -54,13 +54,13 @@ function ExploreProgram() {
       {/* Swiper Section */}
       <div className="lg:py-8 lg:px-24">
         <Swiper
-          slidesPerView={1}
+          slidesPerView={1.5}
           spaceBetween={10}
           pagination={{ clickable: true }}
           breakpoints={{
-            576: { slidesPerView: 2, spaceBetween: 10 }, // Tablets: 2 placeholders
-            768: { slidesPerView: 3, spaceBetween: 10 }, // Small laptops: 3 placeholders
-            1024: { slidesPerView: 4, spaceBetween: 15 }, // Large screens: 4 placeholders
+            576: { slidesPerView:2.5, spaceBetween: 10 }, // Tablets: 2 placeholders
+            768: { slidesPerView: 3.5, spaceBetween: 10 }, // Small laptops: 3 placeholders
+            1024: { slidesPerView: 4.5, spaceBetween: 15 }, // Large screens: 4 placeholders
           }}
           modules={[Pagination, A11y]}
           className="mySwiper"
