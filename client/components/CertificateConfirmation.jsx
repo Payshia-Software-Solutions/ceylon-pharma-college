@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 import config from "@/config";
+import StudentCourseCard from "./StudentCourseCard";
 
 function CertificateConfirmation({ userData, courseData }) {
   const { title, studentInfo } = userData;
@@ -74,72 +75,37 @@ function CertificateConfirmation({ userData, courseData }) {
 
   console.log("this is course data", courseData);
   console.log("fetched course details", courseDetails);
-
+  const studentSendInfo = {
+    civil_status: studentInfo.civil_status,
+    first_name: studentInfo.first_name,
+    last_name: studentInfo.last_name,
+    name_on_certificate: studentInfo.name_on_certificate,
+    username: studentInfo.username
+  }
   return (
     <div>
-      <ToastContainer />{" "}
-      <div className="max-w-xl mx-auto bg-white my-6 p-6 text-maincolor rounded-lg shadow-lg">
+      <ToastContainer />
+      <div className="bg-white text-maincolor rounded-lg shadow-lg p-2">
         {/* Header */}
         <div className="bg-white p-4 rounded-lg text-center">
-          <div className="flex justify-center items-center mb-4">
+          <div className="flex justify-center items-center">
             <img
               src="/assets/images/logo.png"
               alt="Ceylon Pharma College Logo"
               className="object-cover w-24 h-auto"
             />
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
         </div>
 
         {/* Details Section */}
-        <div className="bg-white mt-6 p-6 rounded-lg">
-          <div className="mb-2 border-b border-gray-300 pb-2">
-            <span className="font-semibold">Student Name:</span>{" "}
-            {`${studentInfo.civil_status} ${studentInfo.first_name} ${studentInfo.last_name}`}
-          </div>
-
-          <div className="mb-2 border-b border-gray-300 pb-2">
-            <span className="font-semibold">Name on Certificate:</span>{" "}
-            {studentInfo.name_on_certificate || "Not Available"}
-          </div>
-
-          <div className="mb-2 border-b border-gray-300 pb-2">
-            <span className="font-semibold">Index No:</span>{" "}
-            {studentInfo.username}
-          </div>
-
-          <div className="mb-2 border-b border-gray-300 pb-2">
-            <span className="font-semibold">Course Name:</span>{" "}
-            {courseDetails?.course_name || "Loading..."}
-          </div>
-
-          <div className="mb-2 border-b border-gray-300 pb-2">
-            <span className="font-semibold">Course Code:</span> {courseCode}
-          </div>
-
-          <div className="mb-2 border-b border-gray-300 pb-2">
-            <span className="font-semibold">Course Result:</span> {finalGrade}
-          </div>
-
-          <div className="mt-4">
-            <span className="font-semibold">Rating:</span>{" "}
-            <span className="inline-block bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-              {gradeResult}
-            </span>
-            <div className="flex items-center mt-2">
-              {[...Array(5)].map((_, index) => (
-                <span
-                  key={index}
-                  className={`text-xl ${
-                    index < starCount ? "text-yellow-400" : "text-gray-300"
-                  }`}
-                >
-                  ★
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+        <StudentCourseCard 
+          studentInfo={studentSendInfo || "Not Available"}
+          courseDetails={courseDetails || "Not Available"}
+          courseCode= {courseCode}
+          finalGrade={finalGrade}
+          gradeResult={gradeResult} 
+        />
+        
 
         {/* Button */}
         {/* <div className="mt-6 text-center">
