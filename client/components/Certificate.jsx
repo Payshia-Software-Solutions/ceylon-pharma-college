@@ -79,6 +79,7 @@ function Certificate() {
     setSelectedUserDetails(null);
     setSelectedCourseDetails(null);
     setShowCourses(false); // Hide courses when a new search query is made
+    setShowCourseResult(false); // Hide course result when a new search query is made
 
     // Execute the debounced search
     debouncedSearch(searchQuery);
