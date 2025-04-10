@@ -33,11 +33,11 @@ function NewEventCard({
 
   return (
     <motion.div
-      className="w-full sm:max-w-md rounded-tl-[2.5rem] rounded-br-[2.5rem] md:my-6 overflow-hidden shadow-lg relative hover:scale-95 duration-300"
+      className="w-full sm:max-w-md rounded-tl-[2.5rem] rounded-br-[2.5rem] md:my-6 overflow-hidden shadow-lg relative hover:scale-95"
       whileHover={"visible"}
       initial="hidden"
     >
-      <Link href={` /event/${slug}`}>
+      <Link href={`/event/${slug}`}>
         {/* Background Image */}
         <div className="relative w-full h-[350px] sm:h-[500px]">
           <img src={image} className="h-full w-full object-cover" alt="Event" />
@@ -46,7 +46,7 @@ function NewEventCard({
           <motion.div
             className="bg-gradient-to-r from-[#00b67d] to-[#008f65] absolute right-3 sm:right-5 top-0 text-white flex flex-col w-20 sm:w-24 rounded-b-lg items-center py-2 sm:py-3 shadow-md z-10"
             variants={dateVariants}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.04 }}
           >
             <span className="text-3xl sm:text-4xl font-bold">{date}</span>
             <span className="text-xs sm:text-sm font-medium">{monthYear}</span>
@@ -68,7 +68,7 @@ function NewEventCard({
             <motion.div
               className="text-center mb-3 sm:mb-4"
               variants={itemVariants}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.04 }}
             >
               <p className="text-lg sm:text-xl font-medium">{Label}</p>
             </motion.div>
@@ -80,7 +80,7 @@ function NewEventCard({
             <motion.div
               className="text-center mb-6 sm:mb-8"
               variants={itemVariants}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.04 }}
             >
               <div className="bg-gray-100 bg-opacity-10 px-4 py-2 ">
                 <p className="text-base sm:text-lg whitespace-pre-line">
@@ -93,7 +93,7 @@ function NewEventCard({
             <motion.div
               className="text-center mb-5 sm:mb-6"
               variants={itemVariants}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.04 }}
             >
               <button className="bg-gradient-to-r from-[#00b67d] to-[#008f65] text-white font-medium py-2 px-10 sm:py-3 sm:px-16 rounded-lg transition-colors duration-300">
                 <Link href={` /event/${slug}`}> LEARN MORE</Link>

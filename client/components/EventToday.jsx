@@ -1,19 +1,18 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import UpcomingEventCard from "./Common/UpcomingEventCard";
 import NewEventCard from "./Common/NewEventCard";
 import Link from "next/link";
 import config from "@/config";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, A11y, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.05, ease: "easeOut" } },
 };
 
 function EventToday() {
@@ -34,9 +33,7 @@ function EventToday() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch(
-          `${config.API_BASE_URL}/events-page/latest`
-        );
+        const response = await fetch(`${config.API_BASE_URL}/events-page`);
         if (!response.ok) throw new Error("Failed to fetch events");
         const data = await response.json();
         setEvents(data);
@@ -54,7 +51,7 @@ function EventToday() {
       {/* Heading Section */}
       <div className="text-center mb-10">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 hover:text-red-700 transition duration-300">
-          Event Calender
+          Event Calendar
         </h2>
         <p className="text-gray-600 mt-2 text-lg">
           Stay updated with our latest institute events.
@@ -66,28 +63,29 @@ function EventToday() {
       <div className="md:px-16 lg:px-24">
         <div className="shadow-xl p-10 rounded-[50px] bg-white">
           <div className="flex justify-center">
-            {isMobileView ? (
-              // Swiper for Mobile View
-              <Swiper
-                spaceBetween={5}
-                slidesPerView={1.2}
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
-                pagination={{ clickable: true }}
-                loop={true}
-                modules={[Pagination, Autoplay]}
-              >
-                {events.map((event, index) => (
+            <Swiper
+              slidesPerView={1.5}
+              spaceBetween={5}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              loop={true}
+              breakpoints={{
+                576: { slidesPerView: 2.5, spaceBetween: 10 },
+                768: { slidesPerView: 3.5, spaceBetween: 10 },
+                1024: { slidesPerView: 3.5, spaceBetween: 10 },
+              }}
+              modules={[Pagination, A11y, Autoplay]}
+              className="mySwiper"
+            >
+              {events.length > 0 ? (
+                events.map((event, index) => (
                   <SwiperSlide key={index}>
                     <NewEventCard
-                      key={event.id}
                       date={new Date(event.event_date).getDate()}
-                      monthYear={new Date(event.event_date).toLocaleString(
-                        "en-US",
-                        {
-                          month: "short",
-                          year: "numeric",
-                        }
-                      )}
+                      monthYear={new Date(event.event_date).toLocaleString("en-US", {
+                        month: "short",
+                        year: "numeric",
+                      })}
                       Label={event.label}
                       title={event.title}
                       minidescription={event.mini_description}
@@ -96,40 +94,11 @@ function EventToday() {
                       slug={event.slug}
                     />
                   </SwiperSlide>
-                ))}
-              </Swiper>
-            ) : (
-              // Grid for Desktop View
-              <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.1 }}
-                transition={{ staggerChildren: 0.3 }}
-              >
-                {events.map((event, index) => (
-                  <motion.div key={index} variants={cardVariants}>
-                    <NewEventCard
-                      key={event.id}
-                      date={new Date(event.event_date).getDate()}
-                      monthYear={new Date(event.event_date).toLocaleString(
-                        "en-US",
-                        {
-                          month: "short",
-                          year: "numeric",
-                        }
-                      )}
-                      Label={event.label}
-                      title={event.title}
-                      minidescription={event.mini_description}
-                      phone={event.phone}
-                      image={`/assets/event/${event.image_url}`}
-                      slug={event.slug}
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
+                ))
+              ) : (
+                <p>No events found.</p>
+              )}
+            </Swiper>
           </div>
 
           {/* Button */}
