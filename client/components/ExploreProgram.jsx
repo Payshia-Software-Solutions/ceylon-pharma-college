@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, A11y } from "swiper/modules";
+import { Pagination, A11y, Autoplay } from "swiper/modules"; // ✅ Added Autoplay
 import ExploreCard from "./Common/ExploreCard";
 import config from "@/config";
 
@@ -17,9 +17,7 @@ function ExploreProgram() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch(
-          `${config.API_BASE_URL}/parent-main-course`
-        );
+        const response = await fetch(`${config.API_BASE_URL}/parent-main-course`);
         if (!response.ok) {
           throw new Error("Failed to fetch courses");
         }
@@ -57,15 +55,17 @@ function ExploreProgram() {
           slidesPerView={1.5}
           spaceBetween={10}
           pagination={{ clickable: true }}
+          autoplay={{ delay: 3000, disableOnInteraction: false }} 
+          loop={true}
           breakpoints={{
-            576: { slidesPerView:2.5, spaceBetween: 10 }, // Tablets: 2 placeholders
-            768: { slidesPerView: 3.5, spaceBetween: 10 }, // Small laptops: 3 placeholders
-            1024: { slidesPerView: 4.5, spaceBetween: 15 }, // Large screens: 4 placeholders
+            576: { slidesPerView: 2.5, spaceBetween: 10 },
+            768: { slidesPerView: 3.5, spaceBetween: 10 },
+            1024: { slidesPerView: 4.5, spaceBetween: 15 },
           }}
-          modules={[Pagination, A11y]}
+          modules={[Pagination, A11y, Autoplay]} 
           className="mySwiper"
         >
-          {/* Show Loading Placeholders with Responsive Count */}
+          {/* Show Loading Placeholders */}
           {loading &&
             Array.from({ length: 4 }).map((_, index) => (
               <SwiperSlide key={index} className="p-2 mb-5">
@@ -77,38 +77,37 @@ function ExploreProgram() {
               </SwiperSlide>
             ))}
 
-         {/* Show Courses When Loaded */}
-{!loading &&
-  !error &&
-  courses
-    .slice() // Create a shallow copy to avoid mutating the original array
-    .reverse() // Reverse the copied array
-    .map((course, index) => (
-      <SwiperSlide key={index} className="p-2 mb-5">
-        <motion.div
-          className="transform transition-all duration-500 ease-in-out"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 1.0,
-            ease: "easeOut",
-            delay: index * 0.04,
-          }}
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <ExploreCard
-            title={course.course_name}
-            description={course.mini_description}
-            buttontext="LEARN MORE"
-            imgURL={`${config.FTP_URL}/courses/${course.course_code}/${course.course_img}`}
-            slug={course.slug}
-            price={course.course_fee}
-            seat={course.seat}
-          />
-        </motion.div>
-      </SwiperSlide>
-    ))}
-
+          {/* Show Courses When Loaded */}
+          {!loading &&
+            !error &&
+            courses
+              .slice()
+              .reverse()
+              .map((course, index) => (
+                <SwiperSlide key={index} className="p-2 mb-5">
+                  <motion.div
+                    className="transform transition-all duration-500 ease-in-out"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 1.0,
+                      ease: "easeOut",
+                      delay: index * 0.04,
+                    }}
+                    viewport={{ once: true, amount: 0.2 }}
+                  >
+                    <ExploreCard
+                      title={course.course_name}
+                      description={course.mini_description}
+                      buttontext="LEARN MORE"
+                      imgURL={`${config.FTP_URL}/courses/${course.course_code}/${course.course_img}`}
+                      slug={course.slug}
+                      price={course.course_fee}
+                      seat={course.seat}
+                    />
+                  </motion.div>
+                </SwiperSlide>
+              ))}
         </Swiper>
       </div>
     </div>
