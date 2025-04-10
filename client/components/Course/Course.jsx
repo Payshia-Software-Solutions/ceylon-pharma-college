@@ -6,8 +6,8 @@ import SideBar from "@/components/Course/SideBar";
 import ExploreCard from "../Common/ExploreCard";
 import Image from "next/image";
 import config from "@/config";
+import Breadcrumb from "../Breadcrumb.";
 
-// Components  `${config.API_BASE_URL}/parent-main-course`
 import ProductSectionHeader from "@/components/Course/CourseSectionheader";
 import SectionHeader from "../Common/SectionHeader";
 
@@ -50,6 +50,11 @@ function Course() {
     fetchCourses();
   }, []); // Empty dependency array ensures this runs only once on component mount
 
+
+  const breadcrumbs = [
+    { href: "/", label: "Home", icon: true },
+    { href: "/course", label: "course" },
+  ];
   return (
     <section className="h-full">
       {/* Section Header */}
@@ -60,6 +65,7 @@ function Course() {
 
       {/* Main Content */}
       <div className="px-4 md:px-8">
+      <Breadcrumb crumbs={breadcrumbs} fontColor="" />
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* Sidebar */}
           <div className="md:col-span-3">

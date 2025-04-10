@@ -10,6 +10,7 @@ import AssessmentMethod from '@/components/our-course/AssessmentMethod';
 import Certification from '@/components/our-course/Certification';
 import EnrollmentSteps from '@/components/our-course/EnrollmentSteps';
 import FullPageLoader from '@/components/FullPageLoader';
+import Breadcrumb from './Breadcrumb.';
 
 export default function CoursePage({ slug }) {
   const [loading, setLoading] = useState(true); // Set a loading state
@@ -28,11 +29,20 @@ export default function CoursePage({ slug }) {
     return <FullPageLoader />; // Show the full-page loader while the page is loading
   }
 
+  const breadcrumbs = [
+    { href: "/", label: "Home", icon: true },
+    { href: "/course", label: "course" },
+    { href: ` /${slug}`, label: ` ${slug}` },
+
+
+  ];
+
   return (
     <div className="bg-gray-50 min-h-screen mt-24">
       <CourseHero slug={slug} />
       
       <div className="container mx-auto px-4 md:px-8 py-12">
+      <Breadcrumb crumbs={breadcrumbs} fontColor="" />
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-12">
