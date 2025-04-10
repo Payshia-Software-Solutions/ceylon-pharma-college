@@ -5,6 +5,11 @@ import UpcomingEventCard from "./Common/UpcomingEventCard";
 import NewEventCard from "./Common/NewEventCard";
 import Link from "next/link";
 import config from "@/config";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -12,11 +17,19 @@ const cardVariants = {
 };
 
 function EventToday() {
-  const cards = [0, 1, 2];
-
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 768); // Example: below md breakpoint
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -25,7 +38,6 @@ function EventToday() {
           `${config.API_BASE_URL}/events-page/latest`
         );
         if (!response.ok) throw new Error("Failed to fetch events");
-
         const data = await response.json();
         setEvents(data);
       } catch (err) {
@@ -34,14 +46,12 @@ function EventToday() {
         setLoading(false);
       }
     };
-
     fetchEvents();
   }, []);
 
   return (
     <div className="bg-gray-50 py-12 relative">
       {/* Heading Section */}
-
       <div className="text-center mb-10">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-800 hover:text-red-700 transition duration-300">
           Event Calender
@@ -52,42 +62,77 @@ function EventToday() {
         <hr className="w-32 border-t-4 border-maincolor mx-auto mt-4" />
       </div>
 
-      {/* Event Cards Section */}
+      {/* Events Section */}
       <div className="md:px-16 lg:px-24">
         <div className="shadow-xl p-10 rounded-[50px] bg-white">
           <div className="flex justify-center">
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.1 }}
-              transition={{ staggerChildren: 0.3 }}
-            >
-              {events.map((event, index) => (
-                <motion.div key={index} variants={cardVariants}>
-                  <NewEventCard
-                    key={event.id}
-                    date={new Date(event.event_date).getDate()}
-                    monthYear={new Date(event.event_date).toLocaleString(
-                      "en-US",
-                      {
-                        month: "short",
-                        year: "numeric",
-                      }
-                    )}
-                    Label={event.label}
-                    title={event.title}
-                    minidescription={event.mini_description}
-                    phone={event.phone}
-                    image={` /assets/event/${event.image_url}`}
-                    slug={event.slug}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
+            {isMobileView ? (
+              // Swiper for Mobile View
+              <Swiper
+                spaceBetween={10}
+                slidesPerView={1.2}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                pagination={{ clickable: true }}
+                loop={true}
+                modules={[Pagination, Autoplay]}
+              >
+                {events.map((event, index) => (
+                  <SwiperSlide key={index}>
+                    <NewEventCard
+                      key={event.id}
+                      date={new Date(event.event_date).getDate()}
+                      monthYear={new Date(event.event_date).toLocaleString(
+                        "en-US",
+                        {
+                          month: "short",
+                          year: "numeric",
+                        }
+                      )}
+                      Label={event.label}
+                      title={event.title}
+                      minidescription={event.mini_description}
+                      phone={event.phone}
+                      image={`/assets/event/${event.image_url}`}
+                      slug={event.slug}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              // Grid for Desktop View
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.1 }}
+                transition={{ staggerChildren: 0.3 }}
+              >
+                {events.map((event, index) => (
+                  <motion.div key={index} variants={cardVariants}>
+                    <NewEventCard
+                      key={event.id}
+                      date={new Date(event.event_date).getDate()}
+                      monthYear={new Date(event.event_date).toLocaleString(
+                        "en-US",
+                        {
+                          month: "short",
+                          year: "numeric",
+                        }
+                      )}
+                      Label={event.label}
+                      title={event.title}
+                      minidescription={event.mini_description}
+                      phone={event.phone}
+                      image={`/assets/event/${event.image_url}`}
+                      slug={event.slug}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
           </div>
 
-          {/*  Button */}
+          {/* Button */}
           <div className="mt-12 flex justify-center">
             <Link href="/event">
               <motion.button

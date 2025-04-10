@@ -110,9 +110,9 @@ function NavBar() {
       >
         {/* Top Bar */}
         <div className="flex justify-center">
-          <div className="bg-maincolor w-full text-sm py-2 px-4 flex sm:justify-start md:justify-center text-white">
+          <div className="bg-maincolor w-full text-sm py-2 px-4 flex justify-start  text-white">
             {/* Links section */}
-            <div className="flex gap-6">
+            <div className="flex gap-6 md:ml-8">
               <Link href={"#"} className="font-semibold">
                 Student Login
               </Link>
