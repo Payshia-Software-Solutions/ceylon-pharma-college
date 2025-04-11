@@ -17,7 +17,9 @@ function ExploreProgram() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch(`${config.API_BASE_URL}/parent-main-course`);
+        const response = await fetch(
+          `${config.API_BASE_URL}/parent-main-course`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch courses");
         }
@@ -54,16 +56,16 @@ function ExploreProgram() {
         <Swiper
           slidesPerView={1.5}
           spaceBetween={5}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 3000, disableOnInteraction: false }} 
+          pagination={false}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
           loop={true}
           breakpoints={{
             576: { slidesPerView: 2.5, spaceBetween: 5 },
             768: { slidesPerView: 3.5, spaceBetween: 5 },
             1024: { slidesPerView: 4.5, spaceBetween: 5 },
           }}
-          modules={[Pagination, A11y, Autoplay]} 
-          className="mySwiper"
+          modules={[Pagination, A11y, Autoplay]}
+          className="swiper-container"
         >
           {/* Show Loading Placeholders */}
           {loading &&

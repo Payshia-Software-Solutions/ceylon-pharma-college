@@ -66,7 +66,7 @@ function EventToday() {
             <Swiper
               slidesPerView={1.5}
               spaceBetween={5}
-              pagination={{ clickable: true }}
+              pagination={false}
               autoplay={{ delay: 3000, disableOnInteraction: false }}
               loop={true}
               breakpoints={{

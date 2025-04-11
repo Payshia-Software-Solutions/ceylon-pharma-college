@@ -10,7 +10,7 @@ function NameCard({ username, name, onClick }) {
         {/* Profile Image */}
         <div>
           <img
-            src="/assets/explore/black-tea.webp"
+            src="/assets/icon/user.png"
             className="rounded-full w-14 h-14 object-cover"
             alt="Profile"
           />

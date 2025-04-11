@@ -321,8 +321,7 @@ const Testimonial = () => {
                 <TestamonialCard
                   name={card.name}
                   image={
-                    `/assets/testimonial/${card.image_url}` ||
-                    "/assets/testimonial/doctor1.jp"
+                    `/assets/icon/user.png`
                   }
                   role={card.role}
                   comment={card.comment}

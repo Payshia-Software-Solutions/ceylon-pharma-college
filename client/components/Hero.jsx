@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from 'next/link';
-
+import Link from "next/link";
 
 function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -46,7 +45,6 @@ function Hero() {
           scrolled ? "rounded-none md:rounded-3xl" : ""
         }`}
         src="/assets/videos/hero-video.mp4" // Replace with the path to your video file
-
         autoPlay
         loop
         muted
@@ -66,19 +64,19 @@ function Hero() {
 
         {/* Main Text */}
         <div className="text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] font-bold uppercase tracking-wide opacity-90">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-bold uppercase tracking-wide opacity-90 mb-2">
             Learning Today
           </h1>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[5rem] font-bold uppercase tracking-wide opacity-90">
-           Leading tomorrow
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[4rem] font-bold uppercase tracking-wide opacity-90">
+            Leading tomorrow
           </h1>
           <div className="mt-6 flex justify-center space-x-4">
-  <Link href="https://portal.pharmacollege.lk/register" passHref>
-    <button className="px-6 py-3 text-xl bg-[#00b67d] rounded-full text-white font-medium">
-      Apply Now
-    </button>
-  </Link>
-</div>
+            <Link href="https://portal.pharmacollege.lk/register" passHref>
+              <button className="px-6 py-3 text-xl bg-[#00b67d] rounded-full text-white font-medium">
+                Apply Now
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
