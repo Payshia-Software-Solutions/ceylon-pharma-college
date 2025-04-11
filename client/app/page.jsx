@@ -15,33 +15,23 @@ import Certificate from "@/components/Certificate";
 import NewEventCard from "@/components/Common/NewEventCard";
 import Heroabout from "@/components/Heroabout";
 import ApplyNowBottemBar from "@/components/ApplyNowBottemBar";
-import NewTestamonial from "@/components/NewTestamonial"
-
+import NewTestamonial from "@/components/NewTestamonial";
+import OurAchievements from "@/components/OurArchivements";
 
 function page() {
   return (
     <div>
       <Hero />
-
-  
       <ExploreProgram />
-
-      <section id="certificates"><Certificate /></section>
-      <Heroabout/>
-    
-      {/* <MainTestimonial /> */}
-      <NewTestamonial/>
-      
-
-      {/* <AllBelonge /> */}
+      <section id="certificates">
+        <Certificate />
+      </section>
+      <Heroabout />
+      <OurAchievements />
+      <NewTestamonial />
       <AlvenroToday />
-
-
       <Accredition />
-      <ApplyNowBottemBar/>
-
-   
-     
+      <ApplyNowBottemBar />
     </div>
   );
 }

@@ -58,12 +58,12 @@ function NavBar() {
 
   // Handle certificate button click - works on any page
   const handleCertificateClick = () => {
-    if (pathname === '/') {
+    if (pathname === "/") {
       // If on home page, just scroll to certificates
       scrollToCertificates();
     } else {
       // If on another page, navigate to home page with a hash
-      window.location.href = '/#certificates';
+      window.location.href = "/#certificates";
     }
   };
 
@@ -121,7 +121,7 @@ function NavBar() {
       >
         {/* Top Bar */}
         <div className="flex justify-center">
-          <div className="bg-maincolor w-full text-sm py-2 px-4 flex justify-start  text-white">
+          <div className="bg-maincolor w-full text-sm py-2 px-4 flex justify-end text-white">
             {/* Links section */}
             <div className="flex gap-6 md:ml-8">
               <Link href={"#"} className="font-semibold">
@@ -139,7 +139,7 @@ function NavBar() {
         </div>
 
         {/* Main Navbar */}
-        <div className="container mx-auto px-4 md:px-8 py-4">
+        <div className="container mx-auto px-4 md:px-8 py-2 md:py-4">
           {/* Logo Row (Mobile-Responsive Centering) */}
           <div className="flex items-center justify-between md:hidden md:gap-4">
             {/* Logo */}
@@ -205,13 +205,9 @@ function NavBar() {
 
             {/* Search and User Actions */}
             <div className="flex justify-between items-center gap-4">
-              <div className="w-full md:w-auto  md:hidden justify-center md:justify-start mb-4 md:mb-0">
+              <div className="w-full md:w-auto  md:hidden justify-center md:justify-start md:mb-0 py-1">
                 <Link href="/" className="text-2xl font-bold text-orange-500">
-                  <img
-                    src="/assets/images/logo.png"
-                    alt=""
-                    className="h-8 mt-2"
-                  />
+                  <img src="/assets/images/logo.png" alt="" className="h-8" />
                 </Link>
               </div>
 
@@ -229,11 +225,8 @@ function NavBar() {
             <div className="hidden md:flex">
               <div className="md:flex justify-between items-center">
                 <div className="text-white text-center flex justify-around gap-4">
-                <button className="bg-gray-600 text-xl py-2 px-4 rounded-full h-auto">
-                    <Link
-                      href="https://lms.pharmacollege.lk/"
-                      target="_blank"
-                    >
+                  <button className="bg-gray-600 text-xl py-2 px-4 rounded-full h-auto">
+                    <Link href="https://lms.pharmacollege.lk/" target="_blank">
                       Student Login
                     </Link>
                   </button>
