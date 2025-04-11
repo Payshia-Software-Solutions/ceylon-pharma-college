@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import { FaPlusCircle } from "react-icons/fa";
 import config from "@/config";
+import TestamonialCard from "./Common/TestamonialCard";
 
 const FireworkParticle = ({ x, y, angle, distance, color, delay, size }) => {
   return (
@@ -137,37 +138,37 @@ const FireworkDisplay = ({ active }) => {
   );
 };
 
-const TestamonialCard = ({ name, role, image, comment, rating }) => {
-  return (
-    <div className="bg-white text-black p-6 rounded-xl shadow-md h-full">
-      <div className="flex items-center gap-4 mb-4">
-        <img
-          src={image}
-          alt={name}
-          className="w-12 h-12 rounded-full object-cover"
-        />
-        <div>
-          <h4 className="font-semibold">{name}</h4>
-          <p className="text-sm text-gray-500">{role}</p>
-        </div>
-      </div>
-      <div className="flex text-yellow-400 text-xl mb-2">
-        {[1, 2, 3, 4, 5].map((i) =>
-          i <= Math.floor(rating) ? (
-            <AiFillStar key={i} />
-          ) : (
-            <AiOutlineStar key={i} />
-          )
-        )}
-      </div>
-      <div className="text-sm text-gray-700">
-        {comment.split("\n").map((line, i) => (
-          <p key={i}>{line}</p>
-        ))}
-      </div>
-    </div>
-  );
-};
+// const TestamonialCard = ({ name, role, image, comment, rating }) => {
+//   return (
+//     <div className="bg-white text-black p-6 rounded-xl shadow-md h-full">
+//       <div className="flex items-center gap-4 mb-4">
+//         <img
+//           src={image}
+//           alt={name}
+//           className="w-12 h-12 rounded-full object-cover"
+//         />
+//         <div>
+//           <h4 className="font-semibold">{name}</h4>
+//           {/* <p className="text-sm text-gray-500">{role}</p> */}
+//         </div>
+//       </div>
+//       <div className="flex text-yellow-400 text-xl mb-2">
+//         {[1, 2, 3, 4, 5].map((i) =>
+//           i <= Math.floor(rating) ? (
+//             <AiFillStar key={i} />
+//           ) : (
+//             <AiOutlineStar key={i} />
+//           )
+//         )}
+//       </div>
+//       <div className="text-sm text-gray-700">
+//         {comment.split("\n").map((line, i) => (
+//           <p key={i}>{line}</p>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
 
 const Testimonial = () => {
   const prevRef = useRef(null);
@@ -372,14 +373,14 @@ const Testimonial = () => {
                   className="border border-maincolor rounded-md px-3 py-1.5 md:px-4 md:py-2 text-sm md:text-base"
                   required
                 />
-                <input
+                {/* <input
                   type="text"
                   name="role"
                   placeholder="Your Role"
                   value={formData.role}
                   onChange={handleInputChange}
                   className="border border-maincolor rounded-md px-3 py-1.5 md:px-4 md:py-2 text-sm md:text-base"
-                />
+                /> */}
                 <textarea
                   name="comment"
                   placeholder="Your Feedback"
