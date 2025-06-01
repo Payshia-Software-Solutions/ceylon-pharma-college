@@ -23,13 +23,16 @@ function page() {
 
       <div className="px-4 md:px-16">
       <Breadcrumb crumbs={breadcrumbs} fontColor="" />
-        <Description />
+        <WelcomeSection />
+
       </div>
       <div>
         <WhyChoose />
+        <Description />
       </div>
-      <Counter />
-      <WelcomeSection />
+      
+       
+    
 
       <div>
         <CommentSection />

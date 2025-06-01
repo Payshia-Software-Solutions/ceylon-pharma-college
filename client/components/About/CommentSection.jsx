@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import CommentCard from "../Common/CommentCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, A11y } from "swiper/modules";
@@ -8,8 +8,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
+import config from "@/config";
 
-const commentData = [
+// Fallback data in case API fails
+const fallbackCommentData = [
   {
     name: "Gaguli Ashinshana",
     imgURL: "/assets/images/cover.png",
@@ -28,18 +30,67 @@ const commentData = [
     status: "Professional",
     comment: `A wonderful experience with great resources and mentors. The knowledge shared here is practical and valuable for building a solid foundation.`,
   },
-  {
-    name: "Gaguli Ashinshana",
-    imgURL: "/assets/images/cover.png",
-    status: "Student",
-    comment: `Ceylon Pharma College is the best place to learn about medicine. A most successful course that can be done without fear. You can get knowledge through the latest methods, and you don't have to study to death. You can learn quickly. The best place that gives knowledge worth more than the money charged. Even those without a purpose get a purpose. Another good meaningful way to win in life. Thank you, sir, for giving us this knowledge.`,
-  },
 ];
 
 function CommentSection() {
   // Refs for navigation buttons
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  
+  // State for testimonials and loading
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch testimonials from API
+  const fetchTestimonials = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const res = await fetch(`${config.API_BASE_URL}/testimonials`);
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const data = await res.json();
+      
+      // Map API data to match CommentCard props structure
+      const mappedData = data.map(item => ({
+        name: item.name,
+        imgURL: item.image || "/assets/icon/user.png", // Use API image or default
+        status: item.role || "Student", // Use role from API or default
+        comment: item.comment,
+        rating: item.rating // Include rating if needed
+      }));
+      
+      setTestimonials(mappedData);
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+      setError(error.message);
+      // Use fallback data if API fails
+      setTestimonials(fallbackCommentData);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch testimonials on component mount
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="mt-5 px-4 md:px-16">
+        <div className="text-center py-8">
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-maincolor"></div>
+          <p className="mt-2 text-gray-600">Loading testimonials...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-5 px-4 md:px-16">
@@ -52,13 +103,22 @@ function CommentSection() {
         {/* Navigation Buttons */}
         <div className="flex gap-3 mt-8 md:mt-0">
           <button ref={prevRef}>
-            <FaArrowAltCircleLeft className="w-12 h-12 cursor-pointer" />
+            <FaArrowAltCircleLeft className="w-12 h-12 cursor-pointer hover:text-maincolor transition-colors" />
           </button>
           <button ref={nextRef}>
-            <FaArrowAltCircleRight className="w-12 h-12 cursor-pointer" />
+            <FaArrowAltCircleRight className="w-12 h-12 cursor-pointer hover:text-maincolor transition-colors" />
           </button>
         </div>
       </div>
+
+      {/* Error message if API failed */}
+      {error && (
+        <div className="text-center py-4">
+          <p className="text-sm text-gray-500">
+            Using sample testimonials (API unavailable)
+          </p>
+        </div>
+      )}
 
       {/* Swiper Section */}
       <div className="mt-6 mx-auto px-4 md:px-16">
@@ -89,7 +149,7 @@ function CommentSection() {
               modules={[Pagination, Navigation, A11y]}
               className="mySwiper mb-8"
             >
-              {commentData.map((comment, index) => (
+              {testimonials.map((comment, index) => (
                 <SwiperSlide key={index}>
                   <CommentCard
                     name={comment.name}
@@ -103,6 +163,8 @@ function CommentSection() {
           </div>
         </div>
       </div>
+      
+   
     </div>
   );
 }

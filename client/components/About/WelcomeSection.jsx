@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 function WelcomeSection() {
   return (
-    <section className="py-12">
+    <section className="py-">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Left Section: Text Content */}
         <div className="flex bg-gray-100 rounded-r-xl px-12 py-8 justify-end">
@@ -31,26 +31,24 @@ function WelcomeSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              It is a long established fact that a reader.
+              At Ceylon Pharma College, we're passionate about providing high-quality education in pharmacy practice. Our goal is to help you build a successful and meaningful career in healthcare.
             </motion.p>
-            <motion.p
-              className="text-gray-600 leading-relaxed"
+            <motion.div
+              className="text-gray-600 leading-relaxed mb-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-            >
-                 In a world where educational institutions faced unprecedented
-              challenges, Ceylon Pharma College emerged as a light of innovative
-              distance learning. We take pride in our dedicated team of
-              professionals who ensured that our students continued to receive
-              the best education even in trying times. Our mission is simple yet
-              impactful. It is to provide the best education through distance
-              learning using online platforms. We are committed to empowering our
-              community by equipping individuals with the knowledge and skills to
-              shine as professionals. Our vision is to nurture excellence in
-              every student.
-            </motion.p>
+            >  
+              <p className="mb-3">We offer four practical and career focused programs:</p>
+              <ul className="list-disc list-inside space-y-1 mb-4">
+                <li>Certificate Course in Pharmacy Practice</li>
+                <li>Advanced Course in Pharmacy Practice</li>
+                <li>Professional Pharmacist Training</li>
+                <li>Workshops for Skill Development</li>
+              </ul>
+              <p>Whether you want to become a pharmacist, pharmacy assistant, caregiver, or healthcare professional, our courses are designed just for you.</p>
+            </motion.div>
             <motion.button
               className="mt-6 bg-yellow-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-yellow-600"
               initial={{ opacity: 0, scale: 0.5 }}

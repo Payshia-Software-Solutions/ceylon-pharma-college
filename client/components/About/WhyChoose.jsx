@@ -1,85 +1,81 @@
-import React from "react";
-import { FaUniversity, FaBook, FaFileAlt } from "react-icons/fa";
+"use client";
+import React from 'react';
+import { Target, Lightbulb } from 'lucide-react';
 
-function WhyChoose() {
+const WhyChoose = () => {
   return (
-    <div className="bg-gray-100 px-4 py-8">
-      {/* Section Title */}
-      <div className="text-center py-2 px-8 my-6">
-        <h2 className="uppercase text-4xl">
-          <span className="font-bold">why choose</span> our institution
-        </h2>
-        <p className="text-center leading-snug mt-6 text-gray-600">
-          At Ceylon Pharma College, our highly qualified educators do more than
-          just teach—they train. We prepare you to be brilliant in the
-          competitive field of pharmaceuticals. Our commitment doesn’t end with
-          education; we connect you with responsible employers, offering
-          opportunities to kickstart your career in the private healthcare
-          sector.
-        </p>
-      </div>
+    <div className="bg-gray-50 py-20 px-4 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse animation-delay-2000"></div>
+      
+      <div className="max-w-4xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6 tracking-tight">
+            Our Vision & Mission
+          </h1>
+          <div className="w-24 h-1.5 bg-maincolor mx-auto rounded-full shadow-lg transform transition-all duration-300 hover:w-32"></div>
+          <div className="w-12 h-0.5 bg-maincolor mx-auto mt-2 rounded-full opacity-60"></div>
+        </div>
 
-      {/* Cards Section */}
-      <div className="flex justify-center">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-6 px-4 md:px-16 lg:px-24 gap-4">
-          {/* Card 1 */}
-          <div className="max-w-sm bg-gray-50 px-1 py-1 rounded-t-xl sm:max-w-md lg:max-w-sm xl:max-w-sm rounded-lg max-h-[31rem] shadow-lg border relative border-gray-200 overflow-hidden ">
-            <div className="absolute bg-white left-1/2  top-[66%] md:top-[82%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col rounded-full items-center">
-              <FaUniversity className="w-20 h-20 px-4 py-2" />
-            </div>
-            <div className="w-full h-[20rem] sm:h-[20rem] lg:h-[25rem] p-1">
-              <img
-                src="/assets/images/cover.png"
-                className="h-full w-full object-cover rounded-t-xl"
-                alt="Expert Faculty"
-              />
-            </div>
-            <div className="py-8 mt-6 mb-12 text-center">
-              <h3 className="text-xl font-semibold mb-2">Expert Faculty</h3>
+        {/* Vision and Mission Cards */}
+        <div className="grid lg:grid-cols-2 gap-10">
+          {/* Vision Card */}
+          <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 p-10 transform transition-all duration-500 hover:-translate-y-2 hover:scale-105 relative overflow-hidden">
+            {/* Card background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div className="relative z-10">
+              <div className="flex items-center mb-8">
+                <div className="p-4 bg-maincolor rounded-2xl mr-6 shadow-lg transform transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                  <Target className="w-7 h-7 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors duration-300">
+                  Vision
+                </h2>
+              </div>
+              <div className="relative">
+                <div className="absolute left-0 top-0 w-1 h-full bg-maincolor rounded-full transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+                <p className="text-lg text-gray-700 leading-relaxed pl-6 transform transition-all duration-300 group-hover:pl-8">
+                  To become one of the world's leading institutions in education, setting the standards for excellence in pharmaceutical education and innovation.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="px-1 py-1 rounded-t-xl max-w-sm sm:max-w-md bg-gray-50 lg:max-w-sm xl:max-w-sm rounded-lg max-h-[31rem] shadow-lg border relative border-gray-200 overflow-hidden">
-            <div className="absolute bg-white left-1/2 top-[66%] md:top-[82%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col rounded-full items-center">
-              <FaBook className="w-20 h-20 px-6 py-4" />
-            </div>
-            <div className="w-full h-[20rem] sm:h-[20rem] lg:h-[25rem] p-1">
-              <img
-                src="/assets/images/cover.png"
-                className="h-full w-full object-cover rounded-t-xl"
-                alt="Comprehensive Curriculum"
-              />
-            </div>
-            <div className="py-8 mt-6 mb-12 text-center">
-              <h3 className="text-xl font-semibold mb-2">
-                Comprehensive Curriculum
-              </h3>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="px-1 py-1 rounded-t-xl max-w-sm sm:max-w-md bg-gray-50 lg:max-w-sm xl:max-w-sm rounded-lg max-h-[31rem] shadow-lg border relative border-gray-200 overflow-hidden">
-            <div className="absolute bg-white left-1/2  top-[66%] md:top-[82%]  transform -translate-x-1/2 -translate-y-1/2 flex flex-col rounded-full items-center">
-              <FaFileAlt className="w-20 h-20 px-6 py-4" />
-            </div>
-            <div className="w-full h-[20rem] sm:h-[20rem] lg:h-[25rem] p-1">
-              <img
-                src="/assets/images/cover.png"
-                className="h-full w-full object-cover rounded-t-xl"
-                alt="Career Opportunities"
-              />
-            </div>
-            <div className="py-8 mt-6 mb-12 text-center">
-              <h3 className="text-xl font-semibold mb-2">
-                Career Opportunities
-              </h3>
+          {/* Mission Card */}
+          <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl border border-gray-100 p-10 transform transition-all duration-500 hover:-translate-y-2 hover:scale-105 relative overflow-hidden">
+            {/* Card background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div className="relative z-10">
+              <div className="flex items-center mb-8">
+                <div className="p-4 bg-maincolor rounded-2xl mr-6 shadow-lg transform transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                  <Lightbulb className="w-7 h-7 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 group-hover:text-yellow-600 transition-colors duration-300">
+                  Mission
+                </h2>
+              </div>
+              <div className="relative">
+                <div className="absolute left-0 top-0 w-1 h-full bg-maincolor rounded-full transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+                <p className="text-lg text-gray-700 leading-relaxed pl-6 transform transition-all duration-300 group-hover:pl-8">
+                  To deliver exceptional pharmaceutical education through innovative teaching and training, empowering future healthcare professionals to provide quality care and advance global health.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      
+      <style jsx>{`
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
     </div>
   );
-}
+};
 
 export default WhyChoose;
